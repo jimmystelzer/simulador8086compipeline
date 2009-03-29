@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1238280528 source:/home/jimmy/simulador8086pipeline/MainApp.cpp
+1238342949 source:/home/jimmy/simulador8086pipeline/MainApp.cpp
 	<wx/wxprec.h>
 	<wx/app.h>
 	"JanelaPrincipal.h"
@@ -1465,7 +1465,9 @@
 1223910546 /usr/include/wx-2.8/wx/gtk/filedlg.h
 	"wx/generic/filedlgg.h"
 
-1238282239 /home/jimmy/simulador8086pipeline/JanelaPrincipal.h
+1238342777 /home/jimmy/simulador8086pipeline/JanelaPrincipal.h
+	<wx/listctrl.h>
+	<wx/statline.h>
 	<wx/panel.h>
 	<wx/button.h>
 	<wx/frame.h>
@@ -1478,16 +1480,66 @@
 	<wx/button.h>
 	<wx/dialog.h>
 
-1238281951 source:/home/jimmy/simulador8086pipeline/JanelaPrincipal.cpp
+1238342949 source:/home/jimmy/simulador8086pipeline/JanelaPrincipal.cpp
 	"JanelaPrincipal.h"
 	<wx/intl.h>
 	<wx/string.h>
 
-1238281760 source:/home/jimmy/simulador8086pipeline/JanelaSobre.cpp
+1238282355 source:/home/jimmy/simulador8086pipeline/JanelaSobre.cpp
 	"JanelaSobre.h"
 	<wx/bitmap.h>
 	<wx/font.h>
 	<wx/intl.h>
 	<wx/image.h>
 	<wx/string.h>
+
+1223910546 /usr/include/wx-2.8/wx/notebook.h
+	"wx/defs.h"
+	"wx/bookctrl.h"
+	"wx/univ/notebook.h"
+	"wx/msw/notebook.h"
+	"wx/generic/notebook.h"
+	"wx/gtk/notebook.h"
+	"wx/gtk1/notebook.h"
+	"wx/mac/notebook.h"
+	"wx/cocoa/notebook.h"
+	"wx/os2/notebook.h"
+
+1223910546 /usr/include/wx-2.8/wx/bookctrl.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/dynarray.h"
+	"wx/notebook.h"
+	"wx/choicebk.h"
+
+1223910546 /usr/include/wx-2.8/wx/choicebk.h
+	"wx/defs.h"
+	"wx/bookctrl.h"
+	"wx/choice.h"
+
+1223910545 /usr/include/wx-2.8/wx/generic/notebook.h
+	"wx/event.h"
+	"wx/control.h"
+
+1223910546 /usr/include/wx-2.8/wx/gtk/notebook.h
+	"wx/list.h"
+
+1223910546 /usr/include/wx-2.8/wx/listbook.h
+	"wx/defs.h"
+	"wx/bookctrl.h"
+
+1223910546 /usr/include/wx-2.8/wx/statline.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/univ/statline.h"
+	"wx/msw/statline.h"
+	"wx/gtk/statline.h"
+	"wx/gtk1/statline.h"
+	"wx/os2/statline.h"
+	"wx/mac/statline.h"
+	"wx/cocoa/statline.h"
+	"wx/generic/statline.h"
+
+1223910546 /usr/include/wx-2.8/wx/gtk/statline.h
+	"wx/defs.h"
 
