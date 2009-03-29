@@ -3,6 +3,7 @@
 
 //(*Headers(JanelaPrincipal)
 #include <wx/listctrl.h>
+#include <wx/stattext.h>
 #include <wx/statline.h>
 #include <wx/panel.h>
 #include <wx/button.h>
@@ -23,13 +24,17 @@ class JanelaPrincipal: public wxFrame
 		//(*Declarations(JanelaPrincipal)
 		wxButton* Executar;
 		wxButton* Resetar;
+		wxStaticText* StaticText2;
 		wxButton* Abrir;
+		wxListCtrl* Pipeline;
 		wxButton* Button1;
 		wxPanel* Panel1;
-		wxListCtrl* pipeline;
+		wxStaticText* StaticText1;
+		wxStaticText* StaticText3;
 		wxStaticLine* StaticLine2;
 		wxStaticLine* StaticLine1;
 		wxListCtrl* Registradores;
+		wxListCtrl* Flags;
 		//*)
 
 	protected:
@@ -43,6 +48,10 @@ class JanelaPrincipal: public wxFrame
 		static const long ID_LISTCTRL2;
 		static const long ID_LISTCTRL1;
 		static const long ID_BUTTON4;
+		static const long ID_LISTCTRL3;
+		static const long ID_STATICTEXT1;
+		static const long ID_STATICTEXT2;
+		static const long ID_STATICTEXT3;
 		static const long ID_PANEL1;
 		//*)
 

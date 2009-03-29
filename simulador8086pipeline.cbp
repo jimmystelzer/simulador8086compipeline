@@ -42,6 +42,7 @@
 		<Unit filename="JanelaSobre.cpp" />
 		<Unit filename="JanelaSobre.h" />
 		<Unit filename="MainApp.cpp" />
+		<Unit filename="MainApp.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />

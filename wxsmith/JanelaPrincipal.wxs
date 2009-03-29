@@ -30,19 +30,36 @@
 				<pos>704,88</pos>
 			</object>
 			<object class="wxListCtrl" name="ID_LISTCTRL2" variable="Registradores" member="yes">
-				<pos>8,8</pos>
-				<size>680,64</size>
-				<style>wxLC_REPORT|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER|wxNO_BORDER</style>
+				<pos>8,32</pos>
+				<size>680,72</size>
+				<style>wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER</style>
 			</object>
-			<object class="wxListCtrl" name="ID_LISTCTRL1" variable="pipeline" member="yes">
-				<pos>8,80</pos>
-				<size>680,200</size>
-				<style>wxLC_REPORT|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER|wxNO_BORDER</style>
+			<object class="wxListCtrl" name="ID_LISTCTRL1" variable="Pipeline" member="yes">
+				<pos>8,224</pos>
+				<size>680,224</size>
+				<style>wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER</style>
 			</object>
 			<object class="wxButton" name="ID_BUTTON4" variable="Resetar" member="yes">
 				<label>Resetar</label>
 				<pos>704,128</pos>
 				<handler function="OnResetarClick" entry="EVT_BUTTON" />
+			</object>
+			<object class="wxListCtrl" name="ID_LISTCTRL3" variable="Flags" member="yes">
+				<pos>8,136</pos>
+				<size>680,56</size>
+				<style>wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER</style>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+				<label>Registradores:</label>
+				<pos>8,8</pos>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+				<label>Flags:</label>
+				<pos>8,112</pos>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
+				<label>Pipeline:</label>
+				<pos>8,200</pos>
 			</object>
 		</object>
 	</object>

@@ -1,7 +1,7 @@
 # depslib dependency file v1.0
-1238342949 source:/home/jimmy/simulador8086pipeline/MainApp.cpp
+1238367556 source:/home/jimmy/simulador8086pipeline/MainApp.cpp
 	<wx/wxprec.h>
-	<wx/app.h>
+	"MainApp.h"
 	"JanelaPrincipal.h"
 	<wx/image.h>
 
@@ -1465,8 +1465,9 @@
 1223910546 /usr/include/wx-2.8/wx/gtk/filedlg.h
 	"wx/generic/filedlgg.h"
 
-1238342777 /home/jimmy/simulador8086pipeline/JanelaPrincipal.h
+1238370715 /home/jimmy/simulador8086pipeline/JanelaPrincipal.h
 	<wx/listctrl.h>
+	<wx/stattext.h>
 	<wx/statline.h>
 	<wx/panel.h>
 	<wx/button.h>
@@ -1542,4 +1543,7 @@
 
 1223910546 /usr/include/wx-2.8/wx/gtk/statline.h
 	"wx/defs.h"
+
+1238367558 /home/jimmy/simulador8086pipeline/MainApp.h
+	<wx/app.h>
 
