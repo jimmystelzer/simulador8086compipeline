@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxFrame" name="JanelaPrincipal">
+		<size>800,460</size>
+		<pos_arg>1</pos_arg>
+		<size_arg>1</size_arg>
+		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
+			<pos>144,272</pos>
+			<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
+				<label>Sobre</label>
+				<pos>696,16</pos>
+				<handler function="OnButton1Click" entry="EVT_BUTTON" />
+			</object>
+		</object>
+	</object>
+</wxsmith>
