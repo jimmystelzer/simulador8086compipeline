@@ -1465,11 +1465,12 @@
 1223910546 /usr/include/wx-2.8/wx/gtk/filedlg.h
 	"wx/generic/filedlgg.h"
 
-1238370715 /home/jimmy/simulador8086pipeline/JanelaPrincipal.h
+1238638837 /home/jimmy/simulador8086pipeline/JanelaPrincipal.h
 	<wx/listctrl.h>
 	<wx/stattext.h>
 	<wx/statline.h>
 	<wx/panel.h>
+	<wx/filedlg.h>
 	<wx/button.h>
 	<wx/frame.h>
 	"JanelaSobre.h"
@@ -1481,12 +1482,12 @@
 	<wx/button.h>
 	<wx/dialog.h>
 
-1238342949 source:/home/jimmy/simulador8086pipeline/JanelaPrincipal.cpp
+1238639659 source:/home/jimmy/simulador8086pipeline/JanelaPrincipal.cpp
 	"JanelaPrincipal.h"
 	<wx/intl.h>
 	<wx/string.h>
 
-1238282355 source:/home/jimmy/simulador8086pipeline/JanelaSobre.cpp
+1238633243 source:/home/jimmy/simulador8086pipeline/JanelaSobre.cpp
 	"JanelaSobre.h"
 	<wx/bitmap.h>
 	<wx/font.h>

@@ -16,6 +16,7 @@
 			<object class="wxButton" name="ID_BUTTON2" variable="Abrir" member="yes">
 				<label>Abrir</label>
 				<pos>704,48</pos>
+				<handler function="OnAbrirClick" entry="EVT_BUTTON" />
 			</object>
 			<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
 				<pos>704,42</pos>
@@ -61,6 +62,11 @@
 				<label>Pipeline:</label>
 				<pos>8,200</pos>
 			</object>
+		</object>
+		<object class="wxFileDialog" variable="FileDialog1" member="yes">
+			<message>Escolha um arquivo para abrir</message>
+			<default_file>Assembler compilado (*.o)|*.o</default_file>
+			<wildcard>Assembler compilado (*.o)|*.o</wildcard>
 		</object>
 	</object>
 </wxsmith>

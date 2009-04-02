@@ -6,6 +6,7 @@
 #include <wx/stattext.h>
 #include <wx/statline.h>
 #include <wx/panel.h>
+#include <wx/filedlg.h>
 #include <wx/button.h>
 #include <wx/frame.h>
 //*)
@@ -19,8 +20,6 @@ class JanelaPrincipal: public wxFrame
 		JanelaPrincipal(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
 		virtual ~JanelaPrincipal();
 
-
-
 		//(*Declarations(JanelaPrincipal)
 		wxButton* Executar;
 		wxButton* Resetar;
@@ -30,6 +29,7 @@ class JanelaPrincipal: public wxFrame
 		wxButton* Button1;
 		wxPanel* Panel1;
 		wxStaticText* StaticText1;
+		wxFileDialog* FileDialog1;
 		wxStaticText* StaticText3;
 		wxStaticLine* StaticLine2;
 		wxStaticLine* StaticLine1;
@@ -60,6 +60,7 @@ class JanelaPrincipal: public wxFrame
 		//(*Handlers(JanelaPrincipal)
 		void OnButton1Click(wxCommandEvent& event);
 		void OnResetarClick(wxCommandEvent& event);
+		void OnAbrirClick(wxCommandEvent& event);
 		//*)
 
 		void Reset();

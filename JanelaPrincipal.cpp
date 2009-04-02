@@ -45,9 +45,11 @@ JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& p
 	StaticText1 = new wxStaticText(Panel1, ID_STATICTEXT1, _("Registradores:"), wxPoint(8,8), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
 	StaticText2 = new wxStaticText(Panel1, ID_STATICTEXT2, _("Flags:"), wxPoint(8,112), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
 	StaticText3 = new wxStaticText(Panel1, ID_STATICTEXT3, _("Pipeline:"), wxPoint(8,200), wxDefaultSize, 0, _T("ID_STATICTEXT3"));
+	FileDialog1 = new wxFileDialog(this, _("Escolha um arquivo para abrir"), wxEmptyString, _("Assembler compilado (*.o)|*.o"), _("Assembler compilado (*.o)|*.o"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
 	Center();
 
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::OnButton1Click);
+	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::OnAbrirClick);
 	Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::OnResetarClick);
 	//*)
     Reset();
@@ -127,4 +129,14 @@ void JanelaPrincipal::Reset()
 void JanelaPrincipal::OnResetarClick(wxCommandEvent& event)
 {
     Reset();
+}
+
+void JanelaPrincipal::OnAbrirClick(wxCommandEvent& event)
+{
+    // Cria um dialogo para abrir nosso objeto compilado do assemble
+    if  (FileDialog1->ShowModal() == wxID_OK) { //abriu o arquivo
+        SetTitle(_("Simulador 8086 com pipeline - ") + FileDialog1->GetPath());
+    }else{
+        SetTitle(_("Simulador 8086 com pipeline"));
+    }
 }
