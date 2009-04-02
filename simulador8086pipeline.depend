@@ -1474,7 +1474,7 @@
 	<wx/frame.h>
 	"JanelaSobre.h"
 
-1238281760 /home/jimmy/simulador8086pipeline/JanelaSobre.h
+1238633114 /home/jimmy/simulador8086pipeline/JanelaSobre.h
 	<wx/stattext.h>
 	<wx/panel.h>
 	<wx/statbmp.h>
