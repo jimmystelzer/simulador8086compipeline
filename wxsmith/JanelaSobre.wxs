@@ -10,9 +10,18 @@
 			<pos>0,0</pos>
 			<size>490,400</size>
 			<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
-				<label>Copyright 2009 Jimmy Pinto Stelzer &lt;jimmy.stelzer@gmail.com&gt;, Bruno Goularte &lt;bruno.goulart@acad.pucrs.br&gt; e Bruno Paes &lt;bruno.paes@acad.pucrs.br&gt;&#x0A;&#x0A;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&#x0A;&#x0A;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&#x0A;&#x0A;You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.</label>
-				<pos>8,88</pos>
-				<size>480,288</size>
+				<label>Copyright 2009 Jimmy Pinto Stelzer &lt;jimmy.stelzer@gmail.com&gt;, Bruno Goulart &lt;bruno.goulart@acad.pucrs.br&gt; e Bruno Paes &lt;bruno.paes@acad.pucrs.br&gt;&#x0A;&#x0A;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&#x0A;&#x0A;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&#x0A;&#x0A;You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.</label>
+				<pos>8,80</pos>
+				<size>472,288</size>
+				<font>
+					<size>10</size>
+					<style>normal</style>
+					<weight>normal</weight>
+					<underlined>0</underlined>
+					<family>swiss</family>
+					<face>Sans</face>
+				</font>
+				<style>wxST_NO_AUTORESIZE</style>
 			</object>
 			<object class="wxButton" name="ID_BUTTON1" variable="ButtonOk" member="yes">
 				<label>Ok</label>

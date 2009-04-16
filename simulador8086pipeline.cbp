@@ -37,12 +37,16 @@
 		<Linker>
 			<Add option="`wx-config --libs`" />
 		</Linker>
+		<Unit filename="Helpers.cpp" />
+		<Unit filename="Helpers.h" />
 		<Unit filename="JanelaPrincipal.cpp" />
 		<Unit filename="JanelaPrincipal.h" />
 		<Unit filename="JanelaSobre.cpp" />
 		<Unit filename="JanelaSobre.h" />
 		<Unit filename="MainApp.cpp" />
 		<Unit filename="MainApp.h" />
+		<Unit filename="Mem.cpp" />
+		<Unit filename="Mem.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />
