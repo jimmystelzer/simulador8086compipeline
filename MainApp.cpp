@@ -17,17 +17,15 @@ bool MyApp::OnInit()
     wxInitAllImageHandlers();
     if ( wxsOK )
     {
-    	Helpers* healper = new Helpers(); // Para conversão de Bases
-
-    	JanelaPrincipal* Janela = new JanelaPrincipal(0); // Nova Janela
-    	Janela->Show();  // Mostra Janela
-    	SetTopWindow(Janela);  // Defini foco na Janela
-
-        wxString mystring((healper->intToBase(80,16)).c_str(), wxConvUTF8);  // Converte a string para string do tipo label DEBUG REMOVER
-        Janela->Registradores->SetItem(0,4,mystring.Append('h')); // mostra a string label DEBUG REMOVER
+    	JanelaPrincipal* Frame = new JanelaPrincipal(0);
+    	Frame->Show();
+    	SetTopWindow(Frame);
+    	Frame->Registradores->SetItem(0,4,_("0080h"));
     }
     //*)
-
+    /*
+    Frame->Registradores->SetItem(0,4,_("0080h"));
+    */
     return wxsOK;
 }
 

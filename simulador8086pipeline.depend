@@ -1550,7 +1550,7 @@
 1238367558 /home/jimmy/simulador8086pipeline/MainApp.h
 	<wx/app.h>
 
-1239897787 source:/home/jimmy/simulador8086compipeline/MainApp.cpp
+1239982680 source:/home/jimmy/simulador8086compipeline/MainApp.cpp
 	<wx/wxprec.h>
 	"MainApp.h"
 	"JanelaPrincipal.h"
@@ -1561,7 +1561,7 @@
 1239381151 /home/jimmy/simulador8086compipeline/MainApp.h
 	<wx/app.h>
 
-1239381151 /home/jimmy/simulador8086compipeline/JanelaPrincipal.h
+1239984561 /home/jimmy/simulador8086compipeline/JanelaPrincipal.h
 	<wx/listctrl.h>
 	<wx/stattext.h>
 	<wx/statline.h>
@@ -1606,12 +1606,14 @@
 	<sstream>
 	<cstdlib>
 
-1239898449 /home/jimmy/simulador8086compipeline/Helpers.h
+1239981734 /home/jimmy/simulador8086compipeline/Helpers.h
 	<iostream>
 	<sstream>
 	<cstdlib>
 	<fstream>
+	<cstring>
+	<cmath>
 
-1239897787 source:/home/jimmy/simulador8086compipeline/Helpers.cpp
+1239982087 source:/home/jimmy/simulador8086compipeline/Helpers.cpp
 	"Helpers.h"
 

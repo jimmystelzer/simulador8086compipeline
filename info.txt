@@ -1,0 +1,21 @@
+mov reg, label {reg,mem 	5 	4 	1 	2-4 }
+	Usage: MOV dest,src
+	Modifies Flags: None 
+mov reg, immed {reg,immed 	2 	2 	1 	2-3 }
+	Usage: MOV dest,src
+	Modifies Flags: None 
+cmp reg, immed
+	Usage: CMP dest,src
+	Modifies Flags: AF CF OF PF SF ZF 
+jz label {JZ 	Jump if Zero 	ZF=1 } {Jx: jump 	7+m 	7+m 	3 	2 }
+add reg, reg {reg,reg 	2 	2 	1 	2 }
+	Usage: ADD dest,src
+	Modifies Flags: AF CF OF PF SF ZF 
+loopnz label 	{label: jump 	8+m 	11+m 	9 	2 }{no jump 	4 	? 	6 	2 }
+	Usage: LOOPNZ label
+	       LOOPNE label
+	Modifies Flags: None 
+jmp label {mem16 (near, mem indirect) 	11+m 	10+m 	5 } {mem32 (near, mem indirect) 	15+m 	10+m 	5}
+	Usage: JMP target
+	Modifies Flags: None
+	Unconditionally transfers control to "label". Jumps by default are within -32768 to 32767 bytes from the instruction 		following the jump. NEAR and SHORT jumps cause the IP to be updated while FAR jumps cause CS and IP to be updated.

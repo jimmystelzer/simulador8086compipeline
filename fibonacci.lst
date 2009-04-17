@@ -1,0 +1,24 @@
+     1                                  ;nasm -f elf -l fibonacci.lst fibonacci.asm
+     2                                  
+     3                                  SECTION .data
+     4 00000000 08                      iteracoes:	db	8
+     5                                  
+     6                                  SECTION .text
+     7                                  
+     8 00000000 66B9[0000]              mov cx, iteracoes
+     9 00000004 B000                    mov al, 0 ;inicializa variavel [x1]
+    10 00000006 B401                    mov ah, 1 ;inicializa variavel [x2]
+    11 00000008 B300                    mov bl, 0 ;inicializa variavel onde sera gerada a sequencia [f]
+    12                                  
+    13 0000000A 80FB00                  inicio: cmp bl, 0 
+    14 0000000D 740A                    jz primeiro ;pula na primeira iteração [caso bl = 0]
+    15 0000000F 88C3                    retornoPrimeiro: mov bl, al
+    16 00000011 00E3                    add bl, ah
+    17 00000013 88E0                    mov al, ah
+    18 00000015 88DC                    mov ah, bl
+    19 00000017 E0F1                    loopnz inicio
+    20                                  
+    21                                  primeiro:
+    22 00000019 88C3                    mov bl, al
+    23 0000001B 00E3                    add bl, ah
+    24 0000001D E9EDFFFFFF              jmp retornoPrimeiro

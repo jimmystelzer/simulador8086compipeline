@@ -4,8 +4,7 @@
 		<title>Simulador 8086 com pipeline</title>
 		<centered>1</centered>
 		<size>800,460</size>
-		<pos_arg>1</pos_arg>
-		<size_arg>1</size_arg>
+		<id_arg>0</id_arg>
 		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
 			<pos>0,0</pos>
 			<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
@@ -61,6 +60,30 @@
 			<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
 				<label>Pipeline:</label>
 				<pos>8,200</pos>
+			</object>
+			<object class="wxButton" name="ID_BUTTON5" variable="reg_info" member="yes">
+				<label>Informações</label>
+				<pos>104,0</pos>
+				<handler function="Onreg_infoClick" entry="EVT_BUTTON" />
+			</object>
+			<object class="wxButton" name="ID_BUTTON6" variable="flag_info" member="yes">
+				<label>Informações</label>
+				<pos>48,104</pos>
+				<handler function="Onflag_infoClick" entry="EVT_BUTTON" />
+			</object>
+			<object class="wxButton" name="ID_BUTTON7" variable="pipeline_info" member="yes">
+				<label>Informações</label>
+				<pos>64,192</pos>
+				<handler function="Onpipeline_infoClick" entry="EVT_BUTTON" />
+			</object>
+			<object class="wxStaticLine" name="ID_STATICLINE3" variable="StaticLine3" member="yes">
+				<pos>704,168</pos>
+				<size>88,0</size>
+			</object>
+			<object class="wxButton" name="ID_BUTTON8" variable="Button2" member="yes">
+				<label>Dump</label>
+				<pos>704,176</pos>
+				<handler function="OnButton2Click" entry="EVT_BUTTON" />
 			</object>
 		</object>
 		<object class="wxFileDialog" variable="FileDialog1" member="yes">

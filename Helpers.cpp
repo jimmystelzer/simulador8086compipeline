@@ -14,6 +14,24 @@ std::string Helpers::intToBase(unsigned int num, unsigned int b){
         return std::string("");
     }
 }
+std::string Helpers::baseToInt(unsigned int num, unsigned int b){
+    std::ostringstream tmpstr;
+    tmpstr << num;
+    return baseToInt(tmpstr.str(),b);
+}
+std::string Helpers::baseToInt(std::string num, unsigned int b){
+    std::ostringstream tmpstr;
+    int fnum = 0;
+    if (!num.empty()) {
+        for (unsigned int i=0;i<num.length();i++){
+            fnum =  fnum + ((stringToInt((num.substr(i,1)).c_str()))*pow(b,(num.length()-i-1)));
+        }
+        tmpstr << fnum;
+        return tmpstr.str();
+    }else{
+        return std::string("0");
+    }
+}
 
 std::string Helpers::readFile(std::string filename){
     std::string lineTmpStr;
@@ -31,4 +49,11 @@ std::string Helpers::readFile(std::string filename){
         }
         return tmpStr.str();
     }
+}
+
+inline int Helpers::stringToInt(const std::string& s){
+    std::istringstream i(s);
+    int x;
+    i >> x;
+    return x;
 }

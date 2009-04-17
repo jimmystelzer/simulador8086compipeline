@@ -27,14 +27,19 @@ class JanelaPrincipal: public wxFrame
 		wxButton* Abrir;
 		wxListCtrl* Pipeline;
 		wxButton* Button1;
+		wxButton* reg_info;
 		wxPanel* Panel1;
 		wxStaticText* StaticText1;
 		wxFileDialog* FileDialog1;
 		wxStaticText* StaticText3;
+		wxButton* Button2;
 		wxStaticLine* StaticLine2;
+		wxButton* pipeline_info;
+		wxStaticLine* StaticLine3;
 		wxStaticLine* StaticLine1;
 		wxListCtrl* Registradores;
 		wxListCtrl* Flags;
+		wxButton* flag_info;
 		//*)
 
 	protected:
@@ -52,6 +57,11 @@ class JanelaPrincipal: public wxFrame
 		static const long ID_STATICTEXT1;
 		static const long ID_STATICTEXT2;
 		static const long ID_STATICTEXT3;
+		static const long ID_BUTTON5;
+		static const long ID_BUTTON6;
+		static const long ID_BUTTON7;
+		static const long ID_STATICLINE3;
+		static const long ID_BUTTON8;
 		static const long ID_PANEL1;
 		//*)
 
@@ -61,6 +71,10 @@ class JanelaPrincipal: public wxFrame
 		void OnButton1Click(wxCommandEvent& event);
 		void OnResetarClick(wxCommandEvent& event);
 		void OnAbrirClick(wxCommandEvent& event);
+		void Onflag_infoClick(wxCommandEvent& event);
+		void Onpipeline_infoClick(wxCommandEvent& event);
+		void Onreg_infoClick(wxCommandEvent& event);
+		void OnButton2Click(wxCommandEvent& event);
 		//*)
 
 		void Reset();
