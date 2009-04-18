@@ -7,6 +7,7 @@
 		<id_arg>0</id_arg>
 		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
 			<pos>0,0</pos>
+			<handler function="OnPanel1Paint" entry="EVT_PAINT" />
 			<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
 				<label>Sobre</label>
 				<pos>704,8</pos>

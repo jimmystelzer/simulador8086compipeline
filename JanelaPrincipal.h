@@ -75,6 +75,7 @@ class JanelaPrincipal: public wxFrame
 		void Onpipeline_infoClick(wxCommandEvent& event);
 		void Onreg_infoClick(wxCommandEvent& event);
 		void OnButton2Click(wxCommandEvent& event);
+		void OnPanel1Paint(wxPaintEvent& event);
 		//*)
 
 		void Reset();

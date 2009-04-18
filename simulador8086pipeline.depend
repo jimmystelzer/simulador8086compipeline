@@ -1561,7 +1561,7 @@
 1239381151 /home/jimmy/simulador8086compipeline/MainApp.h
 	<wx/app.h>
 
-1239984561 /home/jimmy/simulador8086compipeline/JanelaPrincipal.h
+1240018912 /home/jimmy/simulador8086compipeline/JanelaPrincipal.h
 	<wx/listctrl.h>
 	<wx/stattext.h>
 	<wx/statline.h>
@@ -1578,10 +1578,11 @@
 	<wx/button.h>
 	<wx/dialog.h>
 
-1239884282 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
+1240014450 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
 	"JanelaPrincipal.h"
 	<wx/intl.h>
 	<wx/string.h>
+	<wx/msgdlg.h>
 
 1239884563 source:/home/jimmy/simulador8086compipeline/JanelaSobre.cpp
 	"JanelaSobre.h"
@@ -1594,9 +1595,8 @@
 1239897958 source:/home/jimmy/simulador8086compipeline/Mem.cpp
 	"Mem.h"
 
-1239897787 /home/jimmy/simulador8086compipeline/Mem.h
+1240018663 /home/jimmy/simulador8086compipeline/Mem.h
 	<iostream>
-	"Helpers.h"
 
 1239897344 source:/home/jimmy/simulador8086compipeline/Tool.cpp
 	"Tool.h"

@@ -167,7 +167,7 @@ void JanelaPrincipal::Onpipeline_infoClick(wxCommandEvent& event)
 
 void JanelaPrincipal::Onreg_infoClick(wxCommandEvent& event)
 {
-    wxMessageBox(_("Os registradores..."), _("Informações sobre registradores"));
+    wxMessageBox(_("Todos os registradores são de 16 bits, os registradores AX (acumulator), BX (base), CX (count) e DX (data) podem ser acessados por um par de registradores para área alta e baixa que são AL, AH, BL, BH, CL, CH, DL e DH.\nOs registradores DX e AX podem ser combinados em um registrador de 32 bits DX:AX para executar algumas operações (ex. multiplicação).\nOs registradores "), _("Informações sobre registradores"));
 }
 
 void JanelaPrincipal::OnButton2Click(wxCommandEvent& event)
@@ -179,3 +179,4 @@ void JanelaPrincipal::OnButton2Click(wxCommandEvent& event)
         //log de tudo
     }
 }
+

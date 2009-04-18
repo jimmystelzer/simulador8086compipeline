@@ -7,20 +7,20 @@
 	<File name="Helpers.h" open="0" top="0" tabpos="5">
 		<Cursor position="14" topLine="6" />
 	</File>
-	<File name="JanelaPrincipal.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="9235" topLine="163" />
+	<File name="JanelaPrincipal.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="5072" topLine="53" />
 	</File>
 	<File name="JanelaPrincipal.h" open="0" top="0" tabpos="2">
 		<Cursor position="1199" topLine="0" />
 	</File>
-	<File name="JanelaSobre.cpp" open="1" top="0" tabpos="4">
+	<File name="JanelaSobre.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="3029" topLine="17" />
 	</File>
 	<File name="JanelaSobre.h" open="0" top="0" tabpos="0">
 		<Cursor position="948" topLine="0" />
 	</File>
 	<File name="MainApp.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="526" topLine="11" />
+		<Cursor position="526" topLine="3" />
 	</File>
 	<File name="MainApp.h" open="0" top="0" tabpos="0">
 		<Cursor position="202" topLine="0" />
@@ -29,6 +29,6 @@
 		<Cursor position="162" topLine="0" />
 	</File>
 	<File name="Mem.h" open="0" top="0" tabpos="2">
-		<Cursor position="139" topLine="0" />
+		<Cursor position="78" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

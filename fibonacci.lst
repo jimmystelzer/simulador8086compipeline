@@ -21,4 +21,4 @@
     21                                  primeiro:
     22 00000019 88C3                    mov bl, al
     23 0000001B 00E3                    add bl, ah
-    24 0000001D E9EDFFFFFF              jmp retornoPrimeiro
+    24 0000001D 7AF0                    jp retornoPrimeiro

@@ -21,4 +21,4 @@ loopnz inicio
 primeiro:
 mov bl, al
 add bl, ah
-jmp retornoPrimeiro
+jp retornoPrimeiro
