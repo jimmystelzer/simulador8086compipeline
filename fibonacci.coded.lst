@@ -1,8 +1,8 @@
-     1                                  ;nasm -f elf -l fibonacci.lst fibonacci.asm
+     1;nasm -f elf -l fibonacci.lst fibonacci.asm
      2                                  
      3                                  SECTION .data
      4 00000000 08                      iteracoes:	db	8
-     5                                  
+     5                        
      6                                  SECTION .text
      7                                  
      8 00000000 66B9[0000] 01100110 10111001 00000000 00000000 mov cx, iteracoes

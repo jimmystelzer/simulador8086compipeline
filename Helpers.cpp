@@ -57,3 +57,18 @@ inline int Helpers::stringToInt(const std::string& s){
     i >> x;
     return x;
 }
+
+void Helpers::setLog(std::string s){
+    this->logString << s << std::endl;
+}
+std::string Helpers::getLog(){
+    return this->logString.str();
+}
+
+void Helpers::saveLog(std::string fileName){
+    std::ofstream saveFile(fileName.c_str(), std::ios::out);
+    if (saveFile.is_open()){
+        saveFile << this->logString.str();
+        saveFile.close();
+    }
+}

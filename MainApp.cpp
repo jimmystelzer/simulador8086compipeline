@@ -18,13 +18,28 @@ bool MyApp::OnInit()
     if ( wxsOK )
     {
     	JanelaPrincipal* Frame = new JanelaPrincipal(0);
+    	Helpers* h = new Helpers();
+    	h->setLog(std::string("Janela Criada"));
     	Frame->Show();
+    	h->setLog(std::string("Mostrar Janela"));
     	SetTopWindow(Frame);
+    	h->setLog(std::string("Dar foco a Janela"));
     	Frame->Registradores->SetItem(0,4,_("0080h"));
+    	h->setLog(std::string("Definido o valor do item 0,4"));
+    	h->saveLog(std::string("log.txt"));
     }
     //*)
     /*
-    Frame->Registradores->SetItem(0,4,_("0080h"));
+        JanelaPrincipal* Frame = new JanelaPrincipal(0);
+    	Helpers* h = new Helpers();
+    	h->setLog(std::string("Janela Criada"));
+    	Frame->Show();
+    	h->setLog(std::string("Mostrar Janela"));
+    	SetTopWindow(Frame);
+    	h->setLog(std::string("Dar foco a Janela"));
+    	Frame->Registradores->SetItem(0,4,_("0080h"));
+    	h->setLog(std::string("Definido o valor do item 0,4"));
+    	h->saveLog(std::string("log.txt"));
     */
     return wxsOK;
 }
