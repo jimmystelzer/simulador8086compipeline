@@ -48,6 +48,10 @@
 		<Unit filename="MainApp.h" />
 		<Unit filename="Mem.cpp" />
 		<Unit filename="Mem.h" />
+		<Unit filename="Registrador.cpp" />
+		<Unit filename="Registrador.h" />
+		<Unit filename="ULA.cpp" />
+		<Unit filename="ULA.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />
