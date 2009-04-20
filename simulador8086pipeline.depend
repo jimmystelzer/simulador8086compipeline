@@ -1550,7 +1550,7 @@
 1238367558 /home/jimmy/simulador8086pipeline/MainApp.h
 	<wx/app.h>
 
-1240189229 source:/home/jimmy/simulador8086compipeline/MainApp.cpp
+1240232493 source:/home/jimmy/simulador8086compipeline/MainApp.cpp
 	<wx/wxprec.h>
 	"MainApp.h"
 	"JanelaPrincipal.h"
@@ -1558,10 +1558,10 @@
 	"Helpers.h"
 	<iostream>
 
-1239381151 /home/jimmy/simulador8086compipeline/MainApp.h
+1240232493 /home/jimmy/simulador8086compipeline/MainApp.h
 	<wx/app.h>
 
-1240028718 /home/jimmy/simulador8086compipeline/JanelaPrincipal.h
+1240232493 /home/jimmy/simulador8086compipeline/JanelaPrincipal.h
 	<wx/listctrl.h>
 	<wx/stattext.h>
 	<wx/statline.h>
@@ -1571,20 +1571,20 @@
 	<wx/frame.h>
 	"JanelaSobre.h"
 
-1239884429 /home/jimmy/simulador8086compipeline/JanelaSobre.h
+1240232493 /home/jimmy/simulador8086compipeline/JanelaSobre.h
 	<wx/stattext.h>
 	<wx/panel.h>
 	<wx/statbmp.h>
 	<wx/button.h>
 	<wx/dialog.h>
 
-1240028718 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
+1240232493 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
 	"JanelaPrincipal.h"
 	<wx/intl.h>
 	<wx/string.h>
 	<wx/msgdlg.h>
 
-1240028718 source:/home/jimmy/simulador8086compipeline/JanelaSobre.cpp
+1240232493 source:/home/jimmy/simulador8086compipeline/JanelaSobre.cpp
 	"JanelaSobre.h"
 	<wx/bitmap.h>
 	<wx/font.h>
@@ -1592,10 +1592,10 @@
 	<wx/image.h>
 	<wx/string.h>
 
-1240186085 source:/home/jimmy/simulador8086compipeline/Mem.cpp
+1240232493 source:/home/jimmy/simulador8086compipeline/Mem.cpp
 	"Mem.h"
 
-1240186025 /home/jimmy/simulador8086compipeline/Mem.h
+1240232493 /home/jimmy/simulador8086compipeline/Mem.h
 	<iostream>
 
 1239897344 source:/home/jimmy/simulador8086compipeline/Tool.cpp
@@ -1606,7 +1606,7 @@
 	<sstream>
 	<cstdlib>
 
-1240188168 /home/jimmy/simulador8086compipeline/Helpers.h
+1240233206 /home/jimmy/simulador8086compipeline/Helpers.h
 	<iostream>
 	<sstream>
 	<cstdlib>
@@ -1614,13 +1614,13 @@
 	<cstring>
 	<cmath>
 
-1240189304 source:/home/jimmy/simulador8086compipeline/Helpers.cpp
+1240232493 source:/home/jimmy/simulador8086compipeline/Helpers.cpp
 	"Helpers.h"
 
-1240195234 source:/home/jimmy/simulador8086compipeline/Registrador.cpp
+1240232493 source:/home/jimmy/simulador8086compipeline/Registrador.cpp
 	"Registrador.h"
 
-1240195235 /home/jimmy/simulador8086compipeline/Registrador.h
+1240232493 /home/jimmy/simulador8086compipeline/Registrador.h
 	<iostream>
 	<cstring>
 
@@ -1636,5 +1636,11 @@
 	"ULA.h"
 
 1240197942 /home/jimmy/simulador8086compipeline/ULA.h
+	<iostream>
+
+1240236072 source:/home/jimmy/simulador8086compipeline/ALU.cpp
+	"ALU.h"
+
+1240236072 /home/jimmy/simulador8086compipeline/ALU.h
 	<iostream>
 

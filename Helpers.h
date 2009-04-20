@@ -8,7 +8,6 @@
 #include <cstring>
 #include <cmath>
 
-
 class Helpers{
     private:
         std::ostringstream logString;
