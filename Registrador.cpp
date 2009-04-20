@@ -1,42 +1,47 @@
 #include "Registrador.h"
 
 Registrador::Registrador(){
+    this->reg = new std::string(REG16BITS, '0');
 }
 
-void Registrador::setX(unsigned char data[REG16BITS]){
-    for(unsigned int i=0;i<REG16BITS;i++){
-        this->reg[i] = data[i];
-    }
+void Registrador::setX(std::string data){
+//    for(unsigned int i=0;i<REG16BITS;i++){
+//        this->reg[i] = data[i];
+//    }
+    this->reg->replace(0, REG16BITS, data.substr(0,REG16BITS));
 }
-void Registrador::setH(unsigned char data[REG8BITS]){
-    for(unsigned int i=0;i<REG8BITS;i++){
-        this->reg[i] = data[i];
-    }
+void Registrador::setH(std::string data){
+//    for(unsigned int i=0;i<REG8BITS;i++){
+//        this->reg[i] = data[i];
+//    }
+    this->reg->replace(0, REG8BITS, data.substr(0,REG8BITS));
 }
-void Registrador::setL(unsigned char data[REG8BITS]){
-    for(unsigned int i=REG8BITS;i<REG16BITS;i++){
-        this->reg[i] = data[i];
-    }
+void Registrador::setL(std::string data){
+//    for(unsigned int i=REG8BITS;i<REG16BITS;i++){
+//        this->reg[i] = data[i];
+//    }
+    this->reg->replace(REG8BITS, REG8BITS, data.substr(0,REG8BITS));
 }
-unsigned char Registrador::getX(){
-    return *(this->reg);
+std::string Registrador::getX(){
+//    return *(this->reg);
+    return this->reg->substr(0,REG16BITS);
 }
-unsigned char Registrador::getH(){
-    unsigned char tmpchars[REG8BITS];
-    for(unsigned int i=0;i<REG8BITS;i++){
-        tmpchars[i] = this->reg[i];
-    }
-    return *tmpchars;
+std::string Registrador::getH(){
+//    unsigned char tmpchars[REG8BITS];
+//    for(unsigned int i=0;i<REG8BITS;i++){
+//        tmpchars[i] = this->reg[i];
+//    }
+//    return *tmpchars;
+    return this->reg->substr(0,REG8BITS);
 }
-unsigned char Registrador::getL(){
-    unsigned char tmpchars[REG8BITS];
-    for(unsigned int i=REG8BITS;i<REG16BITS;i++){
-        tmpchars[i] = this->reg[i];
-    }
-    return *tmpchars;
+std::string Registrador::getL(){
+//    unsigned char tmpchars[REG8BITS];
+//    for(unsigned int i=REG8BITS;i<REG16BITS;i++){
+//        tmpchars[i] = this->reg[i];
+//    }
+//    return *tmpchars;
+    return this->reg->substr(REG8BITS,REG16BITS);
 }
 void Registrador::reset(){
-    unsigned char *begin = &this->reg[0];
-    unsigned char *end = begin + sizeof(this->reg);
-    std::fill(begin, end, 0);
+    this->reg = new std::string(REG16BITS, '0');
 }

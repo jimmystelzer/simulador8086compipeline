@@ -2,23 +2,22 @@
 #define REGISTRADOR_H
 #define REG16BITS 0x4
 #define REG8BITS 0x2
-#include <iostream>
-#include <cstring>
+#include <string>
 
 
 
 class Registrador{
     private:
-        unsigned char reg[REG16BITS]; //16bit
+        std::string *reg;
 
     public:
         Registrador();
-        void setX(unsigned char data[REG16BITS]);
-        void setH(unsigned char data[REG8BITS]);
-        void setL(unsigned char data[REG8BITS]);
-        unsigned char getX();
-        unsigned char getH();
-        unsigned char getL();
+        void setX(std::string data);
+        void setH(std::string data);
+        void setL(std::string data);
+        std::string getX();
+        std::string getH();
+        std::string getL();
         void reset();
 };
 

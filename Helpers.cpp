@@ -51,7 +51,7 @@ std::string Helpers::readFile(std::string filename){
     }
 }
 
-inline int Helpers::stringToInt(const std::string& s){
+int Helpers::stringToInt(const std::string& s){
     std::istringstream i(s);
     int x;
     i >> x;
