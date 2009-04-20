@@ -46,6 +46,10 @@
 		<Unit filename="BancoRegs.h" />
 		<Unit filename="Control.cpp" />
 		<Unit filename="Control.h" />
+		<Unit filename="Forwarding.cpp" />
+		<Unit filename="Forwarding.h" />
+		<Unit filename="Hazards.cpp" />
+		<Unit filename="Hazards.h" />
 		<Unit filename="Helpers.cpp" />
 		<Unit filename="Helpers.h" />
 		<Unit filename="JanelaPrincipal.cpp" />
@@ -56,8 +60,14 @@
 		<Unit filename="MainApp.h" />
 		<Unit filename="Mem.cpp" />
 		<Unit filename="Mem.h" />
+		<Unit filename="PipelineCPU.cpp" />
+		<Unit filename="PipelineCPU.h" />
+		<Unit filename="PipelineRegs.cpp" />
+		<Unit filename="PipelineRegs.h" />
 		<Unit filename="Registrador.cpp" />
 		<Unit filename="Registrador.h" />
+		<Unit filename="ShiftLeft.cpp" />
+		<Unit filename="ShiftLeft.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />
