@@ -1,4 +1,4 @@
-#include "Registrador.h"
+#include "Register.h"
 
 Registrador::Registrador(){
     this->reg = new std::string(REG16BITS, '0');

@@ -1,6 +1,6 @@
 #ifndef BANCO_REGS_H
 #define BANCO_REGS_H
-#include "Registrador.h"
+#include "Register.h"
 /**
 reg     w=0 w=1
 000     al  ax
@@ -16,11 +16,9 @@ reg     w=0 w=1
 class BancoReg{
     private:
         // o IP vai ficar fora
-        Registrador *AX, *BX, *CX, *DX, *SP, *BP, *SI, *DI, *CS, *DS, *SS, *ES;
+        Registrador *AX, *BX, *CX, *DX, *SP, *BP, *SI, *DI;
         Registrador *rD, *rS;
-
     public:
-
         BancoReg();
         std::string getAX();
         std::string getBX();
@@ -30,16 +28,11 @@ class BancoReg{
         std::string getBP();
         std::string getSI();
         std::string getDI();
-        std::string getCS();
-        std::string getDS();
-        std::string getSS();
-        std::string getES();
 
-        std::string getRD();
-        std::string getRS();
-        void setRDcode();
-        void setRScode();
-
+        Registrador getRD(std::string c,std::string w);
+        Registrador getRS(std::string c,std::string w);
+        void setRD(std::string s,std::string c,std::string w);
+        void setRS(std::string s,std::string c,std::string w);
 };
 
 #endif  //BANCO_REGS_H
