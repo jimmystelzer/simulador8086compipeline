@@ -1,33 +1,39 @@
      1                                  ;nasm -f elf -l fibonacci.lst fibonacci.asm
-     2                                  
-     3                                  	SECTION .data
-     4 00000000 08000000                i:	dd 8;
-     5 00000004 05000000                iteracoes:	dd 5 ;define o numero de iteracoes
-     6                                  
-     7                                  	SECTION .text
-     8                                  	global main
-     9                                  
-    10                                  main:
-    11                                  	;mov ecx, iteracoes ;usar em caso de debug
-    12 00000000 66B9[0400]              	mov cx, iteracoes
-    13 00000004 B000                    	mov al, 0 ;inicializa variavel [x1]
-    14 00000006 B401                    	mov ah, 1 ;inicializa variavel [x2]
-    15 00000008 B300                    	mov bl, 0 ;inicializa variavel onde sera gerada a sequencia [f]
-    16                                  
-    17                                  inicio:
-    18 0000000A 80FB00                  	cmp bl, 0 
-    19 0000000D 740B                    	jz primeiro ;pula na primeira iteração [caso bl = 0]
-    20 0000000F 88C3                    retorno:	mov bl, al
-    21 00000011 00E3                    	add bl, ah
-    22 00000013 88E0                    	mov al, ah
-    23 00000015 88DC                    	mov ah, bl
-    24 00000017 E0F1                    	loopnz inicio
-    25 00000019 F4                      	hlt ;usar no simulador
-    26                                  	
-    27                                  	;mov ebx,0 ;sair e retornar para o sistema
-    28                                  	;mov eax,1 ;usar em caso de debug
-    29                                  	;int 0x80 ;
-    30                                  primeiro:
-    31 0000001A 88C3                    	mov bl, al
-    32 0000001C 00E3                    	add bl, ah
-    33 0000001E E9ECFFFFFF              	jmp retorno
+     2                                   
+     3                                    SECTION .data
+     4 00000000 04000000                iteracoes:  dd 4 ;define o numero de iteracoes
+     5                                   
+     6                                    SECTION .text
+     7                                    global main
+     8                                   
+     9                                  main:
+    10                                    ;mov ecx, iteracoes ;usar em caso de debug
+    11 00000000 66B9[0000]                mov cx, iteracoes
+    12 00000004 B001                      mov al, 1 ;inicializa variavel [x1]
+    13 00000006 B401                      mov ah, 1 ;inicializa variavel [x2]
+    14 00000008 B300                      mov bl, 0 ;inicializa variavel onde sera gerada a sequencia [f]
+    15                                   
+    16                                  inicio:
+    17 0000000A 80FB00                    cmp bl, 0
+    18 0000000D 7400                      jz primeiro ;pula na primeira iteração [caso bl = 0]
+    19                                   
+    20                                  primeiro: ;é só uma coisa besta para o "bl" receber os dois primeiros elementos da série "1 e 1"
+    21 0000000F 88C3                      mov bl, al ;bl = 1
+    22 00000011 88E3                      mov bl, ah ;bl = 1
+    23 00000013 E900000000                jmp retorno
+    24                                   
+    25                                  ;essa parte está explicada no arquivo "fibonacci_quadro.jpg"
+    26                                   
+    27                                  retorno: ;parteA bl = bl + al ; al = bl
+    28 00000018 00C3                      add bl, al
+    29 0000001A 88D8                      mov al, bl      
+    30                                                               ;parteB bl = bl + ah ; ah = bl
+    31 0000001C 00E3                      add bl, ah
+    32 0000001E 88DC                      mov ah, bl    
+    33 00000020 E0F6                        loopnz retorno
+    34                                   
+    35 00000022 F4                        hlt ;usar no simulador
+    36                                    
+    37                                    ;mov ebx,0 ;sair e retornar para o sistema
+    38                                    ;mov eax,1 ;usar em caso de debug
+    39                                    ;int 0x80 ;

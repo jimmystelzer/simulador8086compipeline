@@ -20,7 +20,7 @@ inicio:
 primeiro: ;é só uma coisa besta para o "bl" receber os dois primeiros elementos da série "1 e 1"
   mov bl, al ;bl = 1
   mov bl, ah ;bl = 1
-  jmp retorno_a
+  jmp retorno
  
 ;essa parte está explicada no arquivo "fibonacci_quadro.jpg"
  

@@ -1653,7 +1653,8 @@
 1240286900 source:/home/jimmy/simulador8086compipeline/BancoRegs.cpp
 	"BancoRegs.h"
 
-1240340766 /home/jimmy/simulador8086compipeline/BancoRegs.h
+1240344577 /home/jimmy/simulador8086compipeline/BancoRegs.h
+	"Registrador.h"
 
 1240286900 source:/home/jimmy/simulador8086compipeline/Control.cpp
 	"Control.h"
