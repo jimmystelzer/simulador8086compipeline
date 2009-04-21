@@ -1578,7 +1578,7 @@
 	<wx/button.h>
 	<wx/dialog.h>
 
-1240232493 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
+1240266375 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
 	"JanelaPrincipal.h"
 	<wx/intl.h>
 	<wx/string.h>
@@ -1682,7 +1682,7 @@
 1240236260 source:/home/jimmy/simulador8086compipeline/PipelineRegs.cpp
 	"PipelineRegs.h"
 
-1240240537 /home/jimmy/simulador8086compipeline/PipelineRegs.h
+1240266356 /home/jimmy/simulador8086compipeline/PipelineRegs.h
 	<string>
 
 1240240242 source:/home/jimmy/simulador8086compipeline/ShiftLeft.cpp

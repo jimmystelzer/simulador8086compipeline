@@ -38,7 +38,7 @@
 			<object class="wxListCtrl" name="ID_LISTCTRL1" variable="Pipeline" member="yes">
 				<pos>8,224</pos>
 				<size>680,224</size>
-				<style>wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER</style>
+				<style>wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER|wxVSCROLL|wxHSCROLL|wxALWAYS_SHOW_SB</style>
 			</object>
 			<object class="wxButton" name="ID_BUTTON4" variable="Resetar" member="yes">
 				<label>Resetar</label>

@@ -12,6 +12,11 @@ std::string ShiftLeft::doShiftLeft(std::string data){
     i = this->hp->stringToInt(tmp); //obtenho o valo decimal
     i = i*4; //efetuo o shift
     tmp = this->hp->intToBase(i,16); //converto pra hexadecimal
-    this->tmpStr->replace(0,REG16BITS,tmp.substr(tmp.length() - REG16BITS,REG16BITS)); //pegar os ultimos 16 bits
+
+    if(tmp.length() > REG16BITS){
+        this->tmpStr->replace(0,REG16BITS,tmp.substr(tmp.length() - REG16BITS,REG16BITS)); //pegar os ultimos 16 bits
+    }else{
+        this->tmpStr->replace(REG16BITS - tmp.length(),tmp.length(),tmp.substr(0,tmp.length())); //pegar os ultimos 16 bits
+    }
     return *(this->tmpStr); //retorna
 }

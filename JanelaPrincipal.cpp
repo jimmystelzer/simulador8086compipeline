@@ -44,7 +44,7 @@ JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& p
 	StaticLine2 = new wxStaticLine(Panel1, ID_STATICLINE2, wxPoint(704,82), wxSize(88,2), wxLI_HORIZONTAL, _T("ID_STATICLINE2"));
 	Executar = new wxButton(Panel1, ID_BUTTON3, _("Executar"), wxPoint(704,88), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
 	Registradores = new wxListCtrl(Panel1, ID_LISTCTRL2, wxPoint(8,32), wxSize(680,72), wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER, wxDefaultValidator, _T("ID_LISTCTRL2"));
-	Pipeline = new wxListCtrl(Panel1, ID_LISTCTRL1, wxPoint(8,224), wxSize(680,224), wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER, wxDefaultValidator, _T("ID_LISTCTRL1"));
+	Pipeline = new wxListCtrl(Panel1, ID_LISTCTRL1, wxPoint(8,224), wxSize(680,224), wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER|wxVSCROLL|wxHSCROLL|wxALWAYS_SHOW_SB, wxDefaultValidator, _T("ID_LISTCTRL1"));
 	Resetar = new wxButton(Panel1, ID_BUTTON4, _("Resetar"), wxPoint(704,128), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
 	Flags = new wxListCtrl(Panel1, ID_LISTCTRL3, wxPoint(8,136), wxSize(680,56), wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER, wxDefaultValidator, _T("ID_LISTCTRL3"));
 	StaticText1 = new wxStaticText(Panel1, ID_STATICTEXT1, _("Registradores:"), wxPoint(8,8), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
@@ -89,25 +89,25 @@ void JanelaPrincipal::Reset()
 	Registradores->InsertColumn(1,_("BX"));     //Base
 	Registradores->InsertColumn(2,_("CX"));     //Count
 	Registradores->InsertColumn(3,_("DX"));     //Data  (Em alguns casos os registradores DX:AX são concatenados formando um registrador de 32bits para ser usado em instruções como MUL e DIV)
-	Registradores->InsertColumn(4,_("SP"));     //Stack Pointer
-    Registradores->InsertColumn(5,_("BP"));     //Base Pointer
-	Registradores->InsertColumn(6,_("SI"));     //Souce Index
-	Registradores->InsertColumn(7,_("DI"));    //Destination Index
-	Registradores->InsertColumn(8,_("IP"));     //Instruction Pointer
+	Registradores->InsertColumn(4,_("IP"));     //Instruction Pointer
+	Registradores->InsertColumn(5,_("SP"));     //Stack Pointer
+    Registradores->InsertColumn(6,_("BP"));     //Base Pointer
+	Registradores->InsertColumn(7,_("SI"));     //Souce Index
+	Registradores->InsertColumn(8,_("DI"));     //Destination Index
 	Registradores->InsertColumn(9,_("CS"));     //Code Segment
 	Registradores->InsertColumn(10,_("DS"));    //Data Segment
-	Registradores->InsertColumn(11,_("SS"));     //Stack Segment
+	Registradores->InsertColumn(11,_("SS"));    //Stack Segment
 	Registradores->InsertColumn(12,_("ES"));    //Extra Segment
 
 	Registradores->InsertItem(0,_("0000h"));    //AX
 	Registradores->SetItem(0,1,_("0000h"));     //BX
     Registradores->SetItem(0,2,_("0000h"));     //CX
     Registradores->SetItem(0,3,_("0000h"));     //DX
-    Registradores->SetItem(0,4,_("0000h"));     //SP
-	Registradores->SetItem(0,5,_("0000h"));     //BP
-    Registradores->SetItem(0,6,_("0000h"));     //SI
-    Registradores->SetItem(0,7,_("0000h"));     //DI
-    Registradores->SetItem(0,8,_("0000h"));     //IP
+    Registradores->SetItem(0,4,_("0000h"));     //IP
+	Registradores->SetItem(0,5,_("0000h"));     //SP
+    Registradores->SetItem(0,6,_("0000h"));     //BP
+    Registradores->SetItem(0,7,_("0000h"));     //SI
+    Registradores->SetItem(0,8,_("0000h"));     //DI
     Registradores->SetItem(0,9,_("0000h"));     //CS
 	Registradores->SetItem(0,10,_("0000h"));    //DS
     Registradores->SetItem(0,11,_("0000h"));    //SS
