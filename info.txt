@@ -8,6 +8,7 @@ cmp reg, immed
 	Usage: CMP dest,src
 	Modifies Flags: AF CF OF PF SF ZF 
 jz label {JZ 	Jump if Zero 	ZF=1 } {Jx: jump 	7+m 	7+m 	3 	2 }
+	Modifies Flags: None 
 add reg, reg {reg,reg 	2 	2 	1 	2 }
 	Usage: ADD dest,src
 	Modifies Flags: AF CF OF PF SF ZF 
@@ -19,3 +20,12 @@ jmp label {mem16 (near, mem indirect) 	11+m 	10+m 	5 } {mem32 (near, mem indirec
 	Usage: JMP target
 	Modifies Flags: None
 	Unconditionally transfers control to "label". Jumps by default are within -32768 to 32767 bytes from the instruction 		following the jump. NEAR and SHORT jumps cause the IP to be updated while FAR jumps cause CS and IP to be updated.
+
+# Carry Flag (CF) - this flag is set to 1 when there is an unsigned overflow. For example when you add bytes 255 + 1 (result is not in range 0...255). When there is no overflow this flag is set to 0.
+# Zero Flag (ZF) - set to 1 when result is zero. For none zero result this flag is set to 0.
+# Sign Flag (SF) - set to 1 when result is negative. When result is positive it is set to 0. Actually this flag take the value of the most significant bit.
+# Overflow Flag (OF) - set to 1 when there is a signed overflow. For example, when you add bytes 100 + 50 (result is not in range -128...127).
+# Parity Flag (PF) - this flag is set to 1 when there is even number of one bits in result, and to 0 when there is odd number of one bits. Even if result is a word only 8 low bits are analyzed!
+# Auxiliary Flag (AF) - set to 1 when there is an unsigned overflow for low nibble (4 bits).
+# Interrupt enable Flag (IF) - when this flag is set to 1 CPU reacts to interrupts from external devices.
+# Direction Flag (DF) - this flag is used by some instructions to process data chains, when this flag is set to 0 - the processing is done forward, when this flag is set to 1 the processing is done backward. 

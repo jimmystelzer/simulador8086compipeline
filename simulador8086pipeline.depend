@@ -1550,7 +1550,7 @@
 1238367558 /home/jimmy/simulador8086pipeline/MainApp.h
 	<wx/app.h>
 
-1240368955 source:/home/jimmy/simulador8086compipeline/MainApp.cpp
+1240372196 source:/home/jimmy/simulador8086compipeline/MainApp.cpp
 	<wx/wxprec.h>
 	"MainApp.h"
 	"JanelaPrincipal.h"
@@ -1617,7 +1617,7 @@
 	<cstring>
 	<cmath>
 
-1240371076 source:/home/jimmy/simulador8086compipeline/Helpers.cpp
+1240372080 source:/home/jimmy/simulador8086compipeline/Helpers.cpp
 	"Helpers.h"
 
 1240286900 source:/home/jimmy/simulador8086compipeline/Registrador.cpp
@@ -1640,7 +1640,7 @@
 1240197942 /home/jimmy/simulador8086compipeline/ULA.h
 	<iostream>
 
-1240360901 source:/home/jimmy/simulador8086compipeline/ALU.cpp
+1240399143 source:/home/jimmy/simulador8086compipeline/ALU.cpp
 	"ALU.h"
 
 1240358435 /home/jimmy/simulador8086compipeline/ALU.h
@@ -1663,8 +1663,8 @@
 1240286900 source:/home/jimmy/simulador8086compipeline/Control.cpp
 	"Control.h"
 
-1240286900 /home/jimmy/simulador8086compipeline/Control.h
-	<iostream>
+1240399606 /home/jimmy/simulador8086compipeline/Control.h
+	<string>
 
 1240286900 source:/home/jimmy/simulador8086compipeline/Forwarding.cpp
 	"Forwarding.h"

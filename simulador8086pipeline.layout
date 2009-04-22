@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="ALU.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="666" topLine="18" />
+	<File name="ALU.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="1408" topLine="45" />
 	</File>
-	<File name="ALU.h" open="1" top="0" tabpos="2">
-		<Cursor position="339" topLine="0" />
+	<File name="ALU.h" open="0" top="0" tabpos="2">
+		<Cursor position="339" topLine="6" />
 	</File>
 	<File name="Adder.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="15" topLine="0" />
@@ -13,22 +13,22 @@
 	<File name="Adder.h" open="0" top="0" tabpos="3">
 		<Cursor position="69" topLine="0" />
 	</File>
-	<File name="Control.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="22" topLine="0" />
+	<File name="Control.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="547" topLine="2" />
 	</File>
-	<File name="Control.h" open="1" top="0" tabpos="4">
-		<Cursor position="77" topLine="0" />
+	<File name="Control.h" open="1" top="0" tabpos="2">
+		<Cursor position="164" topLine="0" />
 	</File>
-	<File name="Forwarding.cpp" open="1" top="0" tabpos="7">
+	<File name="Forwarding.cpp" open="1" top="0" tabpos="5">
 		<Cursor position="20" topLine="0" />
 	</File>
-	<File name="Forwarding.h" open="1" top="0" tabpos="8">
+	<File name="Forwarding.h" open="1" top="0" tabpos="6">
 		<Cursor position="87" topLine="0" />
 	</File>
-	<File name="Hazards.cpp" open="1" top="0" tabpos="5">
+	<File name="Hazards.cpp" open="1" top="0" tabpos="3">
 		<Cursor position="17" topLine="0" />
 	</File>
-	<File name="Hazards.h" open="1" top="0" tabpos="6">
+	<File name="Hazards.h" open="1" top="0" tabpos="4">
 		<Cursor position="77" topLine="0" />
 	</File>
 	<File name="Helpers.cpp" open="0" top="0" tabpos="1">
@@ -61,10 +61,10 @@
 	<File name="Mem.h" open="0" top="0" tabpos="2">
 		<Cursor position="102" topLine="0" />
 	</File>
-	<File name="PipelineCPU.cpp" open="1" top="0" tabpos="9">
+	<File name="PipelineCPU.cpp" open="1" top="0" tabpos="7">
 		<Cursor position="21" topLine="0" />
 	</File>
-	<File name="PipelineCPU.h" open="1" top="0" tabpos="10">
+	<File name="PipelineCPU.h" open="1" top="0" tabpos="8">
 		<Cursor position="92" topLine="0" />
 	</File>
 	<File name="PipelineRegs.cpp" open="0" top="0" tabpos="2">
