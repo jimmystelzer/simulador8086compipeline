@@ -5,14 +5,15 @@
 
 class Control{
     private:
-        std::string *rD, *rS, *Meneumonic;
+        std::string *rD, *rS, *Mneumonic, *param, *mod, *w;
         Helpers *hp;
     public:
         Control();
         void setOpcode(std::string opcode);
-        std::string getMeneumonic();
+        std::string getMneumonic();
         std::string getRD();
         std::string getRS();
+        std::string getParam();
 };
 
 #endif  //CONTROL_H
