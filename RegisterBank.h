@@ -13,13 +13,13 @@ reg     w=0 w=1
 111     bh  di
 **/
 
-class BancoReg{
+class RegisterBank{
     private:
         // o IP vai ficar fora
-        Registrador *AX, *BX, *CX, *DX, *SP, *BP, *SI, *DI;
-        Registrador *rD, *rS;
+        Register *AX, *BX, *CX, *DX, *SP, *BP, *SI, *DI;
+        Register *rD, *rS;
     public:
-        BancoReg();
+        RegisterBank();
         std::string getAX();
         std::string getBX();
         std::string getCX();
@@ -29,8 +29,8 @@ class BancoReg{
         std::string getSI();
         std::string getDI();
 
-        Registrador getRD(std::string c,std::string w);
-        Registrador getRS(std::string c,std::string w);
+        Register getRD(std::string c,std::string w);
+        Register getRS(std::string c,std::string w);
         void setRD(std::string s,std::string c,std::string w);
         void setRS(std::string s,std::string c,std::string w);
 };

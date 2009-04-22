@@ -6,12 +6,12 @@
 
 
 
-class Registrador{
+class Register{
     private:
         std::string *reg;
 
     public:
-        Registrador();
+        Register();
         void setX(std::string data);
         void setH(std::string data);
         void setL(std::string data);

@@ -1,45 +1,45 @@
-#include "BancoRegs.h"
+#include "RegisterBank.h"
 
-BancoReg::BancoReg(){
-    this->AX = new Registrador();
-    this->BX = new Registrador();
-    this->CX = new Registrador();
-    this->DX = new Registrador();
-    this->SP = new Registrador();
-    this->BP = new Registrador();
-    this->SI = new Registrador();
-    this->DI = new Registrador();
+RegisterBank::RegisterBank(){
+    this->AX = new Register();
+    this->BX = new Register();
+    this->CX = new Register();
+    this->DX = new Register();
+    this->SP = new Register();
+    this->BP = new Register();
+    this->SI = new Register();
+    this->DI = new Register();
 
-    this->rD = new Registrador();
-    this->rS = new Registrador();
+    this->rD = new Register();
+    this->rS = new Register();
 }
 
-std::string BancoReg::getAX(){
+std::string RegisterBank::getAX(){
     return this->AX->getX();
 }
-std::string BancoReg::getBX(){
+std::string RegisterBank::getBX(){
     return this->BX->getX();
 }
-std::string BancoReg::getCX(){
+std::string RegisterBank::getCX(){
     return this->CX->getX();
 }
-std::string BancoReg::getDX(){
+std::string RegisterBank::getDX(){
     return this->DX->getX();
 }
-std::string BancoReg::getSP(){
+std::string RegisterBank::getSP(){
     return this->SP->getX();
 }
-std::string BancoReg::getBP(){
+std::string RegisterBank::getBP(){
     return this->BP->getX();
 }
-std::string BancoReg::getSI(){
+std::string RegisterBank::getSI(){
     return this->SI->getX();
 }
-std::string BancoReg::getDI(){
+std::string RegisterBank::getDI(){
     return this->DI->getX();
 }
 
-Registrador BancoReg::getRD(std::string c,std::string w){
+Register RegisterBank::getRD(std::string c,std::string w){
     if(c.compare("000")==0){
         this->rD = this->AX;
     }else if(c.compare("001")==0){
@@ -76,7 +76,7 @@ Registrador BancoReg::getRD(std::string c,std::string w){
 
     return *(this->rD);
 }
-Registrador BancoReg::getRS(std::string c,std::string w){
+Register RegisterBank::getRS(std::string c,std::string w){
     if(c.compare("000")==0){
         this->rS = this->AX;
     }else if(c.compare("001")==0){
@@ -113,7 +113,7 @@ Registrador BancoReg::getRS(std::string c,std::string w){
 
     return *(this->rS);
 }
-void BancoReg::setRD(std::string s,std::string c,std::string w){
+void RegisterBank::setRD(std::string s,std::string c,std::string w){
     if(c.compare("000")==0){
         if(w.compare("0")==0){
             this->AX->setX(s);
@@ -164,6 +164,6 @@ void BancoReg::setRD(std::string s,std::string c,std::string w){
         }
     }
 }
-void BancoReg::setRS(std::string s,std::string c,std::string w){
+void RegisterBank::setRS(std::string s,std::string c,std::string w){
     this->setRD(s,c,w);
 }

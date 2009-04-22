@@ -42,8 +42,6 @@
 		<Unit filename="ALU.h" />
 		<Unit filename="Adder.cpp" />
 		<Unit filename="Adder.h" />
-		<Unit filename="BancoRegs.cpp" />
-		<Unit filename="BancoRegs.h" />
 		<Unit filename="Control.cpp" />
 		<Unit filename="Control.h" />
 		<Unit filename="Forwarding.cpp" />
@@ -64,8 +62,10 @@
 		<Unit filename="PipelineCPU.h" />
 		<Unit filename="PipelineRegs.cpp" />
 		<Unit filename="PipelineRegs.h" />
-		<Unit filename="Registrador.cpp" />
-		<Unit filename="Registrador.h" />
+		<Unit filename="Register.cpp" />
+		<Unit filename="Register.h" />
+		<Unit filename="RegisterBank.cpp" />
+		<Unit filename="RegisterBank.h" />
 		<Unit filename="ShiftLeft.cpp" />
 		<Unit filename="ShiftLeft.h" />
 		<Extensions>

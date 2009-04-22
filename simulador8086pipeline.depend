@@ -1637,11 +1637,12 @@
 1240197942 /home/jimmy/simulador8086compipeline/ULA.h
 	<iostream>
 
-1240286900 source:/home/jimmy/simulador8086compipeline/ALU.cpp
+1240358237 source:/home/jimmy/simulador8086compipeline/ALU.cpp
 	"ALU.h"
 
-1240286900 /home/jimmy/simulador8086compipeline/ALU.h
-	<iostream>
+1240358435 /home/jimmy/simulador8086compipeline/ALU.h
+	<string>
+	"Helpers.h"
 
 1240287020 source:/home/jimmy/simulador8086compipeline/Adder.cpp
 	"Adder.h"
@@ -1694,6 +1695,15 @@
 	<string>
 	"Helpers.h"
 
-1240351584 source:/home/jimmy/simulador8086compipeline/RegisterBank.cpp
-	"BancoRegs.h"
+1240358370 source:/home/jimmy/simulador8086compipeline/RegisterBank.cpp
+	"RegisterBank.h"
+
+1240358397 source:/home/jimmy/simulador8086compipeline/Register.cpp
+	"Register.h"
+
+1240358379 /home/jimmy/simulador8086compipeline/Register.h
+	<string>
+
+1240358370 /home/jimmy/simulador8086compipeline/RegisterBank.h
+	"Register.h"
 
