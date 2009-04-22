@@ -17,6 +17,7 @@ class Helpers{
         std::string baseToInt(unsigned int num, unsigned int b);
         std::string baseToInt(std::string num, unsigned int b);
         std::string readFile(std::string filename);
+        std::string removeComments(std::string s);
         int stringToInt(const std::string& s);
         void setLog(std::string s);
         std::string getLog();

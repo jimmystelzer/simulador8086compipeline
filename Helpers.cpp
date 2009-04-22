@@ -45,7 +45,10 @@ std::string Helpers::readFile(std::string filename){
         return std::string();
     }else{
         while (std::getline(inFile,lineTmpStr)) {
-            tmpStr << lineTmpStr;
+            lineTmpStr = removeComments(lineTmpStr);
+            if(lineTmpStr.compare("")!=0){
+                tmpStr << lineTmpStr << std::endl;
+            }
         }
         return tmpStr.str();
     }
@@ -71,4 +74,49 @@ void Helpers::saveLog(std::string fileName){
         saveFile << this->logString.str();
         saveFile.close();
     }
+}
+
+std::string Helpers::removeComments(std::string s){
+    std::ostringstream tmpStr;
+
+    //remove os numeros
+    s = s.substr(7);
+
+    //preserva os tipo de SECTION
+    std::string::size_type loc = s.find("SECTION",0);
+    if(loc != std::string::npos){
+        s = s.substr(loc);
+        loc = s.find(".",0);
+        if(loc != std::string::npos){
+            s = s.substr(loc);
+        }
+    }
+
+    // tira os comentarios do arquivo
+    loc = s.find(";",0);
+    if(loc != std::string::npos){
+        s = s.substr(0,loc);
+    }
+    //remove [ e ]
+    loc = s.find("[",0);
+    if(loc != std::string::npos){
+        s = s.erase(loc,1);
+    }
+    loc = s.find("]",0);
+    if(loc != std::string::npos){
+        s = s.erase(loc,1);
+    }
+    //ignora linha iniciadas por espaço
+    if((std::string(" ")).compare(s.substr(0,1))!=0){
+        // remove multiplos espaços e texto desnecessario
+        loc = s.find("  ",0);
+        if(loc != std::string::npos){
+            s = s.substr(0,loc);
+        }
+
+
+        tmpStr << s;
+    }
+
+    return tmpStr.str();
 }
