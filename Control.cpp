@@ -160,7 +160,7 @@ void Control::setOpcode(std::string opcode){
             this->ex->replace(this->ex->begin(),this->ex->end(),std::string("1"));
             this->wb->replace(this->wb->begin(),this->wb->end(),std::string("0"));
         }else{
-            this->Mneumonic->replace(this->Mneumonic->begin(),this->Mneumonic->end(),opcode); //std::string("nop")
+            this->Mneumonic->replace(this->Mneumonic->begin(),this->Mneumonic->end(),std::string("nop"));
             this->rD->replace(this->rD->begin(),this->rD->end(),std::string(""));
             this->rS->replace(this->rS->begin(),this->rS->end(),std::string(""));
             this->mod->replace(this->mod->begin(),this->mod->end(),std::string(""));

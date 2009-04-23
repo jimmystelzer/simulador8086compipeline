@@ -6,11 +6,11 @@ PipelineCPU::PipelineCPU(){
         ds = new Register();
         ss = new Register();
         es = new Register();
-        rs = new Register();
-        rd = new Register();
         rb = new RegisterBank();
         hp = new Helpers();
+
         alu = new ALU();
+
         dataMem = new Mem();
         instMem = new Mem();
         c = new Control();
@@ -61,10 +61,9 @@ void PipelineCPU::exec(){
     // mostra Mneumonic
     this->ID->replace(this->ID->begin(),this->ID->end(),this->c->getMneumonic());
 
-    // registers
-    *this->rd = this->rb->getRD(this->c->getRD(),this->c->getW());
-    *this->rs = this->rb->getRS(this->c->getRS(),this->c->getW());
-
+    // registers do regbank
+    this->nidEx->setRegDr(this->rb->getRD(this->c->getRD(),this->c->getW()));
+    this->nidEx->setRegSr(this->rb->getRS(this->c->getRS(),this->c->getW()));
     this->nidEx->setInst(this->c->getMneumonic());
     this->nidEx->setRegS(this->c->getRS());
     this->nidEx->setRegD(this->c->getRD());
@@ -72,21 +71,28 @@ void PipelineCPU::exec(){
     this->nidEx->setWB(this->c->getWB());
     this->nidEx->setExec(this->c->getEX());
     this->nidEx->setMem(this->c->getMEM());
+    this->nidEx->setW(this->c->getW());
+
     *this->oifId = *this->nifId;
 
     /** **EX** **/
 
     if((this->oidEx->getExec()).compare("0")==0){
         this->EX->replace(this->EX->begin(),this->EX->end(),std::string("~").append(this->oidEx->getInst()));
+
     }else{
         this->EX->replace(this->EX->begin(),this->EX->end(),this->oidEx->getInst());
+
     }
+    this->nexMem->setRegSr(this->oidEx->getRegSr());
+    this->nexMem->setRegDr(this->oidEx->getRegDr());
     this->nexMem->setInst(this->oidEx->getInst());
     this->nexMem->setRegS(this->oidEx->getRegS());
     this->nexMem->setRegD(this->oidEx->getRegD());
     this->nexMem->setParam(this->oidEx->getParam());
     this->nexMem->setWB(this->oidEx->getWB());
     this->nexMem->setMem(this->oidEx->getMem());
+    this->nexMem->setW(this->oidEx->getW());
 
     *this->oidEx = *this->nidEx;
     /** **MEM** **/
@@ -96,11 +102,14 @@ void PipelineCPU::exec(){
     }else{
         this->MEM->replace(this->MEM->begin(),this->MEM->end(),this->oexMem->getInst());
     }
+    this->nmemWb->setRegSr(this->oexMem->getRegSr());
+    this->nmemWb->setRegDr(this->oexMem->getRegDr());
     this->nmemWb->setInst(this->oexMem->getInst());
     this->nmemWb->setRegS(this->oexMem->getRegS());
     this->nmemWb->setRegD(this->oexMem->getRegD());
     this->nmemWb->setParam(this->oexMem->getParam());
     this->nmemWb->setWB(this->oexMem->getWB());
+    this->nmemWb->setW(this->oexMem->getW());
     *this->oexMem = *this->nexMem;
 
     /** **WB** **/
@@ -109,6 +118,7 @@ void PipelineCPU::exec(){
         this->WB->replace(this->WB->begin(),this->WB->end(),std::string("~").append(this->omemWb->getInst()));
     }else{
         this->WB->replace(this->WB->begin(),this->WB->end(),this->omemWb->getInst());
+        this->rb->setRD((this->omemWb->getRegDr()).getX(),this->omemWb->getRegD(),this->omemWb->getW());
     }
 
     *this->omemWb = *this->nmemWb;

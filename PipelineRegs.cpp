@@ -21,11 +21,23 @@ std::string RegistradorPipeline::getPC(){
 std::string RegistradorPipeline::getRegD(){
     return this->regd;
 }
+std::string RegistradorPipeline::getW(){
+    return this->w;
+}
+Register RegistradorPipeline::getRegDr(){
+    return this->regdr;
+}
+Register RegistradorPipeline::getRegSr(){
+    return this->regsr;
+}
 std::string RegistradorPipeline::getRegS(){
     return this->regs;
 }
 std::string RegistradorPipeline::getParam(){
     return this->param;
+}
+std::string RegistradorPipeline::getMod(){
+    return this->mod;
 }
 void RegistradorPipeline::setInst(std::string s){
     this->inst = s;
@@ -48,8 +60,20 @@ void RegistradorPipeline::setRegS(std::string s){
 void RegistradorPipeline::setRegD(std::string s){
     this->regd = s;
 }
+void RegistradorPipeline::setRegDr(Register s){
+    this->regdr = s;
+}
+void RegistradorPipeline::setRegSr(Register s){
+    this->regsr = s;
+}
 void RegistradorPipeline::setParam(std::string s){
     this->param = s;
+}
+void RegistradorPipeline::setW(std::string s){
+    this->w = s;
+}
+void RegistradorPipeline::setMod(std::string s){
+    this->mod = s;
 }
 void RegistradorPipeline::reset(){
     this->inst = std::string("");
@@ -60,4 +84,9 @@ void RegistradorPipeline::reset(){
     this->regs = std::string("");
     this->regd = std::string("");
     this->param = std::string("");
+    this->w = std::string("");
+    this->regdr = Register();
+    this->regsr = Register();
+    this->mod = std::string("");
+
 }

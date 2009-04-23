@@ -15,7 +15,7 @@
 
 class PipelineCPU{
     private:
-        Register *ip, *cs, *ds, *ss, *es, *rd, *rs;
+        Register *ip, *cs, *ds, *ss, *es;
         RegisterBank *rb;
         Helpers *hp;
         ALU *alu;

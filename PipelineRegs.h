@@ -7,9 +7,12 @@
 
 #include <string>
 #include "Helpers.h"
+#include "Register.h"
+
 class RegistradorPipeline{
     private:
-        std::string inst, exec, mem, wb, pc, regs, regd, param;
+        std::string inst, exec, mem, wb, pc, regs, regd, param, w, mod;
+        Register regsr, regdr;
     public:
         RegistradorPipeline();
         std::string getInst();
@@ -20,6 +23,10 @@ class RegistradorPipeline{
         std::string getRegS();
         std::string getRegD();
         std::string getParam();
+        std::string getMod();
+        std::string getW();
+        Register getRegDr();
+        Register getRegSr();
         void setInst(std::string s);
         void setExec(std::string s);
         void setMem(std::string s);
@@ -28,6 +35,10 @@ class RegistradorPipeline{
         void setRegS(std::string s);
         void setRegD(std::string s);
         void setParam(std::string s);
+        void setW(std::string s);
+        void setRegDr(Register s);
+        void setRegSr(Register s);
+        void setMod(std::string s);
         void reset();
 };
 #endif  //PIPELINE_REGS_H
