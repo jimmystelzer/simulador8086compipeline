@@ -16,7 +16,6 @@ reg     w=0 w=1
 class RegisterBank{
     private:
         Register *AX, *BX, *CX, *DX, *SP, *BP, *SI, *DI;
-        Register *rD, *rS;
     public:
         RegisterBank();
         std::string getAX();
@@ -28,8 +27,8 @@ class RegisterBank{
         std::string getSI();
         std::string getDI();
 
-        Register getRD(std::string c,std::string w);
-        Register getRS(std::string c,std::string w);
+        std::string getRD(std::string c,std::string w);
+        std::string getRS(std::string c,std::string w);
         void setRD(std::string s,std::string c,std::string w);
         void setRS(std::string s,std::string c,std::string w);
         void reset();

@@ -12,7 +12,7 @@
 class RegistradorPipeline{
     private:
         std::string inst, exec, mem, wb, pc, regs, regd, param, w, mod;
-        Register regsr, regdr;
+        std::string regsr, regdr;
     public:
         RegistradorPipeline();
         std::string getInst();
@@ -25,8 +25,8 @@ class RegistradorPipeline{
         std::string getParam();
         std::string getMod();
         std::string getW();
-        Register getRegDr();
-        Register getRegSr();
+        std::string getRegDr();
+        std::string getRegSr();
         void setInst(std::string s);
         void setExec(std::string s);
         void setMem(std::string s);
@@ -36,8 +36,8 @@ class RegistradorPipeline{
         void setRegD(std::string s);
         void setParam(std::string s);
         void setW(std::string s);
-        void setRegDr(Register s);
-        void setRegSr(Register s);
+        void setRegDr(std::string s);
+        void setRegSr(std::string s);
         void setMod(std::string s);
         void reset();
 };

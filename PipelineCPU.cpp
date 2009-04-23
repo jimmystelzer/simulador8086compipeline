@@ -118,7 +118,7 @@ void PipelineCPU::exec(){
         this->WB->replace(this->WB->begin(),this->WB->end(),std::string("~").append(this->omemWb->getInst()));
     }else{
         this->WB->replace(this->WB->begin(),this->WB->end(),this->omemWb->getInst());
-        this->rb->setRD((this->omemWb->getRegDr()).getX(),this->omemWb->getRegD(),this->omemWb->getW());
+        this->rb->setRD(this->omemWb->getRegDr(),this->omemWb->getRegD(),this->omemWb->getW());
     }
 
     *this->omemWb = *this->nmemWb;

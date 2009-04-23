@@ -19,6 +19,7 @@ class ALU{
         std::string getIF();
         std::string getDF();
         std::string getOF();
+        void reset();
 };
 
 #endif  //ALU_H

@@ -10,8 +10,6 @@ RegisterBank::RegisterBank(){
     this->SI = new Register();
     this->DI = new Register();
 
-    this->rD = new Register();
-    this->rS = new Register();
 }
 
 std::string RegisterBank::getAX(){
@@ -39,79 +37,60 @@ std::string RegisterBank::getDI(){
     return this->DI->getX();
 }
 
-Register RegisterBank::getRD(std::string c,std::string w){
-    if(c.compare("000")==0){
-        this->rD = this->AX;
-    }else if(c.compare("001")==0){
-        this->rD = this->CX;
-    }else if(c.compare("010")==0){
-        this->rD = this->DX;
-    }else if(c.compare("011")==0){
-        this->rD = this->BX;
-    }else if(c.compare("100")==0){
-        if(w.compare("0")==0){
-            this->rD = this->AX;
-        }else{
-            this->rD = this->SP;
-        }
-    }else if(c.compare("101")==0){
-        if(w.compare("0")==0){
-            this->rD = this->CX;
-        }else{
-            this->rD = this->BP;
-        }
-    }else if(c.compare("110")==0){
-        if(w.compare("0")==0){
-            this->rD = this->DX;
-        }else{
-            this->rD = this->SI;
-        }
-    }else if(c.compare("111")==0){
-        if(w.compare("0")==0){
-            this->rD = this->BX;
-        }else{
-            this->rD = this->DI;
-        }
-    }
-
-    return *(this->rD);
+std::string RegisterBank::getRD(std::string c,std::string w){
+    return getRS(c,w);
 }
-Register RegisterBank::getRS(std::string c,std::string w){
+std::string RegisterBank::getRS(std::string c,std::string w){
     if(c.compare("000")==0){
-        this->rS = this->AX;
+        if(w.compare("0")==0){
+            return this->AX->getX().substr();
+        }else{
+            return this->AX->getL().substr();
+        }
     }else if(c.compare("001")==0){
-        this->rS = this->CX;
+        if(w.compare("0")==0){
+            return this->CX->getX().substr();
+        }else{
+            return this->CX->getL().substr();
+        }
     }else if(c.compare("010")==0){
-        this->rS = this->DX;
+        if(w.compare("0")==0){
+            return this->DX->getX().substr();
+        }else{
+            return this->DX->getL().substr();
+        }
     }else if(c.compare("011")==0){
-        this->rS = this->BX;
+        if(w.compare("0")==0){
+            return this->BX->getX().substr();
+        }else{
+            return this->BX->getL().substr();
+        }
     }else if(c.compare("100")==0){
         if(w.compare("0")==0){
-            this->rS = this->AX;
+            return this->AX->getH().substr();
         }else{
-            this->rS = this->SP;
+            return this->SP->getX().substr();
         }
     }else if(c.compare("101")==0){
         if(w.compare("0")==0){
-            this->rS = this->CX;
+            return this->CX->getH().substr();
         }else{
-            this->rS = this->BP;
+            return this->BP->getX().substr();
         }
     }else if(c.compare("110")==0){
         if(w.compare("0")==0){
-            this->rS = this->DX;
+            return this->DX->getH().substr();
         }else{
-            this->rS = this->SI;
+            return this->SI->getX().substr();
         }
     }else if(c.compare("111")==0){
         if(w.compare("0")==0){
-            this->rS = this->BX;
+            return this->BX->getH().substr();
         }else{
-            this->rS = this->DI;
+            return this->DI->getX().substr();
         }
     }
-
-    return *(this->rS);
+    return std::string();
 }
 void RegisterBank::setRD(std::string s,std::string c,std::string w){
     if(c.compare("000")==0){
@@ -176,7 +155,4 @@ void RegisterBank::reset(){
     this->BP = new Register();
     this->SI = new Register();
     this->DI = new Register();
-
-    this->rD = new Register();
-    this->rS = new Register();
 }

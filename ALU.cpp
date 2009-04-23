@@ -2,20 +2,15 @@
 
 ALU::ALU(){
     this->hp = new Helpers();
-    CF = false;
-    PF = false;
-    AF = false;
-    ZF = false;
-    SF = false;
-    TF = false;
-    IF = false;
-    DF = false;
-    OF = false;
+    reset();
 }
 std::string ALU::exec(std::string mnem, std::string dest, std::string src, std::string w, std::string param, std::string mod){
 
-    if(mnem.compare("movregimmed")==0){
-        dest = src;
+    if(mnem.compare("jmplabel")==0){
+        //operar comp 2 em param
+
+    }else if(mnem.compare("cmpregimmed")==0){
+        //operar comp 2 em param
 
     }
     return dest;
@@ -139,4 +134,15 @@ std::string ALU::getOF(){
     }else{
         return std::string("0");
     }
+}
+void ALU::reset(){
+    CF = false;
+    PF = false;
+    AF = false;
+    ZF = false;
+    SF = false;
+    TF = false;
+    IF = false;
+    DF = false;
+    OF = false;
 }
