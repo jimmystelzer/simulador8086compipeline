@@ -53,7 +53,6 @@ void PipelineCPU::exec(){
     this->ip->setX(this->hp->leadingZeroHex(this->hp->intToBase(tmpIP,16)));
     this->nifId->setPC(this->ip->getX());
 
-
     /** **ID** **/
     // decodifica
     this->c->setOpcode(this->oifId->getInst());
@@ -61,6 +60,17 @@ void PipelineCPU::exec(){
     // mostra Mneumonic
     this->ID->replace(this->ID->begin(),this->ID->end(),this->c->getMneumonic());
 
+    if(this->c->getMneumonic().compare("jmplabel")==0){
+        tmpIP = this->hp->stringToInt(this->hp->baseToInt(this->ip->getX(),16));
+        if(this->c->getParam().substr(0,1).compare("1")==0){
+            ntmpIP = hp->stringToInt(hp->baseToInt(hp->binNegToPos(this->c->getParam()),2));
+            tmpIP = tmpIP - ntmpIP;
+        }else{
+            ntmpIP = hp->stringToInt(hp->baseToInt(this->c->getParam(),2));
+            tmpIP = tmpIP + ntmpIP;
+        }
+        this->ip->setX(this->hp->leadingZeroHex(this->hp->intToBase(tmpIP,16)));
+    }
     // registers do regbank
     this->nidEx->setRegDr(this->rb->getRD(this->c->getRD(),this->c->getW()));
     this->nidEx->setRegSr(this->rb->getRS(this->c->getRS(),this->c->getW()));
@@ -82,7 +92,7 @@ void PipelineCPU::exec(){
 
     }else{
         this->EX->replace(this->EX->begin(),this->EX->end(),this->oidEx->getInst());
-
+//        this->oidEx->setRegDr(this->alu->exec(this->oidEx->getInst(),this->oidEx->getRegDr(),this->oidEx->getRegSr(),this->oidEx->getW(),this->oidEx->getParam()));
     }
     this->nexMem->setRegSr(this->oidEx->getRegSr());
     this->nexMem->setRegDr(this->oidEx->getRegDr());
@@ -101,6 +111,9 @@ void PipelineCPU::exec(){
         this->MEM->replace(this->MEM->begin(),this->MEM->end(),std::string("~").append(this->oexMem->getInst()));
     }else{
         this->MEM->replace(this->MEM->begin(),this->MEM->end(),this->oexMem->getInst());
+//        if(this->oexMem->getInst().compare("movregrm")){
+//            this->oexMem->setRegDr(this->dataMem->getByte(this->hp->stringToInt( this->hp->baseToInt(this->oexMem->getParam(),2))).substr(0,4));
+//        }
     }
     this->nmemWb->setRegSr(this->oexMem->getRegSr());
     this->nmemWb->setRegDr(this->oexMem->getRegDr());
@@ -118,9 +131,12 @@ void PipelineCPU::exec(){
         this->WB->replace(this->WB->begin(),this->WB->end(),std::string("~").append(this->omemWb->getInst()));
     }else{
         this->WB->replace(this->WB->begin(),this->WB->end(),this->omemWb->getInst());
-        this->rb->setRD(this->omemWb->getRegDr(),this->omemWb->getRegD(),this->omemWb->getW());
+//        /**  <-<---->->   **/
+//        this->rb->setRD(this->omemWb->getRegDr(),this->omemWb->getRegD(),this->omemWb->getW());
+//        /**  <-<---->->   **/
     }
-
+    hp->setLog("--");
+    hp->saveLog("log.txt");
     *this->omemWb = *this->nmemWb;
 }
 void PipelineCPU::reset(){

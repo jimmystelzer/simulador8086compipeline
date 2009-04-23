@@ -124,73 +124,43 @@ std::string Helpers::cleanFile(std::string s){
     return tmpStr.str();
 }
 std::string Helpers::binNegToPos(std::string s){
-    s = this->intToBase(this->stringToInt(this->baseToInt(s,16)),2); //converte para binario
-    //leading
-    if(s.length()<16){
-        if(s.length()==8){
-            s.insert(0,std::string(16 - s.length(),*(s.substr(0,1)).c_str()));
+    //inverte
+    for(unsigned int it = 0; it < s.length() ; it++){
+        if((s.substr(it,1)).compare("1")==0){
+            s.replace(it,1,std::string("0"));
         }else{
-            s.insert(0,std::string(16 - s.length(),'0'));
+            s.replace(it,1,std::string("1"));
         }
     }
-
-    //subritrair um
-    std::string::const_iterator it = s.end();
-    bool zero = true;
-    while(it > s.begin() && zero){
-        if((s.substr(*it,1)).compare("1")==0){
-            s.replace(*it,1,std::string("0"));
-            zero = false;
+    //soma 1
+    for(int it = s.length()-1; it > 0 ; it--){
+        if((s.substr(it,1)).compare("1")==0){
+            s.replace(it,1,std::string("0"));
         }else{
-            s.replace(*it,1,std::string("1"));
-        }
-        it--;
-    }
-
-    //nega bit a bit
-    it = s.begin();
-    while(it < s.end()){
-        if((s.substr(*it,1)).compare("1")==0){
-            s.replace(*it,1,std::string("0"));
-        }else{
-            s.replace(*it,1,std::string("1"));
+            s.replace(it,1,std::string("1"));
+            it=0;
         }
     }
     return s;
 }
 std::string Helpers::binPosToNeg(std::string s){
-    s = this->intToBase(this->stringToInt(this->baseToInt(s,16)),2); //converte para binario
-    //leading
-    if(s.length()<16){
-        if(s.length()==8){
-            s.insert(0,std::string(16 - s.length(),*(s.substr(0,1)).c_str()));
+    //subritair
+    for(int it = s.length()-1; it > 0 ; it--){
+        if((s.substr(it,1)).compare("0")==0){
+            s.replace(it,1,std::string("1"));
         }else{
-            s.insert(0,std::string(16 - s.length(),'0'));
+            s.replace(it,1,std::string("0"));
+            it=0;
         }
     }
-    //nega bit a bit
-    std::string::const_iterator it = s.begin();
-    while(it < s.end()){
-        if((s.substr(*it,1)).compare("1")==0){
-            s.replace(*it,1,std::string("0"));
+    //inverte
+    for(unsigned int it = 0; it < s.length() ; it++){
+        if((s.substr(it,1)).compare("1")==0){
+            s.replace(it,1,std::string("0"));
         }else{
-            s.replace(*it,1,std::string("1"));
+            s.replace(it,1,std::string("1"));
         }
     }
-    //soma um
-    it = s.end();
-    bool um = true;
-    while(it > s.begin() && um){
-        if((s.substr(*it,1)).compare("0")==0){
-            s.replace(*it,1,std::string("1"));
-            um = false;
-        }else{
-            s.replace(*it,1,std::string("0"));
-        }
-        it--;
-    }
-
-
     return s;
 }
 
@@ -205,7 +175,7 @@ std::string Helpers::leadingZeroBin(std::string s){
     }
     return s;
 }
-std::string Helpers::leadingZeroBin(std::string s, int b){
+std::string Helpers::leadingZero(std::string s, int b){
     s.insert(0,std::string(b - s.length(),'0'));
     return s;
 }

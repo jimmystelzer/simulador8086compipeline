@@ -22,7 +22,7 @@ class Helpers{
         std::string binPosToNeg(std::string s);
 
         std::string leadingZeroBin(std::string s);
-        std::string leadingZeroBin(std::string s, int b);
+        std::string leadingZero(std::string s, int b);
         std::string leadingZeroHex(std::string s);
 
         std::string readFile(std::string filename);

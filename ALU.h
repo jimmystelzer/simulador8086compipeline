@@ -9,7 +9,7 @@ class ALU{
         bool CF,PF,AF,ZF,SF,TF,IF,DF,OF;
     public:
         ALU();
-        std::string exec(std::string mnem, std::string dest, std::string src, std::string w, std::string param, std::string mod);
+        std::string exec(std::string mnem, std::string dest, std::string src, std::string w, std::string param);
         std::string getCF();
         std::string getPF();
         std::string getAF();

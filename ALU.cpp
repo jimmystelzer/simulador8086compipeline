@@ -4,72 +4,74 @@ ALU::ALU(){
     this->hp = new Helpers();
     reset();
 }
-std::string ALU::exec(std::string mnem, std::string dest, std::string src, std::string w, std::string param, std::string mod){
+std::string ALU::exec(std::string mnem, std::string dest, std::string src, std::string w, std::string param){
 
-    if(mnem.compare("jmplabel")==0){
-        //operar comp 2 em param
+    if(mnem.compare("addregreg")==0){
+        int tmpi = hp->stringToInt(hp->baseToInt(dest,16)) + hp->stringToInt(hp->baseToInt(src,16));
+        dest = hp->intToBase(tmpi, 16);
+
+        //.OF, .SF, .ZF, .AF, .PF, .CF
+            if (tmpi < 0){
+                this->SF = true;
+            }else{
+                this->SF = false;
+            }
+            if (tmpi == 0){
+                this->ZF = true;
+            }else{
+                this->ZF = false;
+            }
+            if (tmpi > 255 && w.compare("0")==0){
+                this->CF = true;
+            }else{
+                this->CF = false;
+            }
+            if ((tmpi < 128 || tmpi > 127) && w.compare("0")==0){
+                this->OF = true;
+            }else{
+                this->OF = false;
+            }
+
+            if (tmpi > 65535 && w.compare("1")==0){
+                this->AF = true;
+            }else{
+                this->AF = false;
+            }
+            if (w.compare("0")==0){
+                if(tmpi%2 == 0){
+                    this->PF = true; //par
+                }else{
+                    this->PF = false; //nãp par -> impar
+                }
+            }else{
+                this->PF = false; //não par -> não avaliado
+            }
+
 
     }else if(mnem.compare("cmpregimmed")==0){
-        //operar comp 2 em param
+        if(hp->stringToInt(hp->baseToInt(src,16)) == hp->stringToInt(hp->baseToInt(param,16))){
+            this->ZF = true;
+        }else{
+            this->ZF = false;
+        }
+        dest = std::string("");
+    }else if(mnem.compare("jzlabel")==0){
+        dest = std::string("");
 
+    }else if(mnem.compare("loopnz")==0){
+        dest = std::string("");
+
+    }else if(mnem.compare("hlt")==0){
+        dest = std::string("");
+
+    }else if(mnem.compare("movregreg")==0){
+        dest = std::string("");
+
+    }else if(mnem.compare("movregimmed")==0){
+        dest = std::string("");
     }
+
     return dest;
-//    bool bits8;
-//    int a, b;
-//    std::string tmp;
-//
-//    if(m.compare("ADD")==0){
-//        if(d.length() == 4){
-//            bits8 = false;
-//        }else{
-//            bits8 = true;
-//        }
-//        a = this->hp->stringToInt(this->hp->baseToInt(d,16)); //converte pra dec
-//        b = this->hp->stringToInt(this->hp->baseToInt(s,16)); //converte pra dec
-//        a = a + b; // opera
-//        // .OF, .SF, .ZF, .AF, .PF, .CF
-//        if (a < 0){
-//            this->SF = true;
-//        }else{
-//            this->SF = false;
-//        }
-//        if (a == 0){
-//            this->ZF = true;
-//        }else{
-//            this->ZF = false;
-//        }
-//        if (a > 255 && bits8){
-//            this->CF = true;
-//        }else{
-//            this->CF = false;
-//        }
-//        if ((a < 128 || a > 127) && bits8){
-//            this->OF = true;
-//        }else{
-//            this->OF = false;
-//        }
-//
-//        if (a > 65535 && !bits8){
-//            this->AF = true;
-//        }else{
-//            this->AF = false;
-//        }
-//        if (bits8){
-//            if(a%2 == 0){
-//                this->PF = true; //par
-//            }else{
-//                this->PF = false; //nãp par -> impar
-//            }
-//        }else{
-//            this->PF = false; //não par -> não avaliado
-//        }
-//        tmp = this->hp->intToBase(a,16); //converte pra hexa
-//
-//    }else if(m.compare("JZ")==0){
-//
-//    }
-//
-//    return tmp;
 }
 
 std::string ALU::getCF(){
