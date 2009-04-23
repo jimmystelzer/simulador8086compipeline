@@ -24,6 +24,8 @@ const long JanelaPrincipal::ID_BUTTON6 = wxNewId();
 const long JanelaPrincipal::ID_BUTTON7 = wxNewId();
 const long JanelaPrincipal::ID_STATICLINE3 = wxNewId();
 const long JanelaPrincipal::ID_BUTTON8 = wxNewId();
+const long JanelaPrincipal::ID_MemView = wxNewId();
+const long JanelaPrincipal::ID_STATICTEXT4 = wxNewId();
 const long JanelaPrincipal::ID_PANEL1 = wxNewId();
 //*)
 
@@ -34,6 +36,7 @@ END_EVENT_TABLE()
 
 JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
 {
+    this->cpu = new PipelineCPU();
 	//(*Initialize(JanelaPrincipal)
 	Create(parent, wxID_ANY, _("Simulador 8086 com pipeline"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
 	SetClientSize(wxSize(800,460));
@@ -44,7 +47,7 @@ JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& p
 	StaticLine2 = new wxStaticLine(Panel1, ID_STATICLINE2, wxPoint(704,82), wxSize(88,2), wxLI_HORIZONTAL, _T("ID_STATICLINE2"));
 	Executar = new wxButton(Panel1, ID_BUTTON3, _("Executar"), wxPoint(704,88), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON3"));
 	Registradores = new wxListCtrl(Panel1, ID_LISTCTRL2, wxPoint(8,32), wxSize(680,72), wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER, wxDefaultValidator, _T("ID_LISTCTRL2"));
-	Pipeline = new wxListCtrl(Panel1, ID_LISTCTRL1, wxPoint(8,224), wxSize(680,224), wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER|wxVSCROLL|wxHSCROLL|wxALWAYS_SHOW_SB, wxDefaultValidator, _T("ID_LISTCTRL1"));
+	Pipeline = new wxListCtrl(Panel1, ID_LISTCTRL1, wxPoint(8,224), wxSize(680,56), wxLC_REPORT|wxLC_SINGLE_SEL|wxRAISED_BORDER, wxDefaultValidator, _T("ID_LISTCTRL1"));
 	Resetar = new wxButton(Panel1, ID_BUTTON4, _("Resetar"), wxPoint(704,128), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
 	Flags = new wxListCtrl(Panel1, ID_LISTCTRL3, wxPoint(8,136), wxSize(680,56), wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER, wxDefaultValidator, _T("ID_LISTCTRL3"));
 	StaticText1 = new wxStaticText(Panel1, ID_STATICTEXT1, _("Registradores:"), wxPoint(8,8), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
@@ -55,11 +58,14 @@ JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& p
 	pipeline_info = new wxButton(Panel1, ID_BUTTON7, _("Informações"), wxPoint(64,192), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON7"));
 	StaticLine3 = new wxStaticLine(Panel1, ID_STATICLINE3, wxPoint(704,168), wxSize(88,0), wxLI_HORIZONTAL, _T("ID_STATICLINE3"));
 	Button2 = new wxButton(Panel1, ID_BUTTON8, _("Dump"), wxPoint(704,176), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON8"));
-	FileDialog1 = new wxFileDialog(this, _("Escolha um arquivo para abrir"), wxEmptyString, _("Assembler compilado (*.o)|*.o"), _("Assembler compilado (*.o)|*.o"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+	MemView = new wxListCtrl(Panel1, ID_MemView, wxPoint(8,312), wxSize(680,128), wxLC_REPORT|wxLC_SINGLE_SEL|wxRAISED_BORDER, wxDefaultValidator, _T("ID_MemView"));
+	StaticText4 = new wxStaticText(Panel1, ID_STATICTEXT4, _("Visualizador de Memória:"), wxPoint(8,288), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
+	FileDialog1 = new wxFileDialog(this, _("Escolha um arquivo para abrir"), wxEmptyString, _("Assembler compilado (*.lst)|*.lst"), _("Assembler compilado (*.lst)|*.lst"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
 	Center();
 
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::OnButton1Click);
 	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::OnAbrirClick);
+	Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::OnExecutarClick);
 	Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::OnResetarClick);
 	Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::Onreg_infoClick);
 	Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::Onflag_infoClick);
@@ -84,6 +90,12 @@ void JanelaPrincipal::OnButton1Click(wxCommandEvent& event)
 
 void JanelaPrincipal::Reset()
 {
+    this->cpu->reset();
+    getDadosCPU();
+}
+
+void JanelaPrincipal::getDadosCPU(){
+    // Registradores
     Registradores->ClearAll();
     Registradores->InsertColumn(0,_("AX"));     //Acumulator
 	Registradores->InsertColumn(1,_("BX"));     //Base
@@ -98,28 +110,21 @@ void JanelaPrincipal::Reset()
 	Registradores->InsertColumn(10,_("DS"));    //Data Segment
 	Registradores->InsertColumn(11,_("SS"));    //Stack Segment
 	Registradores->InsertColumn(12,_("ES"));    //Extra Segment
+    Registradores->InsertItem(0,wxString(cpu->getAX().c_str(), wxConvUTF8));    //AX
+	Registradores->SetItem(0,1,wxString(cpu->getBX().c_str(), wxConvUTF8));     //BX
+    Registradores->SetItem(0,2,wxString(cpu->getCX().c_str(), wxConvUTF8));     //CX
+    Registradores->SetItem(0,3,wxString(cpu->getDX().c_str(), wxConvUTF8));     //DX
+    Registradores->SetItem(0,4,wxString(cpu->getIP().c_str(), wxConvUTF8));     //IP
+	Registradores->SetItem(0,5,wxString(cpu->getSP().c_str(), wxConvUTF8));     //SP
+    Registradores->SetItem(0,6,wxString(cpu->getBP().c_str(), wxConvUTF8));     //BP
+    Registradores->SetItem(0,7,wxString(cpu->getSI().c_str(), wxConvUTF8));     //SI
+    Registradores->SetItem(0,8,wxString(cpu->getDI().c_str(), wxConvUTF8));     //DI
+    Registradores->SetItem(0,9,wxString(cpu->getCS().c_str(), wxConvUTF8));     //CS
+	Registradores->SetItem(0,10,wxString(cpu->getDS().c_str(), wxConvUTF8));    //DS
+    Registradores->SetItem(0,11,wxString(cpu->getSS().c_str(), wxConvUTF8));    //SS
+    Registradores->SetItem(0,12,wxString(cpu->getES().c_str(), wxConvUTF8));    //ES
 
-	Registradores->InsertItem(0,_("0000h"));    //AX
-	Registradores->SetItem(0,1,_("0000h"));     //BX
-    Registradores->SetItem(0,2,_("0000h"));     //CX
-    Registradores->SetItem(0,3,_("0000h"));     //DX
-    Registradores->SetItem(0,4,_("0000h"));     //IP
-	Registradores->SetItem(0,5,_("0000h"));     //SP
-    Registradores->SetItem(0,6,_("0000h"));     //BP
-    Registradores->SetItem(0,7,_("0000h"));     //SI
-    Registradores->SetItem(0,8,_("0000h"));     //DI
-    Registradores->SetItem(0,9,_("0000h"));     //CS
-	Registradores->SetItem(0,10,_("0000h"));    //DS
-    Registradores->SetItem(0,11,_("0000h"));    //SS
-    Registradores->SetItem(0,12,_("0000h"));    //ES
-
-    Pipeline->ClearAll();
-    Pipeline->InsertColumn(0,_("IF"));          //Instruction Fetch
-    Pipeline->InsertColumn(1,_("ID"));          //Instruction Decode
-    Pipeline->InsertColumn(2,_("EX"));          //Execute
-    Pipeline->InsertColumn(3,_("MEM"));         //Memory Access
-    Pipeline->InsertColumn(4,_("WB"));          //Register Write Back
-
+    // Flags
     Flags->ClearAll();
     Flags->InsertColumn(0,_("CF"));             //Carry
     Flags->InsertColumn(1,_("ZF"));             //Zero
@@ -129,17 +134,44 @@ void JanelaPrincipal::Reset()
     Flags->InsertColumn(5,_("AF"));             //Auxiliary Carry
     Flags->InsertColumn(6,_("IF"));             //Interupt
     Flags->InsertColumn(7,_("DF"));             //Direction
+    Flags->InsertItem(0,wxString(cpu->getCF().c_str(), wxConvUTF8));    //CF
+    Flags->SetItem(0,1,wxString(cpu->getZF().c_str(), wxConvUTF8)); //ZF
+    Flags->SetItem(0,2,wxString(cpu->getSF().c_str(), wxConvUTF8)); //SF
+    Flags->SetItem(0,3,wxString(cpu->getOF().c_str(), wxConvUTF8)); //OF
+    Flags->SetItem(0,4,wxString(cpu->getPF().c_str(), wxConvUTF8)); //PF
+    Flags->SetItem(0,5,wxString(cpu->getAF().c_str(), wxConvUTF8)); //AF
+    Flags->SetItem(0,6,wxString(cpu->getIF().c_str(), wxConvUTF8)); //IF
+    Flags->SetItem(0,7,wxString(cpu->getDF().c_str(), wxConvUTF8)); //DF
 
-    Flags->InsertItem(0,_("0"));                //CF
-    Flags->SetItem(0,1,_("0"));                 //ZF
-    Flags->SetItem(0,2,_("0"));                 //SF
-    Flags->SetItem(0,3,_("0"));                 //OF
-    Flags->SetItem(0,4,_("0"));                 //PF
-    Flags->SetItem(0,5,_("0"));                 //AF
-    Flags->SetItem(0,6,_("1"));                 //IF 1
-    Flags->SetItem(0,7,_("0"));                 //DF
+    //_("Data")
+    MemView->ClearAll();
+    MemView->InsertColumn(0,_("Segmento"));
+    MemView->SetColumnWidth(0,80);
+    MemView->InsertColumn(1,_("Conteúdo"));
+    MemView->SetColumnWidth(1,580);
+
+    MemView->InsertItem(0,_("Data"));
+    MemView->SetItem(0,1,wxString(cpu->getDataMem().c_str(), wxConvUTF8));
+    MemView->InsertItem(1,_("Code"));
+    MemView->SetItem(1,1,wxString(cpu->getCodeMem().c_str(), wxConvUTF8));
+
+    Pipeline->ClearAll();
+    Pipeline->InsertColumn(0,_("IF"));          //Instruction Fetch
+    Pipeline->SetColumnWidth(0,130);
+    Pipeline->InsertColumn(1,_("ID"));          //Instruction Decode
+    Pipeline->SetColumnWidth(1,130);
+    Pipeline->InsertColumn(2,_("EX"));          //Execute
+    Pipeline->SetColumnWidth(2,130);
+    Pipeline->InsertColumn(3,_("MEM"));         //Memory Access
+    Pipeline->SetColumnWidth(3,130);
+    Pipeline->InsertColumn(4,_("WB"));          //Register Write Back
+    Pipeline->SetColumnWidth(4,130);
+    Pipeline->InsertItem(0,wxString(cpu->getPIF().c_str(), wxConvUTF8));
+    Pipeline->SetItem(0,1,wxString(cpu->getPID().c_str(), wxConvUTF8));
+    Pipeline->SetItem(0,2,wxString(cpu->getPEX().c_str(), wxConvUTF8));
+    Pipeline->SetItem(0,3,wxString(cpu->getPMEM().c_str(), wxConvUTF8));
+    Pipeline->SetItem(0,4,wxString(cpu->getPWB().c_str(), wxConvUTF8));
 }
-
 void JanelaPrincipal::OnResetarClick(wxCommandEvent& event)
 {
     Reset();
@@ -149,7 +181,11 @@ void JanelaPrincipal::OnAbrirClick(wxCommandEvent& event)
 {
     // Cria um dialogo para abrir nosso objeto compilado do assemble
     if  (FileDialog1->ShowModal() == wxID_OK) { //abriu o arquivo
+        Reset();
         SetTitle(_("Simulador 8086 com pipeline - ") + FileDialog1->GetPath());
+        this->cpu->readFile(std::string((FileDialog1->GetPath()).mb_str()));
+        wxMessageBox(_("Arquivo carregado com êxito."),_("Abrir Arquivo."));
+        getDadosCPU();
     }else{
         SetTitle(_("Simulador 8086 com pipeline"));
     }
@@ -157,26 +193,28 @@ void JanelaPrincipal::OnAbrirClick(wxCommandEvent& event)
 
 void JanelaPrincipal::Onflag_infoClick(wxCommandEvent& event)
 {
-    wxMessageBox(_("As flags são bits de um registrador de 16 bits, alguns bits são reservados e não atuam como flags.\n\n* CF (carry flag) é \"setado\" em 1 em operações nas quais exista resto.\n* ZF (zero flag) é \"setado\" em 1 em operações que resultem em zero.\n"), _("Informações sobre flags"));
+    wxMessageBox(_("As flags são bits de um registrador de 16 bits, alguns bits são reservados e não atuam como flags.\n\nO processador 8086 usa os seguintes flags: CF - Carry Flag; ZF - Zero Flag; SF - Sing Flag; OF - Overflow Flag; PF - Parity Flag; AF - Auxiliary Flag; IF - Interrupt enable Flag e DF - Direction Flag."), _("Informações sobre flags"));
 }
 
 void JanelaPrincipal::Onpipeline_infoClick(wxCommandEvent& event)
 {
-    wxMessageBox(_("O pipeline..."), _("Informações sobre pipeline"));
+    wxMessageBox(_("O pipeline arquiteturado possue cinco estágios, sendo IF (Instruction fetch), ID (Instruction decode and register fetch), EX (Execute), MEM(Memory access) e WB (Register write back)"), _("Informações sobre pipeline"));
 }
 
 void JanelaPrincipal::Onreg_infoClick(wxCommandEvent& event)
 {
-    wxMessageBox(_("Todos os registradores são de 16 bits, os registradores AX (acumulator), BX (base), CX (count) e DX (data) podem ser acessados por um par de registradores para área alta e baixa que são AL, AH, BL, BH, CL, CH, DL e DH.\nOs registradores DX e AX podem ser combinados em um registrador de 32 bits DX:AX para executar algumas operações (ex. multiplicação).\nOs registradores "), _("Informações sobre registradores"));
+    wxMessageBox(_("Todos os registradores são de 16 bits, os registradores AX (acumulator), BX (base), CX (count) e DX (data) podem ser acessados por um par de registradores para área alta e baixa que são AL, AH, BL, BH, CL, CH, DL e DH.\nOs registradores DX e AX podem ser combinados em um registrador de 32 bits DX:AX para executar algumas operações (ex. multiplicação).\nOs registradores CS, DS, SS e ES atuam como ponteiros para os seguimentos da memoria.\nSP, BP, SI e DI servem como index e ponteiros de pilha em operações de acesso a memória.\nIP aponta para a proxima instrução."), _("Informações sobre registradores"));
 }
 
 void JanelaPrincipal::OnButton2Click(wxCommandEvent& event)
 {
-    int retorno = wxMessageBox(_("Se deseja um dump da mémoria(dados e programa) clique em SIM.\nSe deseja um log das operações executadas desde o início ou reset escolha NÃO.\nSe não deseja nenhum dump clique em CANCELAR."), _("Dump do que?"), wxYES_NO | wxCANCEL);
-    if (retorno == wxYES){
-        //dump da memoria
-    }else if(retorno == wxNO){
-        //log de tudo
-    }
+    wxMessageBox(_("Dois arquivos de nome DataMem.txt e CodeMem.txt foram gerados da diretoria de execução do simulador."), _("Dump da memória"), wxOK);
 }
 
+
+void JanelaPrincipal::OnExecutarClick(wxCommandEvent& event)
+{
+    this->cpu->exec();
+    getDadosCPU();
+
+}

@@ -1,6 +1,11 @@
 #ifndef FORWARDING_H
 #define FORWARDING_H
-#include <iostream>
 
+class Forwarding{
+    private:
+
+    public:
+        Forwarding();
+};
 
 #endif  //FORWARDING_H

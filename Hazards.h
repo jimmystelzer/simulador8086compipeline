@@ -1,6 +1,11 @@
 #ifndef HAZARDS_H
 #define HAZARDS_H
-#include <iostream>
 
+class Hazards{
+    private:
+
+    public:
+        Hazards();
+};
 
 #endif  //HAZARDS_H

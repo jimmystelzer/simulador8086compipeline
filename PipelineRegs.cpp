@@ -1,81 +1,63 @@
 #include "PipelineRegs.h"
 
 RegistradorPipeline::RegistradorPipeline(){
-    this->regP = new std::string(REG80BITS,'0');
-    this->hp = new Helpers();
+    reset();
 }
 std::string RegistradorPipeline::getInst(){
-    return this->regP->substr(REG40BITS,REG40BITS);
+    return this->inst;
 }
 std::string RegistradorPipeline::getExec(){
-    std::string tmp = std::string(1,'0');
-    tmp.replace(0,1,this->regP->substr(0,REG8BITS)); // tmp recebe flags
-    tmp = this->hp->intToBase(this->hp->stringToInt(this->hp->baseToInt(tmp,16)),2); // converte tmp de hexa para um string binario
-    return tmp.substr(0,1);
+    return this->exec;
 }
 std::string RegistradorPipeline::getMem(){
-    std::string tmp = std::string(1,'0');
-    tmp.replace(0,1,this->regP->substr(0,REG8BITS)); // tmp recebe flags
-    tmp = this->hp->intToBase(this->hp->stringToInt(this->hp->baseToInt(tmp,16)),2); // converte tmp de hexa para um string binario
-    return tmp.substr(1,1);
+    return this->mem;
 }
 std::string RegistradorPipeline::getWB(){
-    std::string tmp = std::string(1,'0');
-    tmp.replace(0,1,this->regP->substr(0,REG8BITS)); // tmp recebe flags
-    tmp = this->hp->intToBase(this->hp->stringToInt(this->hp->baseToInt(tmp,16)),2); // converte tmp de hexa para um string binario
-    return tmp.substr(2,1);
+    return this->wb;
 }
 std::string RegistradorPipeline::getPC(){
-    return this->regP->substr(REG8BITS,REG32BITS);
+    return this->pc;
 }
-std::string RegistradorPipeline::getReg(){
-    return *(this->regP);
+std::string RegistradorPipeline::getRegD(){
+    return this->regd;
+}
+std::string RegistradorPipeline::getRegS(){
+    return this->regs;
+}
+std::string RegistradorPipeline::getParam(){
+    return this->param;
 }
 void RegistradorPipeline::setInst(std::string s){
-    if(s.length()>=REG40BITS){
-        this->regP->replace(REG40BITS,REG40BITS,s.substr(0,REG40BITS));
-    }else{
-        this->regP->replace(REG40BITS,REG40BITS,s);
-    }
+    this->inst = s;
 }
 void RegistradorPipeline::setExec(std::string s){
-    std::string tmp = std::string(1,'0');
-    tmp.replace(0,1,this->regP->substr(0,REG8BITS)); // tmp recebe flags
-    tmp = this->hp->intToBase(this->hp->stringToInt(this->hp->baseToInt(tmp,16)),2); // converte tmp de hexa para um string binario
-    tmp = tmp.replace(0,1,s.substr(0,1));
-    tmp = this->hp->intToBase(this->hp->stringToInt(this->hp->baseToInt(tmp,2)),16); // converte tmp de binario para um string hexa
-    this->regP->replace(0,REG8BITS,tmp);
+    this->exec = s;
 }
 void RegistradorPipeline::setMem(std::string s){
-    std::string tmp = std::string(1,'0');
-    tmp.replace(0,1,this->regP->substr(0,REG8BITS)); // tmp recebe flags
-    tmp = this->hp->intToBase(this->hp->stringToInt(this->hp->baseToInt(tmp,16)),2); // converte tmp de hexa para um string binario
-    tmp = tmp.replace(1,1,s.substr(0,1));
-    tmp = this->hp->intToBase(this->hp->stringToInt(this->hp->baseToInt(tmp,2)),16); // converte tmp de binario para um string hexa
-    this->regP->replace(0,REG8BITS,tmp);
+    this->mem = s;
 }
 void RegistradorPipeline::setWB(std::string s){
-    std::string tmp = std::string(1,'0');
-    tmp.replace(0,1,this->regP->substr(0,REG8BITS)); // tmp recebe flags
-    tmp = this->hp->intToBase(this->hp->stringToInt(this->hp->baseToInt(tmp,16)),2); // converte tmp de hexa para um string binario
-    tmp = tmp.replace(2,1,s.substr(0,1));
-    tmp = this->hp->intToBase(this->hp->stringToInt(this->hp->baseToInt(tmp,2)),16); // converte tmp de binario para um string hexa
-    this->regP->replace(0,REG8BITS,tmp);
+    this->wb = s;
 }
 void RegistradorPipeline::setPC(std::string s){
-    if(s.length()>=REG32BITS){
-        this->regP->replace(REG8BITS,REG32BITS,s.substr(0,REG32BITS));
-    }else{
-        this->regP->replace(REG8BITS,REG32BITS,s);
-    }
+    this->pc = s;
 }
-void RegistradorPipeline::setReg(std::string s){
-    if(s.length()>=REG80BITS){
-        this->regP->replace(0,REG80BITS,s.substr(0,REG80BITS));
-    }else{
-        this->regP->replace(0,s.length(),s);
-    }
+void RegistradorPipeline::setRegS(std::string s){
+    this->regs = s;
+}
+void RegistradorPipeline::setRegD(std::string s){
+    this->regd = s;
+}
+void RegistradorPipeline::setParam(std::string s){
+    this->param = s;
 }
 void RegistradorPipeline::reset(){
-    this->regP = new std::string(REG80BITS,'0');
+    this->inst = std::string("");
+    this->exec = std::string("");
+    this->mem = std::string("");
+    this->wb = std::string("");
+    this->pc = std::string("");
+    this->regs = std::string("");
+    this->regd = std::string("");
+    this->param = std::string("");
 }

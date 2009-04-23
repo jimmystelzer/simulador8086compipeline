@@ -2,11 +2,21 @@
 
 ALU::ALU(){
     this->hp = new Helpers();
+    CF = false;
+    PF = false;
+    AF = false;
+    ZF = false;
+    SF = false;
+    TF = false;
+    IF = false;
+    DF = false;
+    OF = false;
 }
-std::string ALU::doOp(std::string m, std::string d, std::string s){
+std::string ALU::exec(std::string m, std::string d, std::string s, std::string w, std::string p, std::string mod){
     bool bits8;
     int a, b;
     std::string tmp;
+
     if(m.compare("ADD")==0){
         if(d.length() == 4){
             bits8 = false;
@@ -61,30 +71,66 @@ std::string ALU::doOp(std::string m, std::string d, std::string s){
     return tmp;
 }
 
-bool ALU::getCF(){
-    return this->CF;
+std::string ALU::getCF(){
+    if (this->CF){
+        return std::string("1");
+    }else{
+        return std::string("0");
+    }
 }
-bool ALU::getPF(){
-    return this->PF;
+std::string ALU::getPF(){
+    if (this->PF){
+        return std::string("1");
+    }else{
+        return std::string("0");
+    }
 }
-bool ALU::getAF(){
-    return this->AF;
+std::string ALU::getAF(){
+    if (this->AF){
+        return std::string("1");
+    }else{
+        return std::string("0");
+    }
 }
-bool ALU::getZF(){
-    return this->ZF;
+std::string ALU::getZF(){
+    if (this->ZF){
+        return std::string("1");
+    }else{
+        return std::string("0");
+    }
 }
-bool ALU::getSF(){
-    return this->SF;
+std::string ALU::getSF(){
+    if (this->SF){
+        return std::string("1");
+    }else{
+        return std::string("0");
+    }
 }
-bool ALU::getTF(){
-    return this->TF;
+std::string ALU::getTF(){
+    if (this->TF){
+        return std::string("1");
+    }else{
+        return std::string("0");
+    }
 }
-bool ALU::getIF(){
-    return this->IF;
+std::string ALU::getIF(){
+    if (this->IF){
+        return std::string("1");
+    }else{
+        return std::string("0");
+    }
 }
-bool ALU::getDF(){
-    return this->DF;
+std::string ALU::getDF(){
+    if (this->DF){
+        return std::string("1");
+    }else{
+        return std::string("0");
+    }
 }
-bool ALU::getOF(){
-    return this->OF;
+std::string ALU::getOF(){
+    if (this->OF){
+        return std::string("1");
+    }else{
+        return std::string("0");
+    }
 }

@@ -11,7 +11,9 @@
 #include <wx/frame.h>
 //*)
 
+#include <string>
 #include "JanelaSobre.h"
+#include "PipelineCPU.h"
 
 class JanelaPrincipal: public wxFrame
 {
@@ -22,6 +24,7 @@ class JanelaPrincipal: public wxFrame
 
 		//(*Declarations(JanelaPrincipal)
 		wxButton* Executar;
+		wxListCtrl* MemView;
 		wxButton* Resetar;
 		wxStaticText* StaticText2;
 		wxButton* Abrir;
@@ -40,6 +43,7 @@ class JanelaPrincipal: public wxFrame
 		wxListCtrl* Registradores;
 		wxListCtrl* Flags;
 		wxButton* flag_info;
+		wxStaticText* StaticText4;
 		//*)
 
 	protected:
@@ -62,11 +66,13 @@ class JanelaPrincipal: public wxFrame
 		static const long ID_BUTTON7;
 		static const long ID_STATICLINE3;
 		static const long ID_BUTTON8;
+		static const long ID_MemView;
+		static const long ID_STATICTEXT4;
 		static const long ID_PANEL1;
 		//*)
 
 	private:
-
+        PipelineCPU *cpu;
 		//(*Handlers(JanelaPrincipal)
 		void OnButton1Click(wxCommandEvent& event);
 		void OnResetarClick(wxCommandEvent& event);
@@ -76,8 +82,9 @@ class JanelaPrincipal: public wxFrame
 		void Onreg_infoClick(wxCommandEvent& event);
 		void OnButton2Click(wxCommandEvent& event);
 		void OnPanel1Paint(wxPaintEvent& event);
+		void OnExecutarClick(wxCommandEvent& event);
 		//*)
-
+        void getDadosCPU();
 		void Reset();
 
 		DECLARE_EVENT_TABLE()

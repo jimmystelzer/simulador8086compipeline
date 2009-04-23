@@ -1550,7 +1550,7 @@
 1238367558 /home/jimmy/simulador8086pipeline/MainApp.h
 	<wx/app.h>
 
-1240372196 source:/home/jimmy/simulador8086compipeline/MainApp.cpp
+1240442504 source:/home/jimmy/simulador8086compipeline/MainApp.cpp
 	<wx/wxprec.h>
 	"MainApp.h"
 	"JanelaPrincipal.h"
@@ -1564,7 +1564,7 @@
 1240286825 /home/jimmy/simulador8086compipeline/MainApp.h
 	<wx/app.h>
 
-1240286825 /home/jimmy/simulador8086compipeline/JanelaPrincipal.h
+1240458610 /home/jimmy/simulador8086compipeline/JanelaPrincipal.h
 	<wx/listctrl.h>
 	<wx/stattext.h>
 	<wx/statline.h>
@@ -1572,7 +1572,9 @@
 	<wx/filedlg.h>
 	<wx/button.h>
 	<wx/frame.h>
+	<string>
 	"JanelaSobre.h"
+	"PipelineCPU.h"
 
 1240286825 /home/jimmy/simulador8086compipeline/JanelaSobre.h
 	<wx/stattext.h>
@@ -1581,7 +1583,7 @@
 	<wx/button.h>
 	<wx/dialog.h>
 
-1240286900 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
+1240470755 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
 	"JanelaPrincipal.h"
 	<wx/intl.h>
 	<wx/string.h>
@@ -1595,10 +1597,10 @@
 	<wx/image.h>
 	<wx/string.h>
 
-1240286900 source:/home/jimmy/simulador8086compipeline/Mem.cpp
+1240473660 source:/home/jimmy/simulador8086compipeline/Mem.cpp
 	"Mem.h"
 
-1240286900 /home/jimmy/simulador8086compipeline/Mem.h
+1240470199 /home/jimmy/simulador8086compipeline/Mem.h
 	<iostream>
 
 1239897344 source:/home/jimmy/simulador8086compipeline/Tool.cpp
@@ -1609,7 +1611,7 @@
 	<sstream>
 	<cstdlib>
 
-1240368906 /home/jimmy/simulador8086compipeline/Helpers.h
+1240473146 /home/jimmy/simulador8086compipeline/Helpers.h
 	<iostream>
 	<sstream>
 	<cstdlib>
@@ -1617,7 +1619,7 @@
 	<cstring>
 	<cmath>
 
-1240372080 source:/home/jimmy/simulador8086compipeline/Helpers.cpp
+1240473146 source:/home/jimmy/simulador8086compipeline/Helpers.cpp
 	"Helpers.h"
 
 1240286900 source:/home/jimmy/simulador8086compipeline/Registrador.cpp
@@ -1640,10 +1642,10 @@
 1240197942 /home/jimmy/simulador8086compipeline/ULA.h
 	<iostream>
 
-1240399143 source:/home/jimmy/simulador8086compipeline/ALU.cpp
+1240471025 source:/home/jimmy/simulador8086compipeline/ALU.cpp
 	"ALU.h"
 
-1240358435 /home/jimmy/simulador8086compipeline/ALU.h
+1240457338 /home/jimmy/simulador8086compipeline/ALU.h
 	<string>
 	"Helpers.h"
 
@@ -1660,34 +1662,43 @@
 1240344577 /home/jimmy/simulador8086compipeline/BancoRegs.h
 	"Registrador.h"
 
-1240286900 source:/home/jimmy/simulador8086compipeline/Control.cpp
+1240477348 source:/home/jimmy/simulador8086compipeline/Control.cpp
 	"Control.h"
 
-1240399606 /home/jimmy/simulador8086compipeline/Control.h
+1240476309 /home/jimmy/simulador8086compipeline/Control.h
 	<string>
+	"Helpers.h"
 
 1240286900 source:/home/jimmy/simulador8086compipeline/Forwarding.cpp
 	"Forwarding.h"
 
-1240286900 /home/jimmy/simulador8086compipeline/Forwarding.h
-	<iostream>
+1240441725 /home/jimmy/simulador8086compipeline/Forwarding.h
 
 1240286900 source:/home/jimmy/simulador8086compipeline/Hazards.cpp
 	"Hazards.h"
 
-1240286900 /home/jimmy/simulador8086compipeline/Hazards.h
-	<iostream>
+1240441741 /home/jimmy/simulador8086compipeline/Hazards.h
 
-1240286900 source:/home/jimmy/simulador8086compipeline/PipelineCPU.cpp
+1240477849 source:/home/jimmy/simulador8086compipeline/PipelineCPU.cpp
 	"PipelineCPU.h"
 
-1240286900 /home/jimmy/simulador8086compipeline/PipelineCPU.h
-	<iostream>
+1240474179 /home/jimmy/simulador8086compipeline/PipelineCPU.h
+	<string>
+	"PipelineRegs.h"
+	"RegisterBank.h"
+	"ShiftLeft.h"
+	"Mem.h"
+	"Helpers.h"
+	"Hazards.h"
+	"Forwarding.h"
+	"Control.h"
+	"ALU.h"
+	"Register.h"
 
-1240340738 source:/home/jimmy/simulador8086compipeline/PipelineRegs.cpp
+1240475940 source:/home/jimmy/simulador8086compipeline/PipelineRegs.cpp
 	"PipelineRegs.h"
 
-1240340476 /home/jimmy/simulador8086compipeline/PipelineRegs.h
+1240475657 /home/jimmy/simulador8086compipeline/PipelineRegs.h
 	<string>
 	"Helpers.h"
 
@@ -1698,15 +1709,15 @@
 	<string>
 	"Helpers.h"
 
-1240358370 source:/home/jimmy/simulador8086compipeline/RegisterBank.cpp
+1240454860 source:/home/jimmy/simulador8086compipeline/RegisterBank.cpp
 	"RegisterBank.h"
 
-1240358397 source:/home/jimmy/simulador8086compipeline/Register.cpp
+1240444834 source:/home/jimmy/simulador8086compipeline/Register.cpp
 	"Register.h"
 
-1240358379 /home/jimmy/simulador8086compipeline/Register.h
+1240421655 /home/jimmy/simulador8086compipeline/Register.h
 	<string>
 
-1240358370 /home/jimmy/simulador8086compipeline/RegisterBank.h
+1240454860 /home/jimmy/simulador8086compipeline/RegisterBank.h
 	"Register.h"
 

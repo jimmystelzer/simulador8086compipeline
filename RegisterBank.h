@@ -15,7 +15,6 @@ reg     w=0 w=1
 
 class RegisterBank{
     private:
-        // o IP vai ficar fora
         Register *AX, *BX, *CX, *DX, *SP, *BP, *SI, *DI;
         Register *rD, *rS;
     public:
@@ -33,6 +32,7 @@ class RegisterBank{
         Register getRS(std::string c,std::string w);
         void setRD(std::string s,std::string c,std::string w);
         void setRS(std::string s,std::string c,std::string w);
+        void reset();
 };
 
 #endif  //BANCO_REGS_H

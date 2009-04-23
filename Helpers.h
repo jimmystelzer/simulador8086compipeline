@@ -16,11 +16,23 @@ class Helpers{
         std::string intToBase(unsigned int num, unsigned int b);
         std::string baseToInt(unsigned int num, unsigned int b);
         std::string baseToInt(std::string num, unsigned int b);
-        std::string readFile(std::string filename);
-        std::string removeComments(std::string s);
         int stringToInt(const std::string& s);
+
+        std::string binNegToPos(std::string s);
+        std::string binPosToNeg(std::string s);
+
+        std::string leadingZeroBin(std::string s);
+        std::string leadingZeroBin(std::string s, int b);
+        std::string leadingZeroHex(std::string s);
+
+        std::string readFile(std::string filename);
+        std::string cleanFile(std::string s);
+
         void setLog(std::string s);
         std::string getLog();
+        void cleanLog();
         void saveLog(std::string fileName);
+
+
 };
 #endif  //MEMORIA_H

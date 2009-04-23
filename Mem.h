@@ -6,14 +6,14 @@
 
 class Mem{
     private:
-        unsigned char mem[MEMSIZE64k]; //64k
+        std::string *mem; //64k
         unsigned short pos;
 
     public:
         Mem();
-        void setByte(unsigned short IP, char byte);
-        void setByte(char byte);
-        char getByte(unsigned short IP);
+        void setByte(unsigned short IP, std::string byte);
+        std::string getByte(unsigned short IP);
+        std::string getMem();
         void reset();
 };
 

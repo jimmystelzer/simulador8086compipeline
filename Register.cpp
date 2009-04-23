@@ -40,7 +40,7 @@ std::string Register::getL(){
 //        tmpchars[i] = this->reg[i];
 //    }
 //    return *tmpchars;
-    return this->reg->substr(REG8BITS,REG16BITS);
+    return this->reg->substr(REG8BITS,REG8BITS);
 }
 void Register::reset(){
     this->reg = new std::string(REG16BITS, '0');

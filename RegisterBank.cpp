@@ -167,3 +167,16 @@ void RegisterBank::setRD(std::string s,std::string c,std::string w){
 void RegisterBank::setRS(std::string s,std::string c,std::string w){
     this->setRD(s,c,w);
 }
+void RegisterBank::reset(){
+    this->AX = new Register();
+    this->BX = new Register();
+    this->CX = new Register();
+    this->DX = new Register();
+    this->SP = new Register();
+    this->BP = new Register();
+    this->SI = new Register();
+    this->DI = new Register();
+
+    this->rD = new Register();
+    this->rS = new Register();
+}

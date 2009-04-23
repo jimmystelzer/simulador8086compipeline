@@ -29,6 +29,7 @@
 			<object class="wxButton" name="ID_BUTTON3" variable="Executar" member="yes">
 				<label>Executar</label>
 				<pos>704,88</pos>
+				<handler function="OnExecutarClick" entry="EVT_BUTTON" />
 			</object>
 			<object class="wxListCtrl" name="ID_LISTCTRL2" variable="Registradores" member="yes">
 				<pos>8,32</pos>
@@ -37,8 +38,8 @@
 			</object>
 			<object class="wxListCtrl" name="ID_LISTCTRL1" variable="Pipeline" member="yes">
 				<pos>8,224</pos>
-				<size>680,224</size>
-				<style>wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxRAISED_BORDER|wxVSCROLL|wxHSCROLL|wxALWAYS_SHOW_SB</style>
+				<size>680,56</size>
+				<style>wxLC_REPORT|wxLC_SINGLE_SEL|wxRAISED_BORDER</style>
 			</object>
 			<object class="wxButton" name="ID_BUTTON4" variable="Resetar" member="yes">
 				<label>Resetar</label>
@@ -86,11 +87,20 @@
 				<pos>704,176</pos>
 				<handler function="OnButton2Click" entry="EVT_BUTTON" />
 			</object>
+			<object class="wxListCtrl" name="ID_MemView" variable="MemView" member="yes">
+				<pos>8,312</pos>
+				<size>680,128</size>
+				<style>wxLC_REPORT|wxLC_SINGLE_SEL|wxRAISED_BORDER</style>
+			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
+				<label>Visualizador de Memória:</label>
+				<pos>8,288</pos>
+			</object>
 		</object>
 		<object class="wxFileDialog" variable="FileDialog1" member="yes">
 			<message>Escolha um arquivo para abrir</message>
-			<default_file>Assembler compilado (*.o)|*.o</default_file>
-			<wildcard>Assembler compilado (*.o)|*.o</wildcard>
+			<default_file>Assembler compilado (*.lst)|*.lst</default_file>
+			<wildcard>Assembler compilado (*.lst)|*.lst</wildcard>
 		</object>
 	</object>
 </wxsmith>

@@ -40,8 +40,6 @@
 		</Linker>
 		<Unit filename="ALU.cpp" />
 		<Unit filename="ALU.h" />
-		<Unit filename="Adder.cpp" />
-		<Unit filename="Adder.h" />
 		<Unit filename="Control.cpp" />
 		<Unit filename="Control.h" />
 		<Unit filename="Forwarding.cpp" />
