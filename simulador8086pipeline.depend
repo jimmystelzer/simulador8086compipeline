@@ -1564,7 +1564,7 @@
 1240286825 /home/jimmy/simulador8086compipeline/MainApp.h
 	<wx/app.h>
 
-1240458610 /home/jimmy/simulador8086compipeline/JanelaPrincipal.h
+1241008821 /home/jimmy/simulador8086compipeline/JanelaPrincipal.h
 	<wx/listctrl.h>
 	<wx/stattext.h>
 	<wx/statline.h>
@@ -1575,21 +1575,24 @@
 	<string>
 	"JanelaSobre.h"
 	"PipelineCPU.h"
+	"Version.h"
 
-1240286825 /home/jimmy/simulador8086compipeline/JanelaSobre.h
+1241008821 /home/jimmy/simulador8086compipeline/JanelaSobre.h
 	<wx/stattext.h>
 	<wx/panel.h>
 	<wx/statbmp.h>
 	<wx/button.h>
 	<wx/dialog.h>
+	<string>
+	"Version.h"
 
-1240470755 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
+1241008961 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
 	"JanelaPrincipal.h"
 	<wx/intl.h>
 	<wx/string.h>
 	<wx/msgdlg.h>
 
-1240286825 source:/home/jimmy/simulador8086compipeline/JanelaSobre.cpp
+1241008821 source:/home/jimmy/simulador8086compipeline/JanelaSobre.cpp
 	"JanelaSobre.h"
 	<wx/bitmap.h>
 	<wx/font.h>
@@ -1721,4 +1724,6 @@
 
 1240500357 /home/jimmy/simulador8086compipeline/RegisterBank.h
 	"Register.h"
+
+1241009042 /home/jimmy/simulador8086compipeline/Version.h
 

@@ -14,6 +14,7 @@
 #include <string>
 #include "JanelaSobre.h"
 #include "PipelineCPU.h"
+#include "Version.h"
 
 class JanelaPrincipal: public wxFrame
 {

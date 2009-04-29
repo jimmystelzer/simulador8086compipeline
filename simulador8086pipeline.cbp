@@ -66,6 +66,7 @@
 		<Unit filename="RegisterBank.h" />
 		<Unit filename="ShiftLeft.cpp" />
 		<Unit filename="ShiftLeft.h" />
+		<Unit filename="Version.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />
@@ -78,6 +79,11 @@
 					<wxDialog wxs="wxsmith/JanelaSobre.wxs" src="JanelaSobre.cpp" hdr="JanelaSobre.h" name="JanelaSobre" language="CPP" />
 				</resources>
 			</wxsmith>
+			<AutoVersioning>
+				<Scheme minor_max="10" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="100" />
+				<Settings autoincrement="1" date_declarations="1" do_auto_increment="0" ask_to_increment="0" language="C++" svn="0" svn_directory="" header_path="Version.h" />
+				<Changes_Log generate_log="0" app_title="released version %M.%m.%b of %p" changeslog_path="ChangesLog.txt" />
+			</AutoVersioning>
 		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

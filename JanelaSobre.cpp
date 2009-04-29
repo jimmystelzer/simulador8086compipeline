@@ -8,6 +8,7 @@
 #include <wx/string.h>
 //*)
 
+
 //(*IdInit(JanelaSobre)
 const long JanelaSobre::ID_STATICTEXT3 = wxNewId();
 const long JanelaSobre::ID_BUTTON1 = wxNewId();
@@ -24,6 +25,15 @@ END_EVENT_TABLE()
 
 JanelaSobre::JanelaSobre(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
 {
+    std::string titulo1("com suporte a pipeline\n       v.: ");
+    std::string tituloversion(AutoVersion::FULLVERSION_STRING);
+    std::string tituloversionstatus(AutoVersion::STATUS_SHORT);
+
+    titulo1.append(tituloversion).append(tituloversionstatus);
+
+
+	wxString titulo(titulo1.c_str(), wxConvUTF8);
+
 	//(*Initialize(JanelaSobre)
 	Create(parent, id, _("Sobre o Simulador"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE, _T("id"));
 	SetClientSize(wxSize(490,400));
@@ -37,9 +47,9 @@ JanelaSobre::JanelaSobre(wxWindow* parent,wxWindowID id,const wxPoint& pos,const
 	StaticText1 = new wxStaticText(Panel1, ID_STATICTEXT1, _("Simulador 8086"), wxPoint(232,16), wxDefaultSize, 0, _T("ID_STATICTEXT1"));
 	wxFont StaticText1Font(18,wxSWISS,wxFONTSTYLE_NORMAL,wxNORMAL,false,_T("Sans"),wxFONTENCODING_DEFAULT);
 	StaticText1->SetFont(StaticText1Font);
-	StaticText2 = new wxStaticText(Panel1, ID_STATICTEXT2, _("com suporte a pipeline"), wxPoint(256,48), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
+	StaticText2 = new wxStaticText(Panel1, ID_STATICTEXT2, titulo, wxPoint(256,48), wxDefaultSize, 0, _T("ID_STATICTEXT2"));
 	Center();
-	
+
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaSobre::OnButtonOkClick);
 	//*)
 }

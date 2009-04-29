@@ -6,6 +6,8 @@
 //*)
 #include <wx/msgdlg.h>
 
+
+
 //(*IdInit(JanelaPrincipal)
 const long JanelaPrincipal::ID_BUTTON1 = wxNewId();
 const long JanelaPrincipal::ID_BUTTON2 = wxNewId();
@@ -37,8 +39,17 @@ END_EVENT_TABLE()
 JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
 {
     this->cpu = new PipelineCPU();
+
+    std::string titulo1("Simulador 8086 com pipeline - v.: ");
+    std::string tituloversion(AutoVersion::FULLVERSION_STRING);
+    std::string tituloversionstatus(AutoVersion::STATUS_SHORT);
+
+    titulo1.append(tituloversion).append(tituloversionstatus);
+
+	wxString titulo(titulo1.c_str(), wxConvUTF8);
+
 	//(*Initialize(JanelaPrincipal)
-	Create(parent, wxID_ANY, _("Simulador 8086 com pipeline"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+	Create(parent, wxID_ANY, titulo, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
 	SetClientSize(wxSize(800,460));
 	Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(0,0), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
 	Button1 = new wxButton(Panel1, ID_BUTTON1, _("Sobre"), wxPoint(704,8), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
@@ -179,15 +190,24 @@ void JanelaPrincipal::OnResetarClick(wxCommandEvent& event)
 
 void JanelaPrincipal::OnAbrirClick(wxCommandEvent& event)
 {
+    std::string titulo1("Simulador 8086 com pipeline - v.: ");
+    std::string tituloversion(AutoVersion::FULLVERSION_STRING);
+    std::string tituloversionstatus(AutoVersion::STATUS_SHORT);
+
+    titulo1.append(tituloversion).append(tituloversionstatus);
+
+    wxString titulo(titulo1.c_str(), wxConvUTF8);
+
     // Cria um dialogo para abrir nosso objeto compilado do assemble
     if  (FileDialog1->ShowModal() == wxID_OK) { //abriu o arquivo
         Reset();
-        SetTitle(_("Simulador 8086 com pipeline - ") + FileDialog1->GetPath());
+
+        SetTitle(titulo + FileDialog1->GetPath());
         this->cpu->readFile(std::string((FileDialog1->GetPath()).mb_str()));
         wxMessageBox(_("Arquivo carregado com êxito."),_("Abrir Arquivo."));
         getDadosCPU();
     }else{
-        SetTitle(_("Simulador 8086 com pipeline"));
+        SetTitle(titulo);
     }
 }
 

@@ -26,16 +26,16 @@
 		<Cursor position="577" topLine="10" />
 	</File>
 	<File name="JanelaPrincipal.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="10331" topLine="130" />
+		<Cursor position="11587" topLine="188" />
 	</File>
 	<File name="JanelaPrincipal.h" open="0" top="0" tabpos="2">
-		<Cursor position="2094" topLine="43" />
+		<Cursor position="343" topLine="0" />
 	</File>
 	<File name="JanelaSobre.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="3029" topLine="0" />
+		<Cursor position="174" topLine="0" />
 	</File>
 	<File name="JanelaSobre.h" open="0" top="0" tabpos="0">
-		<Cursor position="948" topLine="0" />
+		<Cursor position="231" topLine="0" />
 	</File>
 	<File name="MainApp.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="1169" topLine="35" />
@@ -78,5 +78,8 @@
 	</File>
 	<File name="ShiftLeft.h" open="0" top="0" tabpos="11">
 		<Cursor position="180" topLine="0" />
+	</File>
+	<File name="Version.h" open="0" top="0" tabpos="0">
+		<Cursor position="593" topLine="8" />
 	</File>
 </CodeBlocks_layout_file>

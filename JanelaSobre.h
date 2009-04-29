@@ -9,6 +9,9 @@
 #include <wx/dialog.h>
 //*)
 
+#include <string>
+#include "Version.h"
+
 class JanelaSobre: public wxDialog
 {
 	public:
