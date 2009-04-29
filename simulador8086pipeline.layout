@@ -49,11 +49,17 @@
 	<File name="Mem.h" open="0" top="0" tabpos="2">
 		<Cursor position="274" topLine="0" />
 	</File>
+	<File name="Mux.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2104" topLine="57" />
+	</File>
+	<File name="Mux.h" open="0" top="0" tabpos="0">
+		<Cursor position="392" topLine="0" />
+	</File>
 	<File name="PipelineCPU.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="2179" topLine="297" />
+		<Cursor position="2179" topLine="0" />
 	</File>
 	<File name="PipelineCPU.h" open="0" top="0" tabpos="8">
-		<Cursor position="356" topLine="13" />
+		<Cursor position="198" topLine="0" />
 	</File>
 	<File name="PipelineRegs.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="556" topLine="19" />

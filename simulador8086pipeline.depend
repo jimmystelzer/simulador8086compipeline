@@ -1685,7 +1685,7 @@
 1240515090 source:/home/jimmy/simulador8086compipeline/PipelineCPU.cpp
 	"PipelineCPU.h"
 
-1240480051 /home/jimmy/simulador8086compipeline/PipelineCPU.h
+1241015480 /home/jimmy/simulador8086compipeline/PipelineCPU.h
 	<string>
 	"PipelineRegs.h"
 	"RegisterBank.h"
@@ -1697,6 +1697,7 @@
 	"Control.h"
 	"ALU.h"
 	"Register.h"
+	"Mux.h"
 
 1240500357 source:/home/jimmy/simulador8086compipeline/PipelineRegs.cpp
 	"PipelineRegs.h"
@@ -1725,5 +1726,11 @@
 1240500357 /home/jimmy/simulador8086compipeline/RegisterBank.h
 	"Register.h"
 
-1241009042 /home/jimmy/simulador8086compipeline/Version.h
+1241009258 /home/jimmy/simulador8086compipeline/Version.h
+
+1241014889 /home/jimmy/simulador8086compipeline/Mux.h
+	<string>
+
+1241015437 source:/home/jimmy/simulador8086compipeline/Mux.cpp
+	"Mux.h"
 

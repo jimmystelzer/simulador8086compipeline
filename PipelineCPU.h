@@ -12,6 +12,7 @@
 #include "Control.h"
 #include "ALU.h"
 #include "Register.h"
+#include "Mux.h"
 
 class PipelineCPU{
     private:
