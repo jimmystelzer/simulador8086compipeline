@@ -1,2 +1,5 @@
-#include "Hazards.h"
+include "Hazards.h"
 
+Hazards::Hazards(){
+	
+}
