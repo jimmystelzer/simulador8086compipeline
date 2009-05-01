@@ -2,6 +2,8 @@
 #define MUX_H
 #include <string>
 
+// Mux 2x1
+
 class Mux2{
     private:
         std::string *i0, *i1;
@@ -15,6 +17,8 @@ class Mux2{
         std::string getOut(std::string i0, std::string i1,std::string sel1);
 
 };
+
+// Mux 4x1
 
 class Mux4{
     private:

@@ -1,5 +1,9 @@
 #include "ShiftLeft.h"
 
+namespace Pipeline{
+	
+}
+
 ShiftLeft::ShiftLeft(){
     this->tmpStr = new std::string(REG16BITS,'0');
     this->hp = new Helpers();
