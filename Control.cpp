@@ -37,7 +37,7 @@ void Control::setOpcode(std::string opcode) {
         this->w->replace(this->w->begin(),this->w->end(),std::string("1")); //deveria ser 1?
 
         this->mem->replace(this->mem->begin(),this->mem->end(),std::string("1"));
-        this->ex->replace(this->ex->begin(),this->ex->end(),std::string("0"));
+        this->ex->replace(this->ex->begin(),this->ex->end(),std::string("1"));
         this->wb->replace(this->wb->begin(),this->wb->end(),std::string("1"));
     } else if ((opcode.substr(0,4)).compare("1011")==0) {
         //mov reg, immed
@@ -136,7 +136,7 @@ void Control::setOpcode(std::string opcode) {
         this->w->replace(this->w->begin(),this->w->end(),std::string("0"));
         this->mem->replace(this->mem->begin(),this->mem->end(),std::string("0"));
         this->ex->replace(this->ex->begin(),this->ex->end(),std::string("1"));
-        this->wb->replace(this->wb->begin(),this->wb->end(),std::string("1"));
+        this->wb->replace(this->wb->begin(),this->wb->end(),std::string("0"));
     } else if ((opcode.substr(0,6)).compare("100000")==0) {
         //cmp reg, immed
         //10000000 11111011 00000000    cmp bl, 0

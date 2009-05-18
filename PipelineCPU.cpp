@@ -1,33 +1,33 @@
 #include "PipelineCPU.h"
 
 PipelineCPU::PipelineCPU(){
-        ip = new Register();
-        cs = new Register();
-        ds = new Register();
-        ss = new Register();
-        es = new Register();
-        rb = new RegisterBank();
-        hp = new Helpers();
+        this->ip = new Register();
+        this->cs = new Register();
+        this->ds = new Register();
+        this->ss = new Register();
+        this->es = new Register();
+        this->rb = new RegisterBank();
+        this->hp = new Helpers();
 
-        alu = new ALU();
+        this->alu = new ALU();
 
-        dataMem = new Mem();
-        instMem = new Mem();
-        c = new Control();
-        oifId = new RegistradorPipeline();
-        oidEx = new RegistradorPipeline();
-        oexMem = new RegistradorPipeline();
-        omemWb = new RegistradorPipeline();
-        nifId = new RegistradorPipeline();
-        nidEx = new RegistradorPipeline();
-        nexMem = new RegistradorPipeline();
-        nmemWb = new RegistradorPipeline();
+        this->dataMem = new Mem();
+        this->instMem = new Mem();
+        this->c = new Control();
+        this->oifId = new RegistradorPipeline();
+        this->oidEx = new RegistradorPipeline();
+        this->oexMem = new RegistradorPipeline();
+        this->omemWb = new RegistradorPipeline();
+        this->nifId = new RegistradorPipeline();
+        this->nidEx = new RegistradorPipeline();
+        this->nexMem = new RegistradorPipeline();
+        this->nmemWb = new RegistradorPipeline();
 
-        IF = new std::string();
-        ID = new std::string();
-        EX = new std::string();
-        MEM = new std::string();
-        WB = new std::string();
+        this->IF = new std::string();
+        this->ID = new std::string();
+        this->EX = new std::string();
+        this->MEM = new std::string();
+        this->WB = new std::string();
 }
 void PipelineCPU::exec(){
 
@@ -158,6 +158,13 @@ void PipelineCPU::reset(){
     this->nidEx->reset();
     this->nexMem->reset();
     this->nmemWb->reset();
+
+    this->IF = new std::string();
+    this->ID = new std::string();
+    this->EX = new std::string();
+    this->MEM = new std::string();
+    this->WB = new std::string();
+
 }
 void PipelineCPU::setData(std::string s){
     bool dat;

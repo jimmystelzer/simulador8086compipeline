@@ -71,7 +71,7 @@ JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& p
 	Button2 = new wxButton(Panel1, ID_BUTTON8, _("Dump"), wxPoint(704,176), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON8"));
 	MemView = new wxListCtrl(Panel1, ID_MemView, wxPoint(8,312), wxSize(680,128), wxLC_REPORT|wxLC_SINGLE_SEL|wxRAISED_BORDER, wxDefaultValidator, _T("ID_MemView"));
 	StaticText4 = new wxStaticText(Panel1, ID_STATICTEXT4, _("Visualizador de Memória:"), wxPoint(8,288), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-	FileDialog1 = new wxFileDialog(this, _("Escolha um arquivo para abrir"), wxEmptyString, wxEmptyString, _T("NASM list files (*.lst)|*.lst|"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+	FileDialog1 = new wxFileDialog(this, _("Escolha um arquivo para abrir"), wxEmptyString, wxEmptyString, _T("NASM list files (*.lst)|*.lst"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
 	Center();
 
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::OnButton1Click);

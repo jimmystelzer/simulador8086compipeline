@@ -14,7 +14,7 @@
 	<cstring>
 	<cmath>
 
-1242650043 source:c:\users\jimmy\desktop\projeto\simulador8086compipeline\control.cpp
+1242653765 source:c:\users\jimmy\desktop\projeto\simulador8086compipeline\control.cpp
 	"Control.h"
 
 1242650043 c:\users\jimmy\desktop\projeto\simulador8086compipeline\control.h
@@ -34,7 +34,7 @@
 1242650043 source:c:\users\jimmy\desktop\projeto\simulador8086compipeline\helpers.cpp
 	"Helpers.h"
 
-1242650043 source:c:\users\jimmy\desktop\projeto\simulador8086compipeline\janelaprincipal.cpp
+1242654636 source:c:\users\jimmy\desktop\projeto\simulador8086compipeline\janelaprincipal.cpp
 	"JanelaPrincipal.h"
 	<wx/intl.h>
 	<wx/string.h>
@@ -1884,7 +1884,7 @@
 	"wx/defs.h"
 	"wx/dialog.h"
 
-1242650628 c:\users\jimmy\desktop\projeto\simulador8086compipeline\mainapp.h
+1242653152 c:\users\jimmy\desktop\projeto\simulador8086compipeline\mainapp.h
 	<wx/app.h>
 
 1242650043 source:c:\users\jimmy\desktop\projeto\simulador8086compipeline\mem.cpp
@@ -1893,7 +1893,7 @@
 1242650043 source:c:\users\jimmy\desktop\projeto\simulador8086compipeline\mux.cpp
 	"Mux.h"
 
-1242650043 source:c:\users\jimmy\desktop\projeto\simulador8086compipeline\pipelinecpu.cpp
+1242654003 source:c:\users\jimmy\desktop\projeto\simulador8086compipeline\pipelinecpu.cpp
 	"PipelineCPU.h"
 
 1242650043 source:c:\users\jimmy\desktop\projeto\simulador8086compipeline\pipelineregs.cpp
