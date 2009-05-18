@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="simulador8086pipeline" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin\Debug\simulador8086pipeline" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-D__WXDEBUG__" />
+					<Add directory="$(#wx)\lib\gcc_dll\mswud" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="$(#wx)\lib\gcc_dll\mswud" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="libwxmsw28ud.a" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin\Release\simulador8086pipeline" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="$(#wx)\lib\gcc_dll\mswu" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="$(#wx)\lib\gcc_dll\mswu" />
+				</ResourceCompiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="libwxmsw28u.a" />
+					<Add directory="$(#wx)\lib\gcc_dll" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-pipe" />
+			<Add option="-mthreads" />
+			<Add option='[[if (PLATFORM == PLATFORM_MSW &amp;&amp; (GetCompilerFactory().GetCompilerVersionString(_T(&quot;gcc&quot;)) &gt;= _T(&quot;4.0.0&quot;))) print(_T(&quot;-Wno-attributes&quot;));]]' />
+			<Add option="-D__GNUWIN32__" />
+			<Add option="-D__WXMSW__" />
+			<Add option="-DWXUSINGDLL" />
+			<Add option="-DwxUSE_UNICODE" />
+			<Add directory="$(#wx)\include" />
+			<Add directory="$(#wx)\contrib\include" />
+		</Compiler>
+		<ResourceCompiler>
+			<Add directory="$(#wx)\include" />
+		</ResourceCompiler>
+		<Unit filename="ALU.cpp" />
+		<Unit filename="ALU.h" />
+		<Unit filename="Control.cpp" />
+		<Unit filename="Control.h" />
+		<Unit filename="Forwarding.cpp" />
+		<Unit filename="Forwarding.h" />
+		<Unit filename="Hazards.cpp" />
+		<Unit filename="Hazards.h" />
+		<Unit filename="Helpers.cpp" />
+		<Unit filename="Helpers.h" />
+		<Unit filename="JanelaPrincipal.cpp" />
+		<Unit filename="JanelaPrincipal.h" />
+		<Unit filename="JanelaSobre.cpp" />
+		<Unit filename="JanelaSobre.h" />
+		<Unit filename="MainApp.cpp" />
+		<Unit filename="MainApp.h" />
+		<Unit filename="Mem.cpp" />
+		<Unit filename="Mem.h" />
+		<Unit filename="Mux.cpp" />
+		<Unit filename="Mux.h" />
+		<Unit filename="PipelineCPU.cpp" />
+		<Unit filename="PipelineCPU.h" />
+		<Unit filename="PipelineRegs.cpp" />
+		<Unit filename="PipelineRegs.h" />
+		<Unit filename="Register.cpp" />
+		<Unit filename="Register.h" />
+		<Unit filename="RegisterBank.cpp" />
+		<Unit filename="RegisterBank.h" />
+		<Unit filename="ShiftLeft.cpp" />
+		<Unit filename="ShiftLeft.h" />
+		<Unit filename="Version.h" />
+		<Extensions>
+			<envvars />
+			<code_completion />
+			<debugger />
+			<lib_finder disable_auto="1" />
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="MainApp.cpp" main="JanelaPrincipal" init_handlers="necessary" language="CPP" />
+				<resources>
+					<wxFrame wxs="wxsmith/JanelaPrincipal.wxs" src="JanelaPrincipal.cpp" hdr="JanelaPrincipal.h" name="JanelaPrincipal" language="CPP" />
+					<wxDialog wxs="wxsmith/JanelaSobre.wxs" src="JanelaSobre.cpp" hdr="JanelaSobre.h" name="JanelaSobre" language="CPP" />
+				</resources>
+			</wxsmith>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
