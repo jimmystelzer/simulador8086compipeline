@@ -2,28 +2,28 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
 	<File name="ALU.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="224" topLine="18" />
+		<Cursor position="216" topLine="0" />
 	</File>
 	<File name="ALU.h" open="0" top="0" tabpos="2">
 		<Cursor position="291" topLine="0" />
 	</File>
-	<File name="Control.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="9595" topLine="167" />
+	<File name="Control.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="10653" topLine="0" />
 	</File>
 	<File name="Control.h" open="0" top="0" tabpos="2">
 		<Cursor position="340" topLine="0" />
 	</File>
-	<File name="Forwarding.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="0" topLine="0" />
+	<File name="Forwarding.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="25" topLine="0" />
 	</File>
-	<File name="Hazards.cpp" open="1" top="0" tabpos="3">
+	<File name="Hazards.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="17" topLine="0" />
 	</File>
 	<File name="Hazards.h" open="0" top="0" tabpos="2">
 		<Cursor position="17" topLine="0" />
 	</File>
-	<File name="Helpers.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="3738" topLine="136" />
+	<File name="Helpers.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="3674" topLine="127" />
 	</File>
 	<File name="Helpers.h" open="0" top="0" tabpos="1">
 		<Cursor position="577" topLine="10" />
@@ -58,17 +58,17 @@
 	<File name="Mux.h" open="0" top="0" tabpos="0">
 		<Cursor position="392" topLine="0" />
 	</File>
-	<File name="PipelineCPU.cpp" open="1" top="1" tabpos="5">
-		<Cursor position="5052" topLine="120" />
+	<File name="PipelineCPU.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="7737" topLine="181" />
 	</File>
 	<File name="PipelineCPU.h" open="0" top="0" tabpos="8">
 		<Cursor position="198" topLine="0" />
 	</File>
 	<File name="PipelineRegs.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="2191" topLine="56" />
+		<Cursor position="2191" topLine="67" />
 	</File>
-	<File name="PipelineRegs.h" open="1" top="0" tabpos="6">
-		<Cursor position="324" topLine="9" />
+	<File name="PipelineRegs.h" open="0" top="0" tabpos="6">
+		<Cursor position="324" topLine="20" />
 	</File>
 	<File name="Register.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="594" topLine="0" />
@@ -77,7 +77,7 @@
 		<Cursor position="66" topLine="0" />
 	</File>
 	<File name="RegisterBank.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="173" topLine="79" />
+		<Cursor position="960" topLine="28" />
 	</File>
 	<File name="RegisterBank.h" open="0" top="0" tabpos="3">
 		<Cursor position="299" topLine="2" />

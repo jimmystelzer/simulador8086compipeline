@@ -58,7 +58,7 @@ void Control::setOpcode(std::string opcode) {
     } else if ((opcode.substr(0,6)).compare("100010")==0) {
         //mov reg, reg
         //10001000 11011000 mov al, bl
-        this->Mneumonic->replace(this->Mneumonic->begin(),this->Mneumonic->end(),std::string("movregereg"));
+        this->Mneumonic->replace(this->Mneumonic->begin(),this->Mneumonic->end(),std::string("movregreg"));
         this->mod->replace(this->mod->begin(),this->mod->end(),opcode.substr(8,2));
         if ((opcode.substr(6,1)).compare("0")) {
             // from reg
@@ -81,7 +81,7 @@ void Control::setOpcode(std::string opcode) {
     } else if ((opcode.substr(0,6)).compare("000000")==0) {
         //add reg, reg
         //00000000 11000011 add bl, al
-        this->Mneumonic->replace(this->Mneumonic->begin(),this->Mneumonic->end(),std::string("addregereg"));
+        this->Mneumonic->replace(this->Mneumonic->begin(),this->Mneumonic->end(),std::string("addregreg"));
         this->mod->replace(this->mod->begin(),this->mod->end(),opcode.substr(8,2));
         if ((opcode.substr(6,1)).compare("0")) {
             // from reg
