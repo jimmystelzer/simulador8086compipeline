@@ -1,7 +1,9 @@
 #include "JanelaPrincipal.h"
 
 //(*InternalHeaders(JanelaPrincipal)
+#include <wx/bitmap.h>
 #include <wx/intl.h>
+#include <wx/image.h>
 #include <wx/string.h>
 //*)
 #include <wx/msgdlg.h>
@@ -28,6 +30,7 @@ const long JanelaPrincipal::ID_STATICLINE3 = wxNewId();
 const long JanelaPrincipal::ID_BUTTON8 = wxNewId();
 const long JanelaPrincipal::ID_MemView = wxNewId();
 const long JanelaPrincipal::ID_STATICTEXT4 = wxNewId();
+const long JanelaPrincipal::ID_STATICBITMAP1 = wxNewId();
 const long JanelaPrincipal::ID_PANEL1 = wxNewId();
 //*)
 
@@ -39,6 +42,8 @@ END_EVENT_TABLE()
 JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
 {
     this->cpu = new PipelineCPU();
+    this->hp = new Helpers();
+
 
     std::string titulo1("Simulador 8086 com pipeline - v.: ");
     std::string tituloversion(AutoVersion::FULLVERSION_STRING);
@@ -49,8 +54,13 @@ JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& p
 	wxString titulo(titulo1.c_str(), wxConvUTF8);
 
 	//(*Initialize(JanelaPrincipal)
-	Create(parent, wxID_ANY, titulo, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+	Create(parent, wxID_ANY, _("Simulador 8086 com pipeline"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
 	SetClientSize(wxSize(800,460));
+	{
+		wxIcon FrameIcon;
+		FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("/home/jimmy/simulador8086compipeline/res/chip_16x16.png"))));
+		SetIcon(FrameIcon);
+	}
 	Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(0,0), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
 	Button1 = new wxButton(Panel1, ID_BUTTON1, _("Sobre"), wxPoint(704,8), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
 	Abrir = new wxButton(Panel1, ID_BUTTON2, _("Abrir"), wxPoint(704,48), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
@@ -71,7 +81,8 @@ JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& p
 	Button2 = new wxButton(Panel1, ID_BUTTON8, _("Dump"), wxPoint(704,176), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON8"));
 	MemView = new wxListCtrl(Panel1, ID_MemView, wxPoint(8,312), wxSize(680,128), wxLC_REPORT|wxLC_SINGLE_SEL|wxRAISED_BORDER, wxDefaultValidator, _T("ID_MemView"));
 	StaticText4 = new wxStaticText(Panel1, ID_STATICTEXT4, _("Visualizador de Memória:"), wxPoint(8,288), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-	FileDialog1 = new wxFileDialog(this, _("Escolha um arquivo para abrir"), wxEmptyString, wxEmptyString, _T("NASM list files (*.lst)|*.lst"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
+	StaticBitmap1 = new wxStaticBitmap(Panel1, ID_STATICBITMAP1, wxBitmap(wxImage(_T("/home/jimmy/simulador8086compipeline/res/chip_48x48.png"))), wxPoint(728,224), wxDefaultSize, 0, _T("ID_STATICBITMAP1"));
+	FileDialog1 = new wxFileDialog(this, _("Escolha um arquivo para abrir"), wxEmptyString, _("Assembler compilado (*.lst)|*.lst"), _("Assembler compilado (*.lst)|*.lst"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
 	Center();
 
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::OnButton1Click);
@@ -82,6 +93,7 @@ JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& p
 	Connect(ID_BUTTON6,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::Onflag_infoClick);
 	Connect(ID_BUTTON7,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::Onpipeline_infoClick);
 	Connect(ID_BUTTON8,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&JanelaPrincipal::OnButton2Click);
+	Panel1->Connect(ID_PANEL1,wxEVT_PAINT,(wxObjectEventFunction)&JanelaPrincipal::OnPanel1Paint,0,this);
 	//*)
     Reset();
 }
@@ -92,7 +104,9 @@ JanelaPrincipal::~JanelaPrincipal()
 	//*)
 }
 
+void JanelaPrincipal::OnPanel1Paint(wxPaintEvent& event){
 
+}
 void JanelaPrincipal::OnButton1Click(wxCommandEvent& event)
 {
     JanelaSobre dialog(this);
@@ -228,7 +242,15 @@ void JanelaPrincipal::Onreg_infoClick(wxCommandEvent& event)
 
 void JanelaPrincipal::OnButton2Click(wxCommandEvent& event)
 {
-    wxMessageBox(_("Dois arquivos de nome DataMem.txt e CodeMem.txt foram gerados da diretoria de execução do simulador."), _("Dump da memória"), wxOK);
+
+    this->hp->cleanLog();
+    this->hp->setLog(cpu->getDataMem());
+    this->hp->saveLog(std::string("DataMem.txt"));
+    this->hp->cleanLog();
+    this->hp->setLog(cpu->getCodeMem());
+    this->hp->saveLog(std::string("CodeMem.txt"));
+    this->hp->cleanLog();
+    wxMessageBox(_("Dois arquivos de nome DataMem.txt (memória de dados) e CodeMem.txt (memória de código) foram gerados da diretoria de execução do simulador."), _("Dump da memória"), wxOK);
 }
 
 

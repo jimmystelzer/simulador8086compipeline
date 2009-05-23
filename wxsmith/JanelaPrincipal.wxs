@@ -3,6 +3,7 @@
 	<object class="wxFrame" name="JanelaPrincipal">
 		<title>Simulador 8086 com pipeline</title>
 		<centered>1</centered>
+		<icon>/home/jimmy/simulador8086compipeline/res/chip_16x16.png</icon>
 		<size>800,460</size>
 		<id_arg>0</id_arg>
 		<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
@@ -95,6 +96,10 @@
 			<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
 				<label>Visualizador de Memória:</label>
 				<pos>8,288</pos>
+			</object>
+			<object class="wxStaticBitmap" name="ID_STATICBITMAP1" variable="StaticBitmap1" member="yes">
+				<bitmap>/home/jimmy/simulador8086compipeline/res/chip_48x48.png</bitmap>
+				<pos>728,224</pos>
 			</object>
 		</object>
 		<object class="wxFileDialog" variable="FileDialog1" member="yes">

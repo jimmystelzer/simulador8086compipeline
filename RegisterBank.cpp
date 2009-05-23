@@ -1,15 +1,7 @@
 #include "RegisterBank.h"
 
 RegisterBank::RegisterBank(){
-    this->AX = new Register();
-    this->BX = new Register();
-    this->CX = new Register();
-    this->DX = new Register();
-    this->SP = new Register();
-    this->BP = new Register();
-    this->SI = new Register();
-    this->DI = new Register();
-
+    this->reset();
 }
 
 std::string RegisterBank::getAX(){

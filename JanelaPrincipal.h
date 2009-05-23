@@ -7,6 +7,7 @@
 #include <wx/statline.h>
 #include <wx/panel.h>
 #include <wx/filedlg.h>
+#include <wx/statbmp.h>
 #include <wx/button.h>
 #include <wx/frame.h>
 //*)
@@ -14,6 +15,7 @@
 #include <string>
 #include "JanelaSobre.h"
 #include "PipelineCPU.h"
+#include "Helpers.h"
 #include "Version.h"
 
 class JanelaPrincipal: public wxFrame
@@ -23,6 +25,7 @@ class JanelaPrincipal: public wxFrame
 		JanelaPrincipal(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
 		virtual ~JanelaPrincipal();
 
+
 		//(*Declarations(JanelaPrincipal)
 		wxButton* Executar;
 		wxListCtrl* MemView;
@@ -31,6 +34,7 @@ class JanelaPrincipal: public wxFrame
 		wxButton* Abrir;
 		wxListCtrl* Pipeline;
 		wxButton* Button1;
+		wxStaticBitmap* StaticBitmap1;
 		wxButton* reg_info;
 		wxPanel* Panel1;
 		wxStaticText* StaticText1;
@@ -69,11 +73,13 @@ class JanelaPrincipal: public wxFrame
 		static const long ID_BUTTON8;
 		static const long ID_MemView;
 		static const long ID_STATICTEXT4;
+		static const long ID_STATICBITMAP1;
 		static const long ID_PANEL1;
 		//*)
 
 	private:
         PipelineCPU *cpu;
+        Helpers *hp;
 		//(*Handlers(JanelaPrincipal)
 		void OnButton1Click(wxCommandEvent& event);
 		void OnResetarClick(wxCommandEvent& event);

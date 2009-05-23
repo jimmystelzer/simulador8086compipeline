@@ -30,18 +30,28 @@ PipelineCPU::PipelineCPU(){
         this->WB = new std::string();
 }
 void PipelineCPU::exec(){
-
-    /** **IF** **/
+    /** LOG **/
+    //this->hp->cleanLog();
+    std::stringstream tmpAllToStr;
+    /** LOG **/
+    /** ********************************IF******************************** **/
     int tmpIP, ntmpIP;
     //le IP
     tmpIP = this->hp->stringToInt(this->hp->baseToInt(this->ip->getX(),16));
-
+    /** LOG **/
+    tmpAllToStr << tmpIP;
+    this->hp->setLog( std::string("tmpIP = ").append(tmpAllToStr.str()) );
+    /** LOG **/
     //carrega instMem(IP)
     this->IF->replace(this->IF->begin(),this->IF->end(),this->instMem->getByte(tmpIP));
 
     //calcula novo IP
     ntmpIP = PIP();
-
+    /** LOG **/
+    tmpAllToStr.str("");
+    tmpAllToStr << ntmpIP;
+    this->hp->setLog( std::string("ntmpIP = ").append(tmpAllToStr.str()) );
+    /** LOG **/
     //descarta bytes relevantes
     this->IF->replace(this->IF->begin(),this->IF->end(),IF->substr(0,ntmpIP));
 
@@ -50,24 +60,62 @@ void PipelineCPU::exec(){
 
     //incrementa IP
     tmpIP = tmpIP + ntmpIP;
+    /** LOG **/
+    tmpAllToStr.str("");
+    tmpAllToStr << tmpIP;
+    this->hp->setLog( std::string("tmpIP + ntmpIP = ").append(tmpAllToStr.str()) );
+    /** LOG **/
     this->ip->setX(this->hp->leadingZeroHex(this->hp->intToBase(tmpIP,16)));
     this->nifId->setPC(this->ip->getX());
 
-    /** **ID** **/
+    /** ********************************ID******************************** **/
     // decodifica
     this->c->setOpcode(this->oifId->getInst());
-
+    /** LOG **/
+    tmpAllToStr.str("");
+    tmpAllToStr << this->oifId->getInst();
+    this->hp->setLog( std::string("opCode = ").append(tmpAllToStr.str()) );
+    /** LOG **/
     // mostra Mneumonic
     this->ID->replace(this->ID->begin(),this->ID->end(),this->c->getMneumonic());
-
+    /** LOG **/
+    tmpAllToStr.str("");
+    tmpAllToStr << this->c->getMneumonic();
+    this->hp->setLog( std::string("Internal Mneumonic = ").append(tmpAllToStr.str()) );
+    /** LOG **/
     if(this->c->getMneumonic().compare("jmplabel")==0){
         tmpIP = this->hp->stringToInt(this->hp->baseToInt(this->ip->getX(),16));
+        /** LOG **/
+        tmpAllToStr.str("");
+        tmpAllToStr << tmpIP;
+        this->hp->setLog( std::string("jmp tmpIP = ").append(tmpAllToStr.str()) );
+        /** LOG **/
         if(this->c->getParam().substr(0,1).compare("1")==0){
             ntmpIP = hp->stringToInt(hp->baseToInt(hp->binNegToPos(this->c->getParam()),2));
-            tmpIP = tmpIP - ntmpIP;
+            tmpIP = tmpIP - (ntmpIP * 2) -4;
+            /** LOG **/
+            tmpAllToStr.str("");
+            tmpAllToStr << ntmpIP;
+            this->hp->setLog( std::string("jmp ntmpIP = ").append(tmpAllToStr.str()) );
+            /** LOG **/
+            /** LOG **/
+            tmpAllToStr.str("");
+            tmpAllToStr << tmpIP;
+            this->hp->setLog( std::string("jmp tmpIP - (ntmpIP * 2) - 4 = ").append(tmpAllToStr.str()) );
+            /** LOG **/
         }else{
             ntmpIP = hp->stringToInt(hp->baseToInt(this->c->getParam(),2));
             tmpIP = tmpIP + ntmpIP;
+            /** LOG **/
+            tmpAllToStr.str("");
+            tmpAllToStr << ntmpIP;
+            this->hp->setLog( std::string("jmp ntmpIP = ").append(tmpAllToStr.str()) );
+            /** LOG **/
+            /** LOG **/
+            tmpAllToStr.str("");
+            tmpAllToStr << tmpIP;
+            this->hp->setLog( std::string("jmp tmpIP + ntmpIP = ").append(tmpAllToStr.str()) );
+            /** LOG **/
         }
         this->ip->setX(this->hp->leadingZeroHex(this->hp->intToBase(tmpIP,16)));
     }
@@ -85,14 +133,13 @@ void PipelineCPU::exec(){
 
     *this->oifId = *this->nifId;
 
-    /** **EX** **/
+    /** ********************************EX******************************** **/
 
     if((this->oidEx->getExec()).compare("0")==0){
         this->EX->replace(this->EX->begin(),this->EX->end(),std::string("~").append(this->oidEx->getInst()));
 
     }else{
         this->EX->replace(this->EX->begin(),this->EX->end(),this->oidEx->getInst());
-//        this->oidEx->setRegDr(this->alu->exec(this->oidEx->getInst(),this->oidEx->getRegDr(),this->oidEx->getRegSr(),this->oidEx->getW(),this->oidEx->getParam()));
     }
     this->nexMem->setRegSr(this->oidEx->getRegSr());
     this->nexMem->setRegDr(this->oidEx->getRegDr());
@@ -105,15 +152,12 @@ void PipelineCPU::exec(){
     this->nexMem->setW(this->oidEx->getW());
 
     *this->oidEx = *this->nidEx;
-    /** **MEM** **/
+    /** ********************************MEM******************************** **/
 
     if((this->oexMem->getMem()).compare("0")==0){
         this->MEM->replace(this->MEM->begin(),this->MEM->end(),std::string("~").append(this->oexMem->getInst()));
     }else{
         this->MEM->replace(this->MEM->begin(),this->MEM->end(),this->oexMem->getInst());
-//        if(this->oexMem->getInst().compare("movregrm")){
-//            this->oexMem->setRegDr(this->dataMem->getByte(this->hp->stringToInt( this->hp->baseToInt(this->oexMem->getParam(),2))).substr(0,4));
-//        }
     }
     this->nmemWb->setRegSr(this->oexMem->getRegSr());
     this->nmemWb->setRegDr(this->oexMem->getRegDr());
@@ -125,20 +169,20 @@ void PipelineCPU::exec(){
     this->nmemWb->setW(this->oexMem->getW());
     *this->oexMem = *this->nexMem;
 
-    /** **WB** **/
+    /** ********************************WB******************************** **/
 
     if((this->omemWb->getWB()).compare("0")==0){
         this->WB->replace(this->WB->begin(),this->WB->end(),std::string("~").append(this->omemWb->getInst()));
     }else{
         this->WB->replace(this->WB->begin(),this->WB->end(),this->omemWb->getInst());
-//        /**  <-<---->->   **/
-//        this->rb->setRD(this->omemWb->getRegDr(),this->omemWb->getRegD(),this->omemWb->getW());
-//        /**  <-<---->->   **/
     }
-    hp->setLog("--");
-    hp->saveLog("log.txt");
     *this->omemWb = *this->nmemWb;
+
+    /** end **/
+    this->hp->setLog("====+====+====+====+====+====+====+====+====+====");
+    this->hp->saveLog("pipeline.txt");
 }
+
 void PipelineCPU::reset(){
     this->dataMem->reset();
     this->instMem->reset();
@@ -164,8 +208,9 @@ void PipelineCPU::reset(){
     this->EX = new std::string();
     this->MEM = new std::string();
     this->WB = new std::string();
-
+    this->hp->cleanLog();
 }
+
 void PipelineCPU::setData(std::string s){
     bool dat;
     std::stringstream ts,tmpStr;
@@ -182,12 +227,9 @@ void PipelineCPU::setData(std::string s){
             tmpStr << lineTmpStr.substr(9);
         }
     }
-    this->hp->cleanLog();
-    this->hp->setLog(tmpStr.str());
-    this->hp->saveLog(std::string("DataMem.txt"));
-
     this->dataMem->setByte(0,tmpStr.str());
 }
+
 void PipelineCPU::setCode(std::string s){
     bool tex;
     std::stringstream ts,tmpStr;
@@ -204,10 +246,6 @@ void PipelineCPU::setCode(std::string s){
             tmpStr << lineTmpStr.substr(9);
         }
     }
-    this->hp->cleanLog();
-    this->hp->setLog(tmpStr.str());
-    this->hp->saveLog(std::string("CodeMem.txt"));
-
     this->instMem->setByte(0,tmpStr.str());
 }
 

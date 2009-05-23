@@ -1,7 +1,6 @@
 #include "ShiftLeft.h"
 
 namespace Pipeline{
-	
 }
 
 ShiftLeft::ShiftLeft(){

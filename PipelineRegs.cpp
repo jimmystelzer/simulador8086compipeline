@@ -88,5 +88,4 @@ void RegistradorPipeline::reset(){
     this->regdr = std::string("");
     this->regsr = std::string("");
     this->mod = std::string("");
-
 }

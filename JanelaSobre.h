@@ -32,10 +32,10 @@ class JanelaSobre: public wxDialog
 
 		//(*Identifiers(JanelaSobre)
 		static const long ID_STATICTEXT3;
-		static const long ID_BUTTON1;
 		static const long ID_STATICBITMAP1;
 		static const long ID_STATICTEXT1;
 		static const long ID_STATICTEXT2;
+		static const long ID_BUTTON1;
 		static const long ID_PANEL1;
 		//*)
 
