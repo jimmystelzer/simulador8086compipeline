@@ -1586,7 +1586,7 @@
 	<string>
 	"Version.h"
 
-1243191319 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
+1243192963 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
 	"JanelaPrincipal.h"
 	<wx/bitmap.h>
 	<wx/intl.h>
@@ -1667,7 +1667,7 @@
 1240344577 /home/jimmy/simulador8086compipeline/BancoRegs.h
 	"Registrador.h"
 
-1243190989 source:/home/jimmy/simulador8086compipeline/Control.cpp
+1243192963 source:/home/jimmy/simulador8086compipeline/Control.cpp
 	"Control.h"
 
 1242695761 /home/jimmy/simulador8086compipeline/Control.h
@@ -1684,7 +1684,7 @@
 
 1242695761 /home/jimmy/simulador8086compipeline/Hazards.h
 
-1243190387 source:/home/jimmy/simulador8086compipeline/PipelineCPU.cpp
+1243192963 source:/home/jimmy/simulador8086compipeline/PipelineCPU.cpp
 	"PipelineCPU.h"
 
 1242695761 /home/jimmy/simulador8086compipeline/PipelineCPU.h
