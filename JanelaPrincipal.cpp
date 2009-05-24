@@ -39,8 +39,7 @@ BEGIN_EVENT_TABLE(JanelaPrincipal,wxFrame)
 	//*)
 END_EVENT_TABLE()
 
-JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
-{
+JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size){
     this->cpu = new PipelineCPU();
     this->hp = new Helpers();
 
@@ -98,8 +97,7 @@ JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& p
     Reset();
 }
 
-JanelaPrincipal::~JanelaPrincipal()
-{
+JanelaPrincipal::~JanelaPrincipal(){
 	//(*Destroy(JanelaPrincipal)
 	//*)
 }
@@ -107,14 +105,12 @@ JanelaPrincipal::~JanelaPrincipal()
 void JanelaPrincipal::OnPanel1Paint(wxPaintEvent& event){
 
 }
-void JanelaPrincipal::OnButton1Click(wxCommandEvent& event)
-{
+void JanelaPrincipal::OnButton1Click(wxCommandEvent& event){
     JanelaSobre dialog(this);
     dialog.ShowModal();
 }
 
-void JanelaPrincipal::Reset()
-{
+void JanelaPrincipal::Reset(){
     this->cpu->reset();
     getDadosCPU();
 }
@@ -197,13 +193,11 @@ void JanelaPrincipal::getDadosCPU(){
     Pipeline->SetItem(0,3,wxString(cpu->getPMEM().c_str(), wxConvUTF8));
     Pipeline->SetItem(0,4,wxString(cpu->getPWB().c_str(), wxConvUTF8));
 }
-void JanelaPrincipal::OnResetarClick(wxCommandEvent& event)
-{
+void JanelaPrincipal::OnResetarClick(wxCommandEvent& event){
     Reset();
 }
 
-void JanelaPrincipal::OnAbrirClick(wxCommandEvent& event)
-{
+void JanelaPrincipal::OnAbrirClick(wxCommandEvent& event){
     std::string titulo1("Simulador 8086 com pipeline - v.: ");
     std::string tituloversion(AutoVersion::FULLVERSION_STRING);
     std::string tituloversionstatus(AutoVersion::STATUS_SHORT);
@@ -225,38 +219,30 @@ void JanelaPrincipal::OnAbrirClick(wxCommandEvent& event)
     }
 }
 
-void JanelaPrincipal::Onflag_infoClick(wxCommandEvent& event)
-{
+void JanelaPrincipal::Onflag_infoClick(wxCommandEvent& event){
     wxMessageBox(_("As flags são bits de um registrador de 16 bits, alguns bits são reservados e não atuam como flags.\n\nO processador 8086 usa os seguintes flags: CF - Carry Flag; ZF - Zero Flag; SF - Sing Flag; OF - Overflow Flag; PF - Parity Flag; AF - Auxiliary Flag; IF - Interrupt enable Flag e DF - Direction Flag."), _("Informações sobre flags"));
 }
 
-void JanelaPrincipal::Onpipeline_infoClick(wxCommandEvent& event)
-{
+void JanelaPrincipal::Onpipeline_infoClick(wxCommandEvent& event){
     wxMessageBox(_("O pipeline arquiteturado possue cinco estágios, sendo IF (Instruction fetch), ID (Instruction decode and register fetch), EX (Execute), MEM(Memory access) e WB (Register write back)"), _("Informações sobre pipeline"));
 }
 
-void JanelaPrincipal::Onreg_infoClick(wxCommandEvent& event)
-{
+void JanelaPrincipal::Onreg_infoClick(wxCommandEvent& event){
     wxMessageBox(_("Todos os registradores são de 16 bits, os registradores AX (acumulator), BX (base), CX (count) e DX (data) podem ser acessados por um par de registradores para área alta e baixa que são AL, AH, BL, BH, CL, CH, DL e DH.\nOs registradores DX e AX podem ser combinados em um registrador de 32 bits DX:AX para executar algumas operações (ex. multiplicação).\nOs registradores CS, DS, SS e ES atuam como ponteiros para os seguimentos da memoria.\nSP, BP, SI e DI servem como index e ponteiros de pilha em operações de acesso a memória.\nIP aponta para a proxima instrução."), _("Informações sobre registradores"));
 }
 
-void JanelaPrincipal::OnButton2Click(wxCommandEvent& event)
-{
-
+void JanelaPrincipal::OnButton2Click(wxCommandEvent& event){
     this->hp->cleanLog();
     this->hp->setLog(cpu->getDataMem());
-    this->hp->saveLog(std::string("DataMem.txt"));
+    this->hp->saveLog(std::string("log/MemData.txt"));
     this->hp->cleanLog();
     this->hp->setLog(cpu->getCodeMem());
-    this->hp->saveLog(std::string("CodeMem.txt"));
+    this->hp->saveLog(std::string("log/MemCode.txt"));
     this->hp->cleanLog();
-    wxMessageBox(_("Dois arquivos de nome DataMem.txt (memória de dados) e CodeMem.txt (memória de código) foram gerados da diretoria de execução do simulador."), _("Dump da memória"), wxOK);
+    wxMessageBox(_("Dois arquivos de nome MemData.txt (memória de dados) e MemCode.txt (memória de código) foram gerados da diretoria \"log\" do simulador."), _("Dump da memória"), wxOK);
 }
 
-
-void JanelaPrincipal::OnExecutarClick(wxCommandEvent& event)
-{
+void JanelaPrincipal::OnExecutarClick(wxCommandEvent& event){
     this->cpu->exec();
     getDadosCPU();
-
 }

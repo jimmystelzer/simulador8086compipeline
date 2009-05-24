@@ -247,7 +247,7 @@ void PipelineCPU::exec(){
     /** end **/
     /** LOG **/
         this->hp->setLog(std::string("====+====+====+====+====+====+====+====+====+====\n\n"));
-        this->hp->saveLog(std::string("pipeline.txt"));
+        this->hp->saveLog(std::string("log/pipeline.txt"));
     /** LOG_end **/
 }
 

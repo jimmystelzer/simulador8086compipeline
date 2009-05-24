@@ -13,19 +13,43 @@ Control::Control() {
     this->wb = new std::string();
 }
 void Control::setOpcode(std::string opcode) {
+    /** LOG **/
+        std::stringstream tmpAllToStr;
+    /** LOG_end **/
     int ol= opcode.length();
-
+    /** LOG **/
+        tmpAllToStr.str("");
+        tmpAllToStr << "Opcode = " << opcode;
+        this->hp->setLog(tmpAllToStr.str());
+        tmpAllToStr.str("");
+        tmpAllToStr << "ol = " << ol;
+        this->hp->setLog(tmpAllToStr.str());
+    /** LOG_end **/
     if(ol>=10){
         opcode = opcode.substr(0,4);
         ol = opcode.length();
     }
 
     opcode = this->hp->intToBase(this->hp->stringToInt(this->hp->baseToInt(opcode,16)),2); // hex to bin
-    hp->setLog(opcode);
+    /** LOG **/
+        tmpAllToStr.str("");
+        tmpAllToStr << "Opcode = " << opcode;
+        this->hp->setLog(tmpAllToStr.str());
+        tmpAllToStr.str("");
+        tmpAllToStr << "ol = " << ol;
+        this->hp->setLog(tmpAllToStr.str());
+    /** LOG_end **/
     ol = ol * 4;
     opcode = this->hp->leadingZero(opcode,ol);
-    hp->setLog(opcode);
-    hp->saveLog("log.txt");
+    /** LOG **/
+        tmpAllToStr.str("");
+        tmpAllToStr << "ol * 4 = " << ol;
+        this->hp->setLog(tmpAllToStr.str());
+        tmpAllToStr.str("");
+        tmpAllToStr << "Opcode (ol *4) = " << opcode;
+        this->hp->setLog(tmpAllToStr.str());
+    /** LOG_end **/
+
     if ((opcode.substr(0,8)).compare("01100110")==0) {
         //mov reg, label
         //01100110 10111001 00000000 00000000    mov cx, iteracoes
@@ -179,6 +203,23 @@ void Control::setOpcode(std::string opcode) {
         this->ex->replace(this->ex->begin(),this->ex->end(),std::string("0"));
         this->wb->replace(this->wb->begin(),this->wb->end(),std::string("0"));
     }
+    /** LOG **/
+        tmpAllToStr.str("");
+        tmpAllToStr << "Mneumonic = " << this->Mneumonic->substr(0,this->Mneumonic->length()) << std::endl;
+        tmpAllToStr << "rD = " << this->rD->substr(0,this->rD->length()) << std::endl;
+        tmpAllToStr << "rS = " << this->rS->substr(0,this->rS->length()) << std::endl;
+        tmpAllToStr << "mod = " << this->mod->substr(0,this->mod->length()) << std::endl;
+        tmpAllToStr << "param = " << this->param->substr(0,this->param->length()) << std::endl;
+        tmpAllToStr << "w = " << this->w->substr(0,this->w->length()) << std::endl;
+        tmpAllToStr << "mem = " << this->mem->substr(0,this->mem->length()) << std::endl;
+        tmpAllToStr << "ex = " << this->ex->substr(0,this->ex->length()) << std::endl;
+        tmpAllToStr << "wb = " << this->wb->substr(0,this->wb->length()) << std::endl;
+        this->hp->setLog(tmpAllToStr.str());
+    /** LOG_end **/
+    /** **Log** **/
+        hp->setLog("====+====+====+====+====+====+====");
+        hp->saveLog("log/control.txt");
+    /** **LOG_end** **/
 }
 std::string Control::getMneumonic() {
     return this->Mneumonic->substr(0,this->Mneumonic->length());
