@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="ALU.cpp" open="1" top="0" tabpos="1">
+	<File name="ALU.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="216" topLine="0" />
 	</File>
 	<File name="ALU.h" open="0" top="0" tabpos="2">
 		<Cursor position="291" topLine="0" />
 	</File>
-	<File name="Control.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="12984" topLine="0" />
+	<File name="Control.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="12984" topLine="215" />
 	</File>
 	<File name="Control.h" open="0" top="0" tabpos="2">
 		<Cursor position="340" topLine="0" />
@@ -58,14 +58,14 @@
 	<File name="Mux.h" open="0" top="0" tabpos="0">
 		<Cursor position="392" topLine="0" />
 	</File>
-	<File name="PipelineCPU.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="6495" topLine="153" />
+	<File name="PipelineCPU.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="6537" topLine="148" />
 	</File>
 	<File name="PipelineCPU.h" open="0" top="0" tabpos="8">
 		<Cursor position="198" topLine="0" />
 	</File>
 	<File name="PipelineRegs.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="2844" topLine="59" />
+		<Cursor position="2210" topLine="52" />
 	</File>
 	<File name="PipelineRegs.h" open="0" top="0" tabpos="6">
 		<Cursor position="324" topLine="20" />
