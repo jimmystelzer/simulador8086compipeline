@@ -6,22 +6,27 @@ PipelineCPU::PipelineCPU(){
         this->ds = new Register();
         this->ss = new Register();
         this->es = new Register();
+
         this->rb = new RegisterBank();
+
         this->hp = new Helpers();
 
         this->alu = new ALU();
 
         this->dataMem = new Mem();
         this->instMem = new Mem();
+
         this->c = new Control();
-        this->oifId = new RegistradorPipeline();
-        this->oidEx = new RegistradorPipeline();
-        this->oexMem = new RegistradorPipeline();
-        this->omemWb = new RegistradorPipeline();
-        this->nifId = new RegistradorPipeline();
-        this->nidEx = new RegistradorPipeline();
-        this->nexMem = new RegistradorPipeline();
-        this->nmemWb = new RegistradorPipeline();
+
+        this->ifIdI = new RegistradorPipeline();
+        this->idExI = new RegistradorPipeline();
+        this->exMemI = new RegistradorPipeline();
+        this->memWbI = new RegistradorPipeline();
+
+        this->ifIdO = new RegistradorPipeline();
+        this->idExO = new RegistradorPipeline();
+        this->exMemO = new RegistradorPipeline();
+        this->memWbO = new RegistradorPipeline();
 
         this->IF = new std::string("");
         this->ID = new std::string("");
@@ -29,19 +34,16 @@ PipelineCPU::PipelineCPU(){
         this->MEM = new std::string("");
         this->WB = new std::string("");
 }
-void PipelineCPU::exec(){
-    /** LOG **/
-        std::stringstream tmpAllToStr;
-    /** LOG_end **/
 
-    /** ********************************IF******************************** **/
+void PipelineCPU::execIF(){
             /** LOG **/
                 this->hp->setLog(std::string("====+====+====+====+== IF ==+====+====+====+===="));
             /** LOG_end **/
+
     int tmpIP, ntmpIP;
     //le IP
     tmpIP = this->hp->stringToInt(this->hp->baseToInt(this->ip->getX(),16));
-            /** LOG_end **/
+            /** LOG **/
                 tmpAllToStr.str("");
                 tmpAllToStr << tmpIP;
                 this->hp->setLog( std::string("tmpIP = ").append(tmpAllToStr.str()) );
@@ -51,7 +53,7 @@ void PipelineCPU::exec(){
 
     //calcula novo IP
     ntmpIP = PIP();
-            /** LOG_end **/
+            /** LOG **/
                 tmpAllToStr.str("");
                 tmpAllToStr << ntmpIP;
                 this->hp->setLog( std::string("ntmpIP = ").append(tmpAllToStr.str()) );
@@ -59,28 +61,30 @@ void PipelineCPU::exec(){
     //descarta bytes relevantes
     this->IF->replace(this->IF->begin(),this->IF->end(),IF->substr(0,ntmpIP));
 
-    this->nifId->setInst(IF->substr());
+    this->ifIdI->setInst(IF->substr());
 
 
     //incrementa IP
     tmpIP = tmpIP + ntmpIP;
-            /** LOG_end **/
+            /** LOG **/
                 tmpAllToStr.str("");
                 tmpAllToStr << tmpIP;
                 this->hp->setLog( std::string("tmpIP + ntmpIP = ").append(tmpAllToStr.str()) );
             /** LOG_end **/
     this->ip->setX(this->hp->leadingZeroHex(this->hp->intToBase(tmpIP,16)));
-    this->nifId->setPC(this->ip->getX());
+    this->ifIdI->setPC(this->ip->getX());
+}
 
-    /** ********************************ID******************************** **/
+void PipelineCPU::execID(){
+    int tmpIP, ntmpIP;
             /** LOG **/
                 this->hp->setLog(std::string("====+====+====+====+== ID ==+====+====+====+===="));
             /** LOG_end **/
     // decodifica
-    this->c->setOpcode(this->oifId->getInst());
+    this->c->setOpcode(this->ifIdO->getInst());
             /** LOG **/
                 tmpAllToStr.str("");
-                tmpAllToStr << this->oifId->getInst();
+                tmpAllToStr << this->ifIdO->getInst();
                 this->hp->setLog( std::string("opCode = ").append(tmpAllToStr.str()) );
             /** LOG_end **/
     // mostra Mneumonic
@@ -90,7 +94,7 @@ void PipelineCPU::exec(){
                 tmpAllToStr << this->c->getMneumonic();
                 this->hp->setLog( std::string("Internal Mneumonic = ").append(tmpAllToStr.str()) );
             /** LOG_end **/
-    if(this->c->getMneumonic().compare("jmplabel")==0){
+        if(this->c->getMneumonic().compare("jmplabel")==0){
         tmpIP = this->hp->stringToInt(this->hp->baseToInt(this->ip->getX(),16));
                 /** LOG **/
                     tmpAllToStr.str("");
@@ -125,55 +129,22 @@ void PipelineCPU::exec(){
                     /** LOG_end **/
         }
         this->ip->setX(this->hp->leadingZeroHex(this->hp->intToBase(tmpIP,16)));
-
-        /**
-         *
-         * JMP Forwarding
-         *
-         **/
-            tmpIP = this->hp->stringToInt(this->hp->baseToInt(this->ip->getX(),16));
-                    /** LOG **/
-                        tmpAllToStr.str("");
-                        tmpAllToStr << tmpIP;
-                        this->hp->setLog( std::string("tmpIP = ").append(tmpAllToStr.str()) );
-                    /** LOG_end **/
-            //carrega instMem(IP)
-            this->IF->replace(this->IF->begin(),this->IF->end(),this->instMem->getByte(tmpIP));
-
-            //calcula novo IP
-            ntmpIP = PIP();
-                    /** LOG **/
-                        tmpAllToStr.str("");
-                        tmpAllToStr << ntmpIP;
-                        this->hp->setLog( std::string("ntmpIP = ").append(tmpAllToStr.str()) );
-                    /** LOG_end **/
-            //descarta bytes relevantes
-            this->IF->replace(this->IF->begin(),this->IF->end(),IF->substr(0,ntmpIP));
-
-            this->nifId->setInst(IF->substr());
-
-
-            //incrementa IP
-            tmpIP = tmpIP + ntmpIP;
-                    /** LOG **/
-                        tmpAllToStr.str("");
-                        tmpAllToStr << tmpIP;
-                        this->hp->setLog( std::string("tmpIP + ntmpIP = ").append(tmpAllToStr.str()) );
-                    /** LOG_end **/
-            this->ip->setX(this->hp->leadingZeroHex(this->hp->intToBase(tmpIP,16)));
-            this->nifId->setPC(this->ip->getX());
+        this->execIF();
     }
-    // registers do regbank
-    this->nidEx->setRegDr(this->rb->getRD(this->c->getRD(),this->c->getW()));
-    this->nidEx->setRegSr(this->rb->getRS(this->c->getRS(),this->c->getW()));
-    this->nidEx->setInst(this->c->getMneumonic());
-    this->nidEx->setRegS(this->c->getRS());
-    this->nidEx->setRegD(this->c->getRD());
-    this->nidEx->setParam(this->c->getParam());
-    this->nidEx->setWB(this->c->getWB());
-    this->nidEx->setExec(this->c->getEX());
-    this->nidEx->setMem(this->c->getMEM());
-    this->nidEx->setW(this->c->getW());
+
+    //this->idExI->setExec()
+    this->idExI->setInst(this->c->getMneumonic());
+    this->idExI->setExec(this->c->getEX());
+    this->idExI->setMem(this->c->getMEM());
+    this->idExI->setMod(this->c->getMod());
+    this->idExI->setParam(this->c->getParam());
+    //this->idExI->setPC()
+    this->idExI->setRegD(this->c->getRD());
+    this->idExI->setRegDr(this->rb->getRD(this->c->getRD(),this->c->getW()));
+    this->idExI->setRegS(this->c->getRS());
+    this->idExI->setRegSr(this->rb->getRS(this->c->getRS(),this->c->getW()));
+    this->idExI->setW(this->c->getW());
+    this->idExI->setWB(this->c->getWB());
 
     /** LOG **/
         tmpAllToStr.str("");
@@ -182,123 +153,157 @@ void PipelineCPU::exec(){
         tmpAllToStr << std::endl << "getEX = " << c->getEX() << std::endl << "getMem= " << c->getMEM()<< std::endl << "getMod = " << c->getMod();
         this->hp->setLog( std::string("Control: ").append(tmpAllToStr.str()) );
     /** LOG_end **/
+    /** LOG **/
+        tmpAllToStr.str("");
+        tmpAllToStr << std::endl << "getW = " << this->idExI->getW() << std::endl << "getRD= " << this->idExI->getRegD() << std::endl << "getRS = " << this->idExI->getRegS();
+        tmpAllToStr << std::endl << "getMneumonic = " << this->idExI->getInst() << std::endl << "getParam= " << this->idExI->getParam() << std::endl << "getWB = " << this->idExI->getWB();
+        tmpAllToStr << std::endl << "getEX = " << this->idExI->getExec() << std::endl << "getMem= " << this->idExI->getMem() << std::endl << "getMod = " << this->idExI->getMod();
+        tmpAllToStr << std::endl << "regD = " << this->rb->getRD(this->c->getRD(),this->c->getW())<< std::endl << "regS = " << this->rb->getRS(this->c->getRS(),this->c->getW()) ;
+        this->hp->setLog( std::string("idExI: ").append(tmpAllToStr.str()) );
+    /** LOG_end **/
+    this->ifIdO->setExec(this->ifIdI->getExec());
+    this->ifIdO->setInst(this->ifIdI->getInst());
+    this->ifIdO->setMem(this->ifIdI->getMem());
+    this->ifIdO->setMod(this->ifIdI->getMod());
+    this->ifIdO->setParam(this->ifIdI->getParam());
+    this->ifIdO->setPC(this->ifIdI->getPC());
+    this->ifIdO->setRegD(this->ifIdI->getRegD());
+    this->ifIdO->setRegDr(this->ifIdI->getRegDr());
+    this->ifIdO->setRegS(this->ifIdI->getRegS());
+    this->ifIdO->setRegSr(this->ifIdI->getRegSr());
+    this->ifIdO->setW(this->ifIdI->getW());
+    this->ifIdO->setWB(this->ifIdI->getWB());
+}
 
-    //*this->oifId = *this->nifId;
-    this->oifId->setExec(this->nifId->getExec());
-    this->oifId->setInst(this->nifId->getInst());
-    this->oifId->setMem(this->nifId->getMem());
-    this->oifId->setMod(this->nifId->getMod());
-    this->oifId->setParam(this->nifId->getParam());
-    this->oifId->setPC(this->nifId->getPC());
-    this->oifId->setRegD(this->nifId->getRegD());
-    this->oifId->setRegDr(this->nifId->getRegDr());
-    this->oifId->setRegS(this->nifId->getRegS());
-    this->oifId->setRegSr(this->nifId->getRegSr());
-    this->oifId->setW(this->nifId->getW());
-    this->oifId->setWB(this->nifId->getWB());
-
-    /** ********************************EX******************************** **/
+void PipelineCPU::execEX(){
     /** LOG **/
         this->hp->setLog(std::string("====+====+====+====+== EX ==+====+====+====+===="));
     /** LOG_end **/
 
-    if((this->oidEx->getExec()).compare("0")==0){
-        this->EX->replace(this->EX->begin(),this->EX->end(),std::string("~").append(this->oidEx->getInst()));
+    if((this->idExO->getExec()).compare("0")==0){
+        this->EX->replace(this->EX->begin(),this->EX->end(),std::string("~").append(this->idExO->getInst()));
                 /** LOG **/
-                    this->hp->setLog(std::string("ALU -> ~").append(this->oidEx->getInst()));
+                    this->hp->setLog(std::string("ALU -> ~").append(this->idExO->getInst()));
                 /** LOG_end **/
     }else{
-        this->EX->replace(this->EX->begin(),this->EX->end(),this->oidEx->getInst());
+        this->EX->replace(this->EX->begin(),this->EX->end(),this->idExO->getInst());
                 /** LOG **/
                     tmpAllToStr.str("");
-                    tmpAllToStr << "ALU ( " << this->oidEx->getInst() << ", " << this->oidEx->getRegDr() << ", " << this->oidEx->getRegSr() << ", " << this->oidEx->getW() << ", " << this->oidEx->getParam() << " )";
+                    tmpAllToStr << "ALU ( " << this->idExO->getInst() << ", " << this->idExO->getRegDr() << ", " << this->idExO->getRegSr() << ", " << this->idExO->getW() << ", " << this->idExO->getParam() << " )";
                     this->hp->setLog(tmpAllToStr.str());
                 /** LOG_end **/
-        this->oidEx->setRegDr(this->alu->exec(this->oidEx->getInst(),this->oidEx->getRegDr(),this->oidEx->getRegSr(),this->oidEx->getW(),this->oidEx->getParam()));
+        this->idExO->setRegDr(this->alu->exec(this->idExO->getInst(),this->idExO->getRegDr(),this->idExO->getRegSr(),this->idExO->getW(),this->idExO->getParam()));
                 /** LOG **/
                     tmpAllToStr.str("");
-                    tmpAllToStr << this->oidEx->getRegDr();
+                    tmpAllToStr << this->idExO->getRegDr();
                     this->hp->setLog( std::string("ALU result = ").append(tmpAllToStr.str()) );
                 /** LOG_end **/
     }
-    this->nexMem->setRegSr(this->oidEx->getRegSr());
-    this->nexMem->setRegDr(this->oidEx->getRegDr());
-    this->nexMem->setInst(this->oidEx->getInst());
-    this->nexMem->setRegS(this->oidEx->getRegS());
-    this->nexMem->setRegD(this->oidEx->getRegD());
-    this->nexMem->setParam(this->oidEx->getParam());
-    this->nexMem->setWB(this->oidEx->getWB());
-    this->nexMem->setMem(this->oidEx->getMem());
-    this->nexMem->setW(this->oidEx->getW());
+    //this->exMemI->setExec()
+    this->exMemI->setInst(this->idExO->getInst());
+    this->exMemI->setMem(this->idExO->getMem());
+    this->exMemI->setMod(this->idExO->getMod());
+    this->exMemI->setParam(this->idExO->getParam());
+    //this->exMemI->setPC()
+    this->exMemI->setRegD(this->idExO->getRegD());
+    this->exMemI->setRegDr(this->idExO->getRegDr());
+    this->exMemI->setRegS(this->idExO->getRegS());
+    this->exMemI->setRegSr(this->idExO->getRegSr());
+    this->exMemI->setW(this->idExO->getW());
+    this->exMemI->setWB(this->idExO->getWB());
 
-    //*this->oidEx = *this->nidEx;
-    this->oidEx->setExec(this->nidEx->getExec());
-    this->oidEx->setInst(this->nidEx->getInst());
-    this->oidEx->setMem(this->nidEx->getMem());
-    this->oidEx->setMod(this->nidEx->getMod());
-    this->oidEx->setParam(this->nidEx->getParam());
-    this->oidEx->setPC(this->nidEx->getPC());
-    this->oidEx->setRegD(this->nidEx->getRegD());
-    this->oidEx->setRegDr(this->nidEx->getRegDr());
-    this->oidEx->setRegS(this->nidEx->getRegS());
-    this->oidEx->setRegSr(this->nidEx->getRegSr());
-    this->oidEx->setW(this->nidEx->getW());
-    this->oidEx->setWB(this->nidEx->getWB());
-    /** ********************************MEM******************************** **/
-            /** LOG **/
-                this->hp->setLog(std::string("====+====+====+====+== MEM ==+====+====+====+===="));
-            /** LOG_end **/
+    this->idExO->setExec(this->idExI->getExec());
+    this->idExO->setInst(this->idExI->getInst());
+    this->idExO->setMem(this->idExI->getMem());
+    this->idExO->setMod(this->idExI->getMod());
+    this->idExO->setParam(this->idExI->getParam());
+    this->idExO->setPC(this->idExI->getPC());
+    this->idExO->setRegD(this->idExI->getRegD());
+    this->idExO->setRegDr(this->idExI->getRegDr());
+    this->idExO->setRegS(this->idExI->getRegS());
+    this->idExO->setRegSr(this->idExI->getRegSr());
+    this->idExO->setW(this->idExI->getW());
+    this->idExO->setWB(this->idExI->getWB());
+}
 
-    if((this->oexMem->getMem()).compare("0")==0){
-        this->MEM->replace(this->MEM->begin(),this->MEM->end(),std::string("~").append(this->oexMem->getInst()));
+void PipelineCPU::execMEM(){
+    /** LOG **/
+        this->hp->setLog(std::string("====+====+====+====+== MEM ==+====+====+====+===="));
+    /** LOG_end **/
+
+    if((this->exMemO->getMem()).compare("0")==0){
+        this->MEM->replace(this->MEM->begin(),this->MEM->end(),std::string("~").append(this->exMemO->getInst()));
     }else{
-        this->MEM->replace(this->MEM->begin(),this->MEM->end(),this->oexMem->getInst());
+        this->MEM->replace(this->MEM->begin(),this->MEM->end(),this->exMemO->getInst());
     }
-    this->nmemWb->setRegSr(this->oexMem->getRegSr());
-    this->nmemWb->setRegDr(this->oexMem->getRegDr());
-    this->nmemWb->setInst(this->oexMem->getInst());
-    this->nmemWb->setRegS(this->oexMem->getRegS());
-    this->nmemWb->setRegD(this->oexMem->getRegD());
-    this->nmemWb->setParam(this->oexMem->getParam());
-    this->nmemWb->setWB(this->oexMem->getWB());
-    this->nmemWb->setW(this->oexMem->getW());
-    //*this->oexMem = *this->nexMem;
-    this->oexMem->setExec(this->nexMem->getExec());
-    this->oexMem->setInst(this->nexMem->getInst());
-    this->oexMem->setMem(this->nexMem->getMem());
-    this->oexMem->setMod(this->nexMem->getMod());
-    this->oexMem->setParam(this->nexMem->getParam());
-    this->oexMem->setPC(this->nexMem->getPC());
-    this->oexMem->setRegD(this->nexMem->getRegD());
-    this->oexMem->setRegDr(this->nexMem->getRegDr());
-    this->oexMem->setRegS(this->nexMem->getRegS());
-    this->oexMem->setRegSr(this->nexMem->getRegSr());
-    this->oexMem->setW(this->nexMem->getW());
-    this->oexMem->setWB(this->nexMem->getWB());
+    //this->memWbI->setExec()
+    this->memWbI->setInst(this->exMemO->getInst());
+    //this->memWbI->setMem()
+    this->memWbI->setMod(this->exMemO->getMod());
+    this->memWbI->setParam(this->exMemO->getParam());
+    //this->memWbI->setPC()
+    this->memWbI->setRegD(this->exMemO->getRegD());
+    this->memWbI->setRegDr(this->exMemO->getRegDr());
+    this->memWbI->setRegS(this->exMemO->getRegS());
+    this->memWbI->setRegSr(this->exMemO->getRegSr());
+    this->memWbI->setW(this->exMemO->getW());
+    this->memWbI->setWB(this->exMemO->getWB());
+
+    this->exMemO->setExec(this->exMemI->getExec());
+    this->exMemO->setInst(this->exMemI->getInst());
+    this->exMemO->setMem(this->exMemI->getMem());
+    this->exMemO->setMod(this->exMemI->getMod());
+    this->exMemO->setParam(this->exMemI->getParam());
+    this->exMemO->setPC(this->exMemI->getPC());
+    this->exMemO->setRegD(this->exMemI->getRegD());
+    this->exMemO->setRegDr(this->exMemI->getRegDr());
+    this->exMemO->setRegS(this->exMemI->getRegS());
+    this->exMemO->setRegSr(this->exMemI->getRegSr());
+    this->exMemO->setW(this->exMemI->getW());
+    this->exMemO->setWB(this->exMemI->getWB());
+}
+
+void PipelineCPU::execWB(){
+    /** LOG **/
+        this->hp->setLog(std::string("====+====+====+====+== WB ==+====+====+====+===="));
+    /** LOG_end **/
+
+    if((this->memWbO->getWB()).compare("0")==0){
+        this->WB->replace(this->WB->begin(),this->WB->end(),std::string("~").append(this->memWbO->getInst()));
+    }else{
+        this->WB->replace(this->WB->begin(),this->WB->end(),this->memWbO->getInst());
+        this->rb->setRD(this->memWbO->getRegDr(),this->memWbO->getRegD(),this->memWbO->getW());
+    }
+    this->memWbO->setExec(this->memWbI->getExec());
+    this->memWbO->setInst(this->memWbI->getInst());
+    this->memWbO->setMem(this->memWbI->getMem());
+    this->memWbO->setMod(this->memWbI->getMod());
+    this->memWbO->setParam(this->memWbI->getParam());
+    this->memWbO->setPC(this->memWbI->getPC());
+    this->memWbO->setRegD(this->memWbI->getRegD());
+    this->memWbO->setRegDr(this->memWbI->getRegDr());
+    this->memWbO->setRegS(this->memWbI->getRegS());
+    this->memWbO->setRegSr(this->memWbI->getRegSr());
+    this->memWbO->setW(this->memWbI->getW());
+    this->memWbO->setWB(this->memWbI->getWB());
+}
+
+void PipelineCPU::exec(){
+    /** ********************************IF******************************** **/
+    this->execIF();
+
+    /** ********************************ID******************************** **/
+    this->execID();
+
+    /** ********************************EX******************************** **/
+    this->execEX();
+
+    /** ********************************MEM******************************* **/
+    this->execMEM();
 
     /** ********************************WB******************************** **/
-            /** LOG **/
-                this->hp->setLog(std::string("====+====+====+====+== WB ==+====+====+====+===="));
-            /** LOG_end **/
+    this->execWB();
 
-    if((this->omemWb->getWB()).compare("0")==0){
-        this->WB->replace(this->WB->begin(),this->WB->end(),std::string("~").append(this->omemWb->getInst()));
-    }else{
-        this->WB->replace(this->WB->begin(),this->WB->end(),this->omemWb->getInst());
-    }
-    //*this->omemWb = *this->nmemWb;
-    this->omemWb->setExec(this->nmemWb->getExec());
-    this->omemWb->setInst(this->nmemWb->getInst());
-    this->omemWb->setMem(this->nmemWb->getMem());
-    this->omemWb->setMod(this->nmemWb->getMod());
-    this->omemWb->setParam(this->nmemWb->getParam());
-    this->omemWb->setPC(this->nmemWb->getPC());
-    this->omemWb->setRegD(this->nmemWb->getRegD());
-    this->omemWb->setRegDr(this->nmemWb->getRegDr());
-    this->omemWb->setRegS(this->nmemWb->getRegS());
-    this->omemWb->setRegSr(this->nmemWb->getRegSr());
-    this->omemWb->setW(this->nmemWb->getW());
-    this->omemWb->setWB(this->nmemWb->getWB());
     /** end **/
             /** LOG **/
                 this->hp->setLog(std::string("====+====+====+====+====+====+====+====+====+====\n\n"));
@@ -317,14 +322,14 @@ void PipelineCPU::reset(){
     this->es->reset();
     this->rb->reset();
 
-    this->oifId->reset();
-    this->oidEx->reset();
-    this->oexMem->reset();
-    this->omemWb->reset();
-    this->nifId->reset();
-    this->nidEx->reset();
-    this->nexMem->reset();
-    this->nmemWb->reset();
+    this->ifIdO->reset();
+    this->idExO->reset();
+    this->exMemO->reset();
+    this->memWbO->reset();
+    this->ifIdI->reset();
+    this->idExI->reset();
+    this->exMemI->reset();
+    this->memWbI->reset();
 
     this->IF = new std::string();
     this->ID = new std::string();
@@ -333,7 +338,127 @@ void PipelineCPU::reset(){
     this->WB = new std::string();
     this->hp->cleanLog();
 }
+/**
+ *
+ * Registradores
+ *
+ **/
+std::string PipelineCPU::getAX(){
+    return this->rb->getAX();
+}
 
+std::string PipelineCPU::getBX(){
+    return this->rb->getBX();
+}
+
+std::string PipelineCPU::getCX(){
+    return this->rb->getCX();
+}
+
+std::string PipelineCPU::getDX(){
+    return this->rb->getDX();
+}
+
+std::string PipelineCPU::getIP(){
+    return this->ip->getX();
+}
+
+std::string PipelineCPU::getSP(){
+    return this->rb->getSP();
+}
+
+std::string PipelineCPU::getBP(){
+    return this->rb->getBP();
+}
+
+std::string PipelineCPU::getSI(){
+    return this->rb->getSI();
+}
+
+std::string PipelineCPU::getDI(){
+    return this->rb->getDI();
+}
+
+std::string PipelineCPU::getCS(){
+    return this->cs->getX();
+}
+
+std::string PipelineCPU::getDS(){
+    return this->ds->getX();
+}
+
+std::string PipelineCPU::getSS(){
+    return this->ss->getX();
+}
+
+std::string PipelineCPU::getES(){
+    return this->es->getX();
+}
+/**
+ *
+ * Flags
+ *
+ **/
+std::string PipelineCPU::getCF(){
+    return this->alu->getCF();
+}
+
+std::string PipelineCPU::getZF(){
+    return this->alu->getZF();
+}
+
+std::string PipelineCPU::getSF(){
+    return this->alu->getSF();
+}
+
+std::string PipelineCPU::getOF(){
+    return this->alu->getOF();
+}
+
+std::string PipelineCPU::getPF(){
+    return this->alu->getPF();
+}
+
+std::string PipelineCPU::getAF(){
+    return this->alu->getAF();
+}
+
+std::string PipelineCPU::getIF(){
+    return this->alu->getIF();
+}
+
+std::string PipelineCPU::getDF(){
+    return this->alu->getDF();
+}
+/**
+ *
+ * Pipeline
+ *
+ **/
+std::string PipelineCPU::getPIF(){
+    return this->IF->substr();
+}
+
+std::string PipelineCPU::getPID(){
+    return this->ID->substr();
+}
+
+std::string PipelineCPU::getPEX(){
+    return this->EX->substr();
+}
+
+std::string PipelineCPU::getPMEM(){
+    return this->MEM->substr();
+}
+
+std::string PipelineCPU::getPWB(){
+    return this->WB->substr();
+}
+/**
+ *
+ * Memoria
+ *
+ **/
 void PipelineCPU::setData(std::string s){
     bool dat;
     std::stringstream ts,tmpStr;
@@ -372,6 +497,14 @@ void PipelineCPU::setCode(std::string s){
     this->instMem->setByte(0,tmpStr.str());
 }
 
+std::string PipelineCPU::getDataMem(){
+    return this->dataMem->getMem();
+}
+
+std::string PipelineCPU::getCodeMem(){
+    return this->instMem->getMem();
+}
+
 std::string PipelineCPU::readFile(std::string filename){
     std::string tmpStr;
     tmpStr = this->hp->readFile(filename);
@@ -379,99 +512,11 @@ std::string PipelineCPU::readFile(std::string filename){
     setCode(tmpStr);
     return tmpStr;
 }
-
-std::string PipelineCPU::getAX(){
-    return this->rb->getAX();
-}
-
-std::string PipelineCPU::getBX(){
-    return this->rb->getBX();
-}
-
-std::string PipelineCPU::getCX(){
-    return this->rb->getCX();
-}
-
-std::string PipelineCPU::getDX(){
-    return this->rb->getDX();
-}
-
-std::string PipelineCPU::getIP(){
-    return this->ip->getX();
-}
-
-std::string PipelineCPU::getSP(){
-    return this->rb->getSP();
-}
-std::string PipelineCPU::getBP(){
-    return this->rb->getBP();
-}
-std::string PipelineCPU::getSI(){
-    return this->rb->getSI();
-}
-std::string PipelineCPU::getDI(){
-    return this->rb->getDI();
-}
-std::string PipelineCPU::getCS(){
-    return this->cs->getX();
-}
-std::string PipelineCPU::getDS(){
-    return this->ds->getX();
-}
-std::string PipelineCPU::getSS(){
-    return this->ss->getX();
-}
-std::string PipelineCPU::getES(){
-    return this->es->getX();
-}
-
-std::string PipelineCPU::getCF(){
-    return this->alu->getCF();
-}
-std::string PipelineCPU::getZF(){
-    return this->alu->getZF();
-}
-std::string PipelineCPU::getSF(){
-    return this->alu->getSF();
-}
-std::string PipelineCPU::getOF(){
-    return this->alu->getOF();
-}
-std::string PipelineCPU::getPF(){
-    return this->alu->getPF();
-}
-std::string PipelineCPU::getAF(){
-    return this->alu->getAF();
-}
-std::string PipelineCPU::getIF(){
-    return this->alu->getIF();
-}
-std::string PipelineCPU::getDF(){
-    return this->alu->getDF();
-}
-
-std::string PipelineCPU::getDataMem(){
-    return this->dataMem->getMem();
-}
-std::string PipelineCPU::getCodeMem(){
-    return this->instMem->getMem();
-}
-std::string PipelineCPU::getPIF(){
-    return this->IF->substr();
-}
-std::string PipelineCPU::getPID(){
-    return this->ID->substr();
-}
-std::string PipelineCPU::getPEX(){
-    return this->EX->substr();
-}
-std::string PipelineCPU::getPMEM(){
-    return this->MEM->substr();
-}
-std::string PipelineCPU::getPWB(){
-    return this->WB->substr();
-}
-
+/**
+ *
+ * IP
+ *
+ **/
 int PipelineCPU::PIP(){
     std::string s = this->IF->substr(0,2);
     if(s.compare("F4")==0){

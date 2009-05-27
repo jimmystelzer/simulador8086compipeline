@@ -35,27 +35,27 @@ std::string RegisterBank::getRD(std::string c,std::string w){
 std::string RegisterBank::getRS(std::string c,std::string w){
     if(c.compare("000")==0){
         if(w.compare("0")==0){
-            return this->AX->getX().substr();
-        }else{
             return this->AX->getL().substr();
+        }else{
+            return this->AX->getX().substr();
         }
     }else if(c.compare("001")==0){
         if(w.compare("0")==0){
-            return this->CX->getX().substr();
-        }else{
             return this->CX->getL().substr();
+        }else{
+            return this->CX->getX().substr();
         }
     }else if(c.compare("010")==0){
         if(w.compare("0")==0){
-            return this->DX->getX().substr();
-        }else{
             return this->DX->getL().substr();
+        }else{
+            return this->DX->getX().substr();
         }
     }else if(c.compare("011")==0){
         if(w.compare("0")==0){
-            return this->BX->getX().substr();
-        }else{
             return this->BX->getL().substr();
+        }else{
+            return this->BX->getX().substr();
         }
     }else if(c.compare("100")==0){
         if(w.compare("0")==0){
@@ -87,27 +87,27 @@ std::string RegisterBank::getRS(std::string c,std::string w){
 void RegisterBank::setRD(std::string s,std::string c,std::string w){
     if(c.compare("000")==0){
         if(w.compare("0")==0){
-            this->AX->setX(s);
-        }else{
             this->AX->setL(s);
+        }else{
+            this->AX->setX(s);
         }
     }else if(c.compare("001")==0){
         if(w.compare("0")==0){
-            this->CX->setX(s);
-        }else{
             this->CX->setL(s);
+        }else{
+            this->CX->setX(s);
         }
     }else if(c.compare("010")==0){
         if(w.compare("0")==0){
-            this->DX->setX(s);
-        }else{
             this->DX->setL(s);
+        }else{
+            this->DX->setX(s);
         }
     }else if(c.compare("011")==0){
         if(w.compare("0")==0){
-            this->BX->setX(s);
-        }else{
             this->BX->setL(s);
+        }else{
+            this->BX->setX(s);
         }
     }else if(c.compare("100")==0){
         if(w.compare("0")==0){

@@ -8,8 +8,12 @@ std::string ALU::exec(std::string mnem, std::string dest, std::string src, std::
 
     if(mnem.compare("addregreg")==0){
         int tmpi = hp->stringToInt(hp->baseToInt(dest,16)) + hp->stringToInt(hp->baseToInt(src,16));
-        dest = hp->intToBase(tmpi, 16);
-
+        dest = hp->leadingZeroHex(hp->intToBase(tmpi, 16));
+        if(w.compare("0")==0){
+            dest = dest.substr(dest.size()-2);
+        }else{
+            dest = dest.substr(dest.size()-4);
+        }
         //.OF, .SF, .ZF, .AF, .PF, .CF
             if (tmpi < 0){
                 this->SF = true;
@@ -68,7 +72,12 @@ std::string ALU::exec(std::string mnem, std::string dest, std::string src, std::
         dest = std::string("");
 
     }else if(mnem.compare("movregimmed")==0){
-        dest = std::string("");
+        param = hp->leadingZeroHex(hp->intToBase(hp->stringToInt(hp->baseToInt(param,2)),16));
+        if(w.compare("0")==0){
+            dest = param.substr(param.size()-2);
+        }else{
+            dest = param.substr(param.size()-4);
+        }
     }
 
     return dest;
