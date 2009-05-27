@@ -199,10 +199,20 @@ void PipelineCPU::execEX(){
                     this->hp->setLog(tmpAllToStr.str());
                 /** LOG_end **/
         this->idExO->setRegDr(this->alu->exec(this->idExO->getInst(),this->idExO->getRegDr(),this->idExO->getRegSr(),this->idExO->getW(),this->idExO->getParam()));
-        tmpIP = this->hp->stringToInt(this->hp->baseToInt(this->oip->getX(),16));
+        tmpIP = this->hp->stringToInt(this->hp->baseToInt(this->ooip->getX(),16));
         if((this->idExO->getInst()).compare("jzlabel")==0){
             if(this->idExO->getRegDr().compare("true")==0){
-                this->hp->binNegToPos(this->idExO->getParam());
+                if(this->idExO->getParam().substr(0,1).compare("1")==0){
+                    ntmpIP = this->hp->stringToInt(this->hp->baseToInt(this->hp->binNegToPos(this->idExO->getParam()),2));
+                    tmpIP = tmpIP - (ntmpIP * 2);
+                }else{
+                    ntmpIP = this->hp->stringToInt(this->hp->baseToInt(this->idExO->getParam(),2));
+                    tmpIP = tmpIP + (ntmpIP * 2);
+                }
+                this->ip->setX(this->hp->leadingZeroHex(this->hp->intToBase(tmpIP,16)));
+                this->execIF(1);
+                this->ifIdO->setInst("");
+                this->execID();
             }else{
 
             }
@@ -249,6 +259,9 @@ void PipelineCPU::execMEM(){
         this->MEM->replace(this->MEM->begin(),this->MEM->end(),std::string("~").append(this->exMemO->getInst()));
     }else{
         this->MEM->replace(this->MEM->begin(),this->MEM->end(),this->exMemO->getInst());
+        if((this->exMemO->getInst()).compare("movregmem")==0){
+            this->exMemO->setRegDr(this->dataMem->getByte(this->hp->stringToInt(this->hp->baseToInt(this->exMemO->getParam(),2))));
+        }
     }
     //this->memWbI->setExec()
     this->memWbI->setInst(this->exMemO->getInst());
@@ -352,6 +365,9 @@ void PipelineCPU::reset(){
     this->EX = new std::string();
     this->MEM = new std::string();
     this->WB = new std::string();
+
+    this->alu->reset();
+
     this->hp->cleanLog();
 }
 /**

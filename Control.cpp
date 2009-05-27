@@ -46,15 +46,15 @@ void Control::setOpcode(std::string opcode) {
         this->hp->setLog(tmpAllToStr.str());
     /** LOG_end **/
 
-    if ((opcode.substr(0,8)).compare("01100110")==0) {
+    if ((opcode.substr(0,7)).compare("0110011")==0) {
         //mov reg, label
         //01100110 10111001 00000000 00000000    mov cx, iteracoes
-        this->Mneumonic->replace(this->Mneumonic->begin(),this->Mneumonic->end(),std::string("movregrm"));
+        this->Mneumonic->replace(this->Mneumonic->begin(),this->Mneumonic->end(),std::string("movregmem"));
         this->rD->replace(this->rD->begin(),this->rD->end(),opcode.substr(13,3));
         this->rS->replace(this->rS->begin(),this->rS->end(),opcode.substr(10,3));
         this->mod->replace(this->mod->begin(),this->mod->end(),opcode.substr(8,2));
         this->param->replace(this->param->begin(),this->param->end(),(opcode.substr(24,8)).append(opcode.substr(16,8)));
-        this->w->replace(this->w->begin(),this->w->end(),std::string("1")); //deveria ser 1?
+        this->w->replace(this->w->begin(),this->w->end(),opcode.substr(7,1));
 
         this->mem->replace(this->mem->begin(),this->mem->end(),std::string("1"));
         this->ex->replace(this->ex->begin(),this->ex->end(),std::string("1"));

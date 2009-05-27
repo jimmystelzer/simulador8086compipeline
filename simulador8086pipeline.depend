@@ -1618,7 +1618,7 @@
 	<sstream>
 	<cstdlib>
 
-1243446815 /home/jimmy/simulador8086compipeline/Helpers.h
+1243447694 /home/jimmy/simulador8086compipeline/Helpers.h
 	<iostream>
 	<sstream>
 	<cstdlib>
@@ -1626,7 +1626,7 @@
 	<cstring>
 	<cmath>
 
-1243446781 source:/home/jimmy/simulador8086compipeline/Helpers.cpp
+1243447694 source:/home/jimmy/simulador8086compipeline/Helpers.cpp
 	"Helpers.h"
 
 1240286900 source:/home/jimmy/simulador8086compipeline/Registrador.cpp
@@ -1649,7 +1649,7 @@
 1240197942 /home/jimmy/simulador8086compipeline/ULA.h
 	<iostream>
 
-1243442049 source:/home/jimmy/simulador8086compipeline/ALU.cpp
+1243452171 source:/home/jimmy/simulador8086compipeline/ALU.cpp
 	"ALU.h"
 
 1241200629 /home/jimmy/simulador8086compipeline/ALU.h
@@ -1669,7 +1669,7 @@
 1240344577 /home/jimmy/simulador8086compipeline/BancoRegs.h
 	"Registrador.h"
 
-1243443661 source:/home/jimmy/simulador8086compipeline/Control.cpp
+1243448189 source:/home/jimmy/simulador8086compipeline/Control.cpp
 	"Control.h"
 
 1241200629 /home/jimmy/simulador8086compipeline/Control.h
@@ -1686,10 +1686,10 @@
 
 1241200629 /home/jimmy/simulador8086compipeline/Hazards.h
 
-1243443947 source:/home/jimmy/simulador8086compipeline/PipelineCPU.cpp
+1243453729 source:/home/jimmy/simulador8086compipeline/PipelineCPU.cpp
 	"PipelineCPU.h"
 
-1243443762 /home/jimmy/simulador8086compipeline/PipelineCPU.h
+1243447694 /home/jimmy/simulador8086compipeline/PipelineCPU.h
 	<string>
 	"PipelineRegs.h"
 	"RegisterBank.h"
