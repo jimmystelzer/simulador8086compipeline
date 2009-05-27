@@ -13,10 +13,10 @@ class Helpers{
         std::ostringstream logString;
     public:
         Helpers();
-        std::string intToBase(unsigned int num, unsigned int b);
+        std::string intToBase(unsigned long long int num, unsigned int b);
         std::string baseToInt(unsigned int num, unsigned int b);
         std::string baseToInt(std::string num, unsigned int b);
-        int stringToInt(const std::string& s);
+        unsigned long long int stringToInt(const std::string& s);
 
         std::string binNegToPos(std::string s);
         std::string binPosToNeg(std::string s);

@@ -16,7 +16,7 @@
 
 class PipelineCPU{
     private:
-        Register *ip, *cs, *ds, *ss, *es;
+        Register *ip, *oip, *ooip, *cs, *ds, *ss, *es;
         RegisterBank *rb;
         Helpers *hp;
         ALU *alu;
@@ -26,7 +26,7 @@ class PipelineCPU{
         std::string *IF, *ID, *EX, *MEM, *WB;
         Control *c;
         //Estágios Pipeline
-        void execIF();
+        void execIF(int s);
         void execID();
         void execEX();
         void execMEM();

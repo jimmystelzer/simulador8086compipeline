@@ -25,10 +25,6 @@ void Control::setOpcode(std::string opcode) {
         tmpAllToStr << "ol = " << ol;
         this->hp->setLog(tmpAllToStr.str());
     /** LOG_end **/
-    if(ol>=10){
-        opcode = opcode.substr(0,4);
-        ol = opcode.length();
-    }
 
     opcode = this->hp->intToBase(this->hp->stringToInt(this->hp->baseToInt(opcode,16)),2); // hex to bin
     /** LOG **/
@@ -182,18 +178,18 @@ void Control::setOpcode(std::string opcode) {
         this->wb->replace(this->wb->begin(),this->wb->end(),std::string("0"));
     } else if ((opcode.substr(0,8)).compare("11101001")==0) {
         //jmp label (complemento de 2)
-        //11101001 11101100  jmp retorno
+        //11101001 11101100 11111111 11111111 11111111 jmp retorno
         this->Mneumonic->replace(this->Mneumonic->begin(),this->Mneumonic->end(),std::string("jmplabel"));
         this->rD->replace(this->rD->begin(),this->rD->end(),std::string(""));
         this->rS->replace(this->rS->begin(),this->rS->end(),std::string(""));
         this->mod->replace(this->mod->begin(),this->mod->end(),std::string(""));
-        this->param->replace(this->param->begin(),this->param->end(),opcode.substr(16,8).append(opcode.substr(8,8)));
+        this->param->replace(this->param->begin(),this->param->end(),opcode.substr(32,8).append(opcode.substr(24,8)).append(opcode.substr(16,8).append(opcode.substr(8,8))));
         this->w->replace(this->w->begin(),this->w->end(),std::string(""));
         this->mem->replace(this->mem->begin(),this->mem->end(),std::string("0"));
         this->ex->replace(this->ex->begin(),this->ex->end(),std::string("0"));
         this->wb->replace(this->wb->begin(),this->wb->end(),std::string("0"));
     } else {
-        this->Mneumonic->replace(this->Mneumonic->begin(),this->Mneumonic->end(),opcode.substr(0,opcode.length()));//std::string("nop")
+        this->Mneumonic->replace(this->Mneumonic->begin(),this->Mneumonic->end(),std::string("nop"));
         this->rD->replace(this->rD->begin(),this->rD->end(),std::string(""));
         this->rS->replace(this->rS->begin(),this->rS->end(),std::string(""));
         this->mod->replace(this->mod->begin(),this->mod->end(),std::string(""));

@@ -3,8 +3,7 @@
 
 Helpers::Helpers(){
 }
-
-std::string Helpers::intToBase(unsigned int num, unsigned int b){
+std::string Helpers::intToBase(unsigned long long int num, unsigned int b){
     if (num > 0){
         std::string nbc = std::string("0123456789ABCDEF");
         std::ostringstream tmpstr;
@@ -22,7 +21,8 @@ std::string Helpers::baseToInt(unsigned int num, unsigned int b){
 std::string Helpers::baseToInt(std::string num, unsigned int b){
     std::stringstream tmpstr;
     std::string nbc = std::string("0123456789ABCDEF");
-    int fnum = 0, tmp;
+    unsigned long long int fnum = 0;
+    unsigned int tmp;
     if (!num.empty()) {
         for (unsigned int i=0;i<num.length();i++){
             tmp = nbc.find((num.substr(i,1)).c_str(), 0);
@@ -57,9 +57,9 @@ std::string Helpers::readFile(std::string filename){
     }
 }
 
-int Helpers::stringToInt(const std::string& s){
+unsigned long long int Helpers::stringToInt(const std::string& s){
     std::istringstream i(s);
-    int x;
+    unsigned long long int x;
     i >> x;
     return x;
 }

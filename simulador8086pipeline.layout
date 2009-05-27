@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="ALU.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="216" topLine="0" />
+	<File name="ALU.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="326" topLine="0" />
 	</File>
 	<File name="ALU.h" open="0" top="0" tabpos="2">
 		<Cursor position="291" topLine="0" />
 	</File>
-	<File name="Control.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="12984" topLine="215" />
+	<File name="Control.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="896" topLine="12" />
 	</File>
 	<File name="Control.h" open="0" top="0" tabpos="2">
 		<Cursor position="340" topLine="0" />
@@ -22,11 +22,11 @@
 	<File name="Hazards.h" open="0" top="0" tabpos="2">
 		<Cursor position="17" topLine="0" />
 	</File>
-	<File name="Helpers.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="3674" topLine="127" />
+	<File name="Helpers.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="1432" topLine="0" />
 	</File>
 	<File name="Helpers.h" open="0" top="0" tabpos="1">
-		<Cursor position="577" topLine="10" />
+		<Cursor position="593" topLine="10" />
 	</File>
 	<File name="JanelaPrincipal.cpp" open="0" top="0" tabpos="13">
 		<Cursor position="0" topLine="0" />
@@ -58,11 +58,11 @@
 	<File name="Mux.h" open="0" top="0" tabpos="0">
 		<Cursor position="392" topLine="0" />
 	</File>
-	<File name="PipelineCPU.cpp" open="1" top="1" tabpos="1">
-		<Cursor position="6537" topLine="148" />
+	<File name="PipelineCPU.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="9447" topLine="182" />
 	</File>
-	<File name="PipelineCPU.h" open="0" top="0" tabpos="8">
-		<Cursor position="198" topLine="0" />
+	<File name="PipelineCPU.h" open="1" top="0" tabpos="4">
+		<Cursor position="729" topLine="18" />
 	</File>
 	<File name="PipelineRegs.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="2210" topLine="52" />
