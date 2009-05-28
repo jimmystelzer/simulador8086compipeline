@@ -31,6 +31,7 @@ const long JanelaPrincipal::ID_BUTTON8 = wxNewId();
 const long JanelaPrincipal::ID_MemView = wxNewId();
 const long JanelaPrincipal::ID_STATICTEXT4 = wxNewId();
 const long JanelaPrincipal::ID_STATICBITMAP1 = wxNewId();
+const long JanelaPrincipal::ID_STATICTEXT5 = wxNewId();
 const long JanelaPrincipal::ID_PANEL1 = wxNewId();
 //*)
 
@@ -53,11 +54,11 @@ JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& p
 	wxString titulo(titulo1.c_str(), wxConvUTF8);
 
 	//(*Initialize(JanelaPrincipal)
-	Create(parent, wxID_ANY, _("Simulador 8086 com pipeline"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
+	Create(parent, wxID_ANY, titulo, wxDefaultPosition, wxDefaultSize, wxDEFAULT_FRAME_STYLE, _T("wxID_ANY"));
 	SetClientSize(wxSize(800,460));
 	{
 		wxIcon FrameIcon;
-		FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("/home/jimmy/simulador8086compipeline/res/chip_16x16.png"))));
+		FrameIcon.CopyFromBitmap(wxBitmap(wxImage(_T("./res/chip_16x16.png"))));
 		SetIcon(FrameIcon);
 	}
 	Panel1 = new wxPanel(this, ID_PANEL1, wxPoint(0,0), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL1"));
@@ -80,7 +81,8 @@ JanelaPrincipal::JanelaPrincipal(wxWindow* parent,wxWindowID id,const wxPoint& p
 	Button2 = new wxButton(Panel1, ID_BUTTON8, _("Dump"), wxPoint(704,176), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON8"));
 	MemView = new wxListCtrl(Panel1, ID_MemView, wxPoint(8,312), wxSize(680,128), wxLC_REPORT|wxLC_SINGLE_SEL|wxRAISED_BORDER, wxDefaultValidator, _T("ID_MemView"));
 	StaticText4 = new wxStaticText(Panel1, ID_STATICTEXT4, _("Visualizador de Memória:"), wxPoint(8,288), wxDefaultSize, 0, _T("ID_STATICTEXT4"));
-	StaticBitmap1 = new wxStaticBitmap(Panel1, ID_STATICBITMAP1, wxBitmap(wxImage(_T("/home/jimmy/simulador8086compipeline/res/chip_48x48.png"))), wxPoint(728,224), wxDefaultSize, 0, _T("ID_STATICBITMAP1"));
+	StaticBitmap1 = new wxStaticBitmap(Panel1, ID_STATICBITMAP1, wxBitmap(wxImage(_T("./res/chip_48x48.png"))), wxPoint(728,224), wxDefaultSize, 0, _T("ID_STATICBITMAP1"));
+	ligado = new wxStaticText(Panel1, ID_STATICTEXT5, _("On"), wxPoint(736,272), wxDefaultSize, 0, _T("ID_STATICTEXT5"));
 	FileDialog1 = new wxFileDialog(this, _("Escolha um arquivo para abrir"), wxEmptyString, _("Assembler compilado (*.lst)|*.lst"), _("Assembler compilado (*.lst)|*.lst"), wxFD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
 	Center();
 
@@ -192,6 +194,9 @@ void JanelaPrincipal::getDadosCPU(){
     Pipeline->SetItem(0,2,wxString(cpu->getPEX().c_str(), wxConvUTF8));
     Pipeline->SetItem(0,3,wxString(cpu->getPMEM().c_str(), wxConvUTF8));
     Pipeline->SetItem(0,4,wxString(cpu->getPWB().c_str(), wxConvUTF8));
+
+    wxString estado(cpu->getOn().c_str(), wxConvUTF8);
+    ligado->SetLabel(estado);
 }
 void JanelaPrincipal::OnResetarClick(wxCommandEvent& event){
     Reset();
@@ -202,7 +207,7 @@ void JanelaPrincipal::OnAbrirClick(wxCommandEvent& event){
     std::string tituloversion(AutoVersion::FULLVERSION_STRING);
     std::string tituloversionstatus(AutoVersion::STATUS_SHORT);
 
-    titulo1.append(tituloversion).append(tituloversionstatus);
+    titulo1.append(tituloversion).append(tituloversionstatus).append(" - ");
 
     wxString titulo(titulo1.c_str(), wxConvUTF8);
 

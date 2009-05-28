@@ -1564,7 +1564,7 @@
 1242702517 /home/jimmy/simulador8086compipeline/MainApp.h
 	<wx/app.h>
 
-1243118161 /home/jimmy/simulador8086compipeline/JanelaPrincipal.h
+1243475571 /home/jimmy/simulador8086compipeline/JanelaPrincipal.h
 	<wx/listctrl.h>
 	<wx/stattext.h>
 	<wx/statline.h>
@@ -1588,7 +1588,7 @@
 	<string>
 	"Version.h"
 
-1243247430 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
+1243476131 source:/home/jimmy/simulador8086compipeline/JanelaPrincipal.cpp
 	"JanelaPrincipal.h"
 	<wx/bitmap.h>
 	<wx/intl.h>
@@ -1596,7 +1596,7 @@
 	<wx/string.h>
 	<wx/msgdlg.h>
 
-1243118161 source:/home/jimmy/simulador8086compipeline/JanelaSobre.cpp
+1243475006 source:/home/jimmy/simulador8086compipeline/JanelaSobre.cpp
 	"JanelaSobre.h"
 	<wx/bitmap.h>
 	<wx/font.h>
@@ -1649,7 +1649,7 @@
 1240197942 /home/jimmy/simulador8086compipeline/ULA.h
 	<iostream>
 
-1243452171 source:/home/jimmy/simulador8086compipeline/ALU.cpp
+1243472436 source:/home/jimmy/simulador8086compipeline/ALU.cpp
 	"ALU.h"
 
 1241200629 /home/jimmy/simulador8086compipeline/ALU.h
@@ -1669,7 +1669,7 @@
 1240344577 /home/jimmy/simulador8086compipeline/BancoRegs.h
 	"Registrador.h"
 
-1243448189 source:/home/jimmy/simulador8086compipeline/Control.cpp
+1243472347 source:/home/jimmy/simulador8086compipeline/Control.cpp
 	"Control.h"
 
 1241200629 /home/jimmy/simulador8086compipeline/Control.h
@@ -1686,10 +1686,10 @@
 
 1241200629 /home/jimmy/simulador8086compipeline/Hazards.h
 
-1243453729 source:/home/jimmy/simulador8086compipeline/PipelineCPU.cpp
+1243476170 source:/home/jimmy/simulador8086compipeline/PipelineCPU.cpp
 	"PipelineCPU.h"
 
-1243447694 /home/jimmy/simulador8086compipeline/PipelineCPU.h
+1243475900 /home/jimmy/simulador8086compipeline/PipelineCPU.h
 	<string>
 	"PipelineRegs.h"
 	"RegisterBank.h"
@@ -1730,7 +1730,7 @@
 1241200629 /home/jimmy/simulador8086compipeline/RegisterBank.h
 	"Register.h"
 
-1241200629 /home/jimmy/simulador8086compipeline/Version.h
+1243474660 /home/jimmy/simulador8086compipeline/Version.h
 
 1241200629 /home/jimmy/simulador8086compipeline/Mux.h
 	<string>

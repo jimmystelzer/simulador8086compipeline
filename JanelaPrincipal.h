@@ -47,6 +47,7 @@ class JanelaPrincipal: public wxFrame
 		wxStaticLine* StaticLine1;
 		wxListCtrl* Registradores;
 		wxListCtrl* Flags;
+		wxStaticText* ligado;
 		wxButton* flag_info;
 		wxStaticText* StaticText4;
 		//*)
@@ -74,6 +75,7 @@ class JanelaPrincipal: public wxFrame
 		static const long ID_MemView;
 		static const long ID_STATICTEXT4;
 		static const long ID_STATICBITMAP1;
+		static const long ID_STATICTEXT5;
 		static const long ID_PANEL1;
 		//*)
 

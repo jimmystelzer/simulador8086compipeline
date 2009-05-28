@@ -144,7 +144,7 @@ void Control::setOpcode(std::string opcode) {
         this->w->replace(this->w->begin(),this->w->end(),std::string("1")); //deveria ser 1?
         this->mem->replace(this->mem->begin(),this->mem->end(),std::string("0"));
         this->ex->replace(this->ex->begin(),this->ex->end(),std::string("1"));
-        this->wb->replace(this->wb->begin(),this->wb->end(),std::string("0"));
+        this->wb->replace(this->wb->begin(),this->wb->end(),std::string("1"));
     } else if ((opcode.substr(0,8)).compare("01110100")==0) {
         //jz label (short)
         //01110100 00001011 jz primeiro

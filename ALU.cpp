@@ -68,20 +68,20 @@ std::string ALU::exec(std::string mnem, std::string dest, std::string src, std::
             dest = std::string("false");
         }
     }else if(mnem.compare("loopnz")==0){
-        if(this->ZF == false){
-            unsigned int tmpi = hp->stringToInt(hp->baseToInt(dest,16));
+        unsigned int tmpi = hp->stringToInt(hp->baseToInt(dest,16));
+        if(tmpi>0){
             tmpi--;
-            dest = hp->intToBase(tmpi,16);
-            if (tmpi == 0){
-                this->ZF = true;
+            dest = hp->leadingZeroHex(hp->intToBase(tmpi, 16));
+            if(w.compare("0")==0){
+                dest = dest.substr(dest.size()-2);
             }else{
-                this->ZF = false;
+                dest = dest.substr(dest.size()-4);
             }
         }else{
             dest = std::string("false");
         }
     }else if(mnem.compare("hlt")==0){
-        dest = std::string("");
+        dest = std::string("off");
 
     }else if(mnem.compare("movregreg")==0){
         if(w.compare("0")==0){

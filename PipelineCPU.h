@@ -31,6 +31,8 @@ class PipelineCPU{
         void execEX();
         void execMEM();
         void execWB();
+        bool on;
+        bool nop;
         /** LOG **/
             std::stringstream tmpAllToStr;
         /** LOG_end **/
@@ -39,6 +41,7 @@ class PipelineCPU{
         //Controles CPU
         void exec();
         void reset();
+        std::string getOn();
         //Registradores
         std::string getAX();
         std::string getBX();

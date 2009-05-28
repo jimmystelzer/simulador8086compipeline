@@ -42,10 +42,6 @@
 		<Unit filename="ALU.h" />
 		<Unit filename="Control.cpp" />
 		<Unit filename="Control.h" />
-		<Unit filename="Forwarding.cpp" />
-		<Unit filename="Forwarding.h" />
-		<Unit filename="Hazards.cpp" />
-		<Unit filename="Hazards.h" />
 		<Unit filename="Helpers.cpp" />
 		<Unit filename="Helpers.h" />
 		<Unit filename="JanelaPrincipal.cpp" />

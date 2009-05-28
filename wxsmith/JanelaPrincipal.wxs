@@ -101,6 +101,10 @@
 				<bitmap>/home/jimmy/simulador8086compipeline/res/chip_48x48.png</bitmap>
 				<pos>728,224</pos>
 			</object>
+			<object class="wxStaticText" name="ID_STATICTEXT5" variable="ligado" member="yes">
+				<label>On</label>
+				<pos>736,272</pos>
+			</object>
 		</object>
 		<object class="wxFileDialog" variable="FileDialog1" member="yes">
 			<message>Escolha um arquivo para abrir</message>

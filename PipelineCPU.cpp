@@ -35,6 +35,9 @@ PipelineCPU::PipelineCPU(){
         this->EX = new std::string("");
         this->MEM = new std::string("");
         this->WB = new std::string("");
+
+        this->on = true;
+        this->nop = false;
 }
 
 void PipelineCPU::execIF(int s=0){
@@ -213,9 +216,30 @@ void PipelineCPU::execEX(){
                 this->execIF(1);
                 this->ifIdO->setInst("");
                 this->execID();
-            }else{
-
             }
+        }else if((this->idExO->getInst()).compare("loopnz")==0){
+            if(this->idExO->getRegDr().compare("false")!=0){
+                if(this->idExO->getParam().substr(0,1).compare("1")==0){
+                    ntmpIP = this->hp->stringToInt(this->hp->baseToInt(this->hp->binNegToPos(this->idExO->getParam()),2));
+                    tmpIP = tmpIP - (ntmpIP * 2);
+                }else{
+                    ntmpIP = this->hp->stringToInt(this->hp->baseToInt(this->idExO->getParam(),2));
+                    tmpIP = tmpIP + (ntmpIP * 2);
+                }
+                this->ip->setX(this->hp->leadingZeroHex(this->hp->intToBase(tmpIP,16)));
+                this->execIF(1);
+                this->ifIdO->setInst("");
+                this->execID();
+            }
+        }else if((this->idExO->getInst()).compare("hlt")==0){
+                this->nop = true;
+        }
+
+        if(this->nop == true){
+                this->ip->setX(this->hp->leadingZeroHex(this->hp->intToBase(tmpIP,16)));
+                this->execIF(1);
+                this->ifIdO->setInst("");
+                this->execID();
         }
                 /** LOG **/
                     tmpAllToStr.str("");
@@ -299,7 +323,16 @@ void PipelineCPU::execWB(){
         this->WB->replace(this->WB->begin(),this->WB->end(),std::string("~").append(this->memWbO->getInst()));
     }else{
         this->WB->replace(this->WB->begin(),this->WB->end(),this->memWbO->getInst());
+        if((this->memWbO->getInst()).compare("loopnz")==0){
+            if(this->memWbO->getRegDr().compare("false")==0){
+                this->memWbO->setRegDr(std::string("0000"));
+            }
+        }
         this->rb->setRD(this->memWbO->getRegDr(),this->memWbO->getRegD(),this->memWbO->getW());
+    }
+    if(this->memWbO->getInst().compare("hlt")==0){
+        this->on = false;
+        this->hp->setLog("off");
     }
     this->memWbO->setExec(this->memWbI->getExec());
     this->memWbO->setInst(this->memWbI->getInst());
@@ -316,22 +349,28 @@ void PipelineCPU::execWB(){
 }
 
 void PipelineCPU::exec(){
-    /** ********************************IF******************************** **/
-    this->execIF();
+    if(this->on){
+        /** ********************************IF******************************** **/
+        this->execIF();
 
-    /** ********************************ID******************************** **/
-    this->execID();
+        /** ********************************ID******************************** **/
+        this->execID();
 
-    /** ********************************EX******************************** **/
-    this->execEX();
+        /** ********************************EX******************************** **/
+        this->execEX();
 
-    /** ********************************MEM******************************* **/
-    this->execMEM();
+        /** ********************************MEM******************************* **/
+        this->execMEM();
 
-    /** ********************************WB******************************** **/
-    this->execWB();
+        /** ********************************WB******************************** **/
+        this->execWB();
 
-    /** end **/
+        /** end **/
+    }else{
+            /** LOG **/
+                this->hp->setLog(std::string("====+====+====+====+====+==CPU off==+====+====+====+====\n\n"));
+            /** LOG_end **/
+    }
             /** LOG **/
                 this->hp->setLog(std::string("====+====+====+====+====+====+====+====+====+====\n\n"));
                 this->hp->saveLog(std::string("log/pipeline.txt"));
@@ -369,6 +408,9 @@ void PipelineCPU::reset(){
     this->alu->reset();
 
     this->hp->cleanLog();
+
+    this->on = true;
+    this->nop = false;
 }
 /**
  *
@@ -564,4 +606,12 @@ int PipelineCPU::PIP(){
         return 10;
     }
     return 4;
+}
+
+std::string PipelineCPU::getOn(){
+    if(this->on==true){
+        return std::string("On");
+    }else{
+        return std::string("Off");
+    }
 }
