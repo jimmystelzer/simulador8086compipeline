@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Debug" />
+	<ActiveTarget name="Release" />
 	<File name="ALU.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="1203" topLine="0" />
 	</File>
@@ -10,14 +10,8 @@
 	<File name="Control.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="8371" topLine="185" />
 	</File>
-	<File name="Hazards.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1" topLine="0" />
-	</File>
-	<File name="Hazards.h" open="0" top="0" tabpos="0">
-		<Cursor position="132" topLine="0" />
-	</File>
 	<File name="Helpers.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="851" topLine="16" />
+		<Cursor position="986" topLine="17" />
 	</File>
 	<File name="JanelaPrincipal.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="2993" topLine="57" />
@@ -32,7 +26,10 @@
 		<Cursor position="158" topLine="0" />
 	</File>
 	<File name="PipelineCPU.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="858" topLine="10" />
+		<Cursor position="858" topLine="0" />
+	</File>
+	<File name="PipelineCPU.h" open="0" top="0" tabpos="0">
+		<Cursor position="64" topLine="0" />
 	</File>
 	<File name="PipelineRegs.cpp" open="0" top="0" tabpos="0">
 		<Cursor position="346" topLine="68" />

@@ -7,12 +7,9 @@
 #include "ShiftLeft.h"
 #include "Mem.h"
 #include "Helpers.h"
-#include "Hazards.h"
-#include "Forwarding.h"
 #include "Control.h"
 #include "ALU.h"
 #include "Register.h"
-#include "Mux.h"
 
 class PipelineCPU{
     private:

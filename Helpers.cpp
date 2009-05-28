@@ -26,7 +26,7 @@ std::string Helpers::baseToInt(std::string num, unsigned int b){
     if (!num.empty()) {
         for (unsigned int i=0;i<num.length();i++){
             tmp = nbc.find((num.substr(i,1)).c_str(), 0);
-            fnum =  fnum + (tmp)*pow(b,(num.length()-i-1));
+            fnum = (unsigned long long int)(fnum + (tmp)*pow(b,(num.length()-i-1)));
         }
         tmpstr << fnum;
         return tmpstr.str();
