@@ -52,8 +52,6 @@
 		<Unit filename="MainApp.h" />
 		<Unit filename="Mem.cpp" />
 		<Unit filename="Mem.h" />
-		<Unit filename="Mux.cpp" />
-		<Unit filename="Mux.h" />
 		<Unit filename="PipelineCPU.cpp" />
 		<Unit filename="PipelineCPU.h" />
 		<Unit filename="PipelineRegs.cpp" />

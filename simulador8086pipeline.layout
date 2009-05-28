@@ -43,12 +43,6 @@
 	<File name="Mem.h" open="0" top="0" tabpos="2">
 		<Cursor position="274" topLine="0" />
 	</File>
-	<File name="Mux.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="2104" topLine="57" />
-	</File>
-	<File name="Mux.h" open="0" top="0" tabpos="0">
-		<Cursor position="392" topLine="0" />
-	</File>
 	<File name="PipelineCPU.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="21033" topLine="238" />
 	</File>
